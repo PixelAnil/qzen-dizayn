@@ -99,3 +99,10 @@
     background-image: var(--poster-desktop);
   }
 }
+
+/* Stacked capitals need room on phones: Turkish dots (İ) and breves (Ğ) touch the line above at tight leading */
+@media (max-width: 767px) {
+  .display {
+    line-height: 1.04 !important;
+  }
+}

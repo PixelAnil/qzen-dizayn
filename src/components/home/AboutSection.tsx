@@ -9,7 +9,7 @@ const paragraphs = [
 
 export function AboutSection() {
   return (
-    <section id="hakkimizda" data-reveal-group className="scroll-mt-20 bg-obsidian px-4 py-32 md:px-8 md:py-52">
+    <section id="hakkimizda" data-reveal-group className="scroll-mt-20 bg-obsidian px-4 pb-32 pt-16 md:px-8 md:pb-52 md:pt-32">
       <h2 data-reveal className="display text-[8vw] leading-[0.9] text-ivory md:text-[min(6.4vw,6rem)]">
         QZEN DİZAYN — <span className="text-gold">Mekanın Ötesinde,</span>
         <br className="hidden md:block" /> Yaşamın Sanatı

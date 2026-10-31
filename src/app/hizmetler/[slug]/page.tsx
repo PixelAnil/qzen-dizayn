@@ -18,7 +18,7 @@ const findService = (slug: string) => services.find((s) => s.slug === slug);
 
 export async function generateMetadata({ params }: PageProps<"/hizmetler/[slug]">): Promise<Metadata> {
   const service = findService((await params).slug);
-  return service ? { title: service.title, description: `${service.title} – ${service.tagline}. QZEN DİZAYN, Erzurum.` } : {};
+  return service ? { title: service.title, description: `${service.title} – ${service.tagline}. QZEN DİZAYN, İstanbul.` } : {};
 }
 
 function ContentBlock({ block }: { block: Block }) {
@@ -57,8 +57,13 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
   return (
     <article>
       <header data-reveal-group className="grid gap-10 px-4 pb-20 pt-32 md:grid-cols-12 md:gap-x-4 md:px-8 md:pb-28 md:pt-44">
-        <div className="md:col-span-7 md:self-end">
-          <h1 data-reveal className="display text-[clamp(2.75rem,1.2rem+5vw,6.5rem)] leading-[0.88] text-ivory">
+        <div className="md:col-span-8 md:self-end">
+          <h1
+            data-reveal
+            className={`display leading-[0.92] text-ivory ${
+              service.title.length > 30 ? "text-[clamp(1.875rem,0.9rem+3.6vw,4.75rem)]" : "text-[clamp(2.75rem,1.2rem+5vw,6.5rem)]"
+            }`}
+          >
             {service.title}
           </h1>
           <p data-reveal className="mt-6 text-lead text-gold">{service.tagline}</p>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { Reveal } from "@/components/providers/Reveal";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { asset } from "@/lib/asset";
@@ -18,7 +19,7 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: `${site.name} — İç mimari ve tadilat, Erzurum`,
+    default: `${site.name} — İç mimari ve tadilat, İstanbul`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <WhatsAppButton />
         </SmoothScroll>
       </body>
     </html>

@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Hizmetlerimiz",
-  description: "Alçıpan ve bölme duvar, asma tavan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat. Erzurum.",
+  description: "Alçıpan ve bölme duvar, asma tavan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat. İstanbul.",
 };
 
 export default function ServicesPage() {

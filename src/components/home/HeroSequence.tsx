@@ -260,7 +260,7 @@ export function HeroSequence() {
   }, []);
 
   return (
-    <section ref={sectionRef} aria-label="Kaba yapıdan teslime: QZEN DİZAYN filmi" className="relative h-[480vh] bg-obsidian">
+    <section ref={sectionRef} aria-label="Kaba yapıdan teslime: QZEN DİZAYN filmi" data-hero className="relative h-[480vh] bg-obsidian">
       <h1 className="sr-only">QZEN DİZAYN</h1>
 
       {/* Let the browser fetch the poster frame before hydration */}
@@ -287,8 +287,8 @@ export function HeroSequence() {
             ref={stageRef}
             className="display relative h-[0.95em] text-[clamp(2.75rem,1.2rem+6.5vw,8.5rem)] leading-[0.9] text-ivory"
           />
-          <div aria-hidden className="mt-5 h-1 w-full max-w-md bg-ivory/15">
-            <div data-hero-progress className="h-full origin-left scale-x-0 bg-gold" />
+          <div aria-hidden className="mt-5 h-[2px] w-[calc(100%-4.5rem)] max-w-sm bg-ivory/12 md:w-full">
+            <div data-hero-progress className="h-full origin-left scale-x-0 bg-gold-light" />
           </div>
         </div>
       </div>

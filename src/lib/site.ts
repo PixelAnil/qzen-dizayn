@@ -1,13 +1,17 @@
 export const site = {
   name: "QZEN DİZAYN",
   description:
-    "Erzurum'da asma tavan, alçıpan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat. 10 yılı aşkın tecrübe.",
-  address: "Cumhuriyet Mahallesi, Lale Sokak No: 14 Yakutiye / Erzurum",
-  addressLines: ["Cumhuriyet Mah., Lale Sokak No: 14", "Yakutiye / Erzurum"],
+    "İstanbul Sultanbeyli'de asma tavan, alçıpan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat. 10 yılı aşkın tecrübe.",
+  address: "Adil Mahallesi, Hamidiye Caddesi No: 96, 34935 Sultanbeyli / İstanbul",
+  addressLines: ["Adil Mahallesi, Hamidiye Caddesi No: 96", "34935 Sultanbeyli / İstanbul"],
   email: "hello@flowrixai.com",
   phone: {
     display: "0505 326 52 20",
     href: "tel:+905053265220",
+  },
+  whatsapp: {
+    display: "0505 326 52 20",
+    href: "https://wa.me/905053265220",
   },
   instagram: {
     handle: "@qzen_dizayn",
@@ -19,8 +23,10 @@ export const site = {
   },
 } as const;
 
-export const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;
-export const mapsEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(site.address)}&z=16&output=embed`;
+// Map query in the form Google resolves best
+const mapsQuery = "Adil Mahallesi Hamidiye Caddesi No 96, 34935 Sultanbeyli, İstanbul, Türkiye";
+export const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
+export const mapsEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(mapsQuery)}&z=16&output=embed`;
 
 export const navLinks = [
   { label: "Anasayfa", href: "/" },

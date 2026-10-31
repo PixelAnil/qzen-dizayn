@@ -99,13 +99,3 @@
     background-image: var(--poster-desktop);
   }
 }
-
-/* ─── The services sheet: a printed card with scalloped top and bottom edges ── */
-/* The radial-gradients below are a mask shape (the cut edge), not a visible gradient */
-.scalloped {
-  --scallop: 14px;
-  --edge-top: radial-gradient(var(--scallop) at 50% 0, #0000 98%, #000) 50% 0 / calc(var(--scallop) * 2.4) 51% repeat-x; /* taste-skill-ignore */
-  --edge-bottom: radial-gradient(var(--scallop) at 50% 100%, #0000 98%, #000) 50% 100% / calc(var(--scallop) * 2.4) 51% repeat-x; /* taste-skill-ignore */
-  -webkit-mask: var(--edge-top), var(--edge-bottom);
-  mask: var(--edge-top), var(--edge-bottom);
-}

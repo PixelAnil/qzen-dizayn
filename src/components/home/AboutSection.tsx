@@ -1,71 +1,49 @@
 import Image from "next/image";
 import { asset } from "@/lib/asset";
-import { credits } from "@/lib/credits";
 
-const facts = [
-  { label: "Şehir", value: "Erzurum, 1.900 m" },
-  { label: "Semt", value: "Yakutiye" },
-  { label: "Atölye", value: "Lale Sokak No: 14" },
-  { label: "Çalıştığımız yerler", value: "Ev, mağaza, ofis" },
+// Copy supplied by the client.
+const paragraphs = [
+  "Kurulduğumuz günden bu yana, her projeyi özgün bir hikaye olarak ele alıyoruz. On yıllık tecrübemizi; en son trendler, kusursuz malzeme kalitesi ve tavizsiz bir işçilik anlayışıyla harmanlıyoruz. Asma tavan ve alçıpan çözümlerinden anahtar teslim ev tadilatlarına, sofistike iç dekorasyon tasarımlarından prestijli ticari ofis ve mağaza yenilemelerine kadar her adımda mükemmelliği hedefliyoruz.",
+  "Bizim için tasarım; sadece estetik görünmek değil, içinde yaşayan ya da çalışan insanın ruhuna hitap eden kusursuz bir atmosfer yaratmaktır. Derin antrasit tonlarını, sıcak bronz detayları ve zamansız lüksü mekanlarla buluştururken, her projede ilk günkü heyecanımızı profesyonel disiplinimizle birleştiriyoruz.",
 ];
 
 export function AboutSection() {
-  const { homann } = credits;
-
   return (
     <section id="hakkimizda" data-reveal-group className="scroll-mt-20 bg-obsidian px-4 py-32 md:px-8 md:py-52">
-      <div className="grid gap-y-8 md:grid-cols-12 md:gap-x-4">
-        <h2 data-reveal className="display text-head text-ivory md:col-span-12">
-          Adımız özenden gelir
-        </h2>
-        <p data-reveal className="max-w-[44ch] text-lead text-ivory md:col-span-7">
-          QZEN, &ldquo;özen&rdquo; kelimesinden doğdu. Yakutiye&apos;deki atölyemizden Erzurum&apos;un evlerine,
-          dükkânlarına ve ofislerine; tasarımdan teslime kadar tek ekip olarak çalışıyoruz.
-        </p>
-      </div>
+      <h2 data-reveal className="display text-[8vw] leading-[0.9] text-ivory md:text-[min(6.4vw,6rem)]">
+        QZEN DİZAYN — <span className="text-gold">Mekanın Ötesinde,</span>
+        <br className="hidden md:block" /> Yaşamın Sanatı
+      </h2>
 
-      <div className="mt-18 grid gap-4 md:grid-cols-12">
-        {/* Wide photograph with a paper note over its corner */}
-        <figure data-reveal className="relative md:col-span-8">
-          <Image
-            src={asset("/projects/salon-wide.webp")}
-            alt="Siyah mermer şömine duvarı, ahşap çıtalı nişler ve pirinç halka avizeli bitmiş salon"
-            width={1080}
-            height={1080}
-            sizes="(min-width: 768px) 66vw, 100vw"
-            className="aspect-4/3 w-full object-cover md:aspect-16/10"
-          />
-          <figcaption className="bg-paper p-5 text-body text-ink-dark md:absolute md:right-0 md:top-0 md:w-80">
-            Kaba inşaattan gelen bir daireyi önce tavan ve ışıkla, sonra duvar, zemin ve mobilyayla ele alırız. Her
-            aşamada aynı ekip ve aynı muhatap.
-          </figcaption>
-        </figure>
-
-        {/* The city the studio works in, plus the facts */}
-        <div className="flex flex-col gap-6 md:col-span-4">
-          <figure data-reveal className="bg-graphite-soft">
-            <Image
-              src={asset(homann.src)}
-              alt={homann.alt}
-              width={homann.width}
-              height={homann.height}
-              sizes="(min-width: 768px) 33vw, 100vw"
-              className="aspect-3/2 w-full object-cover"
-            />
-            <figcaption className="px-4 py-3 text-small text-ash">
-              {homann.caption}. {homann.credit}
-            </figcaption>
-          </figure>
-
-          <dl data-reveal className="grid grid-cols-2 gap-x-4 gap-y-5">
-            {facts.map((fact) => (
-              <div key={fact.label}>
-                <dt className="text-small text-ash">{fact.label}</dt>
-                <dd className="mt-1 text-body text-ivory">{fact.value}</dd>
-              </div>
+      <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-12 md:gap-x-4">
+        <div className="md:col-span-6 lg:col-span-6">
+          <p data-reveal className="text-lead text-ivory">
+            10 yılı aşkın süredir mimarinin, estetiğin ve işlevselliğin sınırlarını yeniden tanımlıyoruz. QZEN DİZAYN
+            olarak Erzurum&apos;dan yola çıkarak; sıradan duvarları, yaşam alanlarını ve ticari mülkleri sadece birer
+            mekan olmaktan çıkarıp, haute couture birer sanat eserine dönüştürüyoruz.
+          </p>
+          <div className="mt-10 max-w-[62ch] space-y-6 text-body text-ivory/85">
+            {paragraphs.map((text) => (
+              <p data-reveal key={text.slice(0, 24)}>
+                {text}
+              </p>
             ))}
-          </dl>
+          </div>
+          <p data-reveal className="mt-10 max-w-[40ch] text-lead text-gold">
+            QZEN DİZAYN; hayallerinizdeki mekanları gerçeğe dönüştüren güvenilir çözüm ortağınızdır.
+          </p>
         </div>
+
+        <figure data-reveal className="md:col-span-5 md:col-start-8 md:self-start md:sticky md:top-28">
+          <Image
+            src={asset("/brand/salon.webp")}
+            alt="Siyah mermer şömine duvarı, ahşap çıtalı nişler ve pirinç halka avizeli salon"
+            width={1080}
+            height={1350}
+            sizes="(min-width: 768px) 40vw, 100vw"
+            className="aspect-4/5 w-full object-cover"
+          />
+        </figure>
       </div>
     </section>
   );

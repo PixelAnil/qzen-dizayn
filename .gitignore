@@ -43,3 +43,7 @@ next-env.d.ts
 # design tooling
 /.taste-skill/
 /assets/*.jpg
+
+# raw client material (processed into public/ and src/content/)
+/hizmetlerimiz/
+/Projelerimiz */

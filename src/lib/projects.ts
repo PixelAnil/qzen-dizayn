@@ -1,5 +1,5 @@
-// Placeholder portfolio: images are stills cut from the hero film.
-// Replace with real project photography and names when available.
+// The studio's own completed work (Projelerimiz/ folder). Titles are descriptive placeholders;
+// replace them with the real project names when available.
 export type Project = {
   slug: string;
   title: string;
@@ -7,81 +7,39 @@ export type Project = {
   image: string;
   width: number;
   height: number;
-  /** Bento tile footprint on large screens */
-  span: "wide" | "tall" | "large" | "base";
 };
 
 export const projects: Project[] = [
   {
-    slug: "obsidyen-salon",
-    title: "Obsidyen Salon",
-    category: "İç Dekorasyon",
-    image: "/projects/salon-wide.webp",
-    width: 1080,
-    height: 1080,
-    span: "large",
+    slug: "pervazli-duvar-gizli-isik",
+    title: "Pervazlı Duvar ve Gizli Işık",
+    category: "Asma tavan, duvar pervazı",
+    image: "/projects/proje-2.webp",
+    width: 1600,
+    height: 1200,
   },
   {
-    slug: "lumiere-duvar",
-    title: "Lumière Duvar",
-    category: "Alçıpan & Aydınlatma",
-    image: "/projects/lumiere-wall.webp",
-    width: 1080,
-    height: 1600,
-    span: "tall",
+    slug: "yesil-salon",
+    title: "Yeşil Pervazlı Salon",
+    category: "İç dekorasyon",
+    image: "/projects/proje-1.webp",
+    width: 1076,
+    height: 1434,
   },
   {
-    slug: "halo-tavan",
-    title: "Halo Tavan",
-    category: "Asma Tavan",
-    image: "/projects/ceiling-detail.webp",
-    width: 1080,
-    height: 720,
-    span: "wide",
+    slug: "tas-duvarli-salon",
+    title: "Taş Duvarlı Salon",
+    category: "Asma tavan, duvar kaplama",
+    image: "/projects/proje-4.webp",
+    width: 1158,
+    height: 1436,
   },
   {
-    slug: "mermer-kutuphane",
-    title: "Mermer Kütüphane",
-    category: "İç Dekorasyon",
-    image: "/projects/marble-library.webp",
-    width: 1080,
-    height: 1350,
-    span: "tall",
-  },
-  {
-    slug: "yakutiye-rezidans",
-    title: "Yakutiye Rezidans",
-    category: "Anahtar Teslim Tadilat",
-    image: "/projects/salon-portrait.webp",
-    width: 1080,
-    height: 1350,
-    span: "base",
-  },
-  {
-    slug: "atesli-lounge",
-    title: "Ateşli Lounge",
-    category: "Ticari Tadilat",
-    image: "/projects/lounge-detail.webp",
-    width: 1080,
-    height: 810,
-    span: "wide",
-  },
-  {
-    slug: "somine-detayi",
-    title: "Şömine Detayı",
-    category: "İç Dekorasyon",
-    image: "/projects/fireplace-detail.webp",
-    width: 900,
-    height: 900,
-    span: "wide",
-  },
-  {
-    slug: "ham-yapidan-dogus",
-    title: "Ham Yapıdan Doğuş",
-    category: "Anahtar Teslim Tadilat",
-    image: "/projects/structure-raw.webp",
-    width: 1080,
-    height: 1350,
-    span: "base",
+    slug: "kademeli-tavan",
+    title: "Kademeli Asma Tavan",
+    category: "Asma tavan",
+    image: "/projects/proje-3.webp",
+    width: 1600,
+    height: 1196,
   },
 ];

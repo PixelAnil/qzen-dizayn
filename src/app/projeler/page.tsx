@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Projelerimiz",
-  description: "QZEN DİZAYN'ın Erzurum'da tamamladığı ev, mağaza ve ofis projeleri.",
+  description: "QZEN DİZAYN'ın tamamladığı asma tavan, duvar ve iç dekorasyon projeleri.",
 };
 
 export default function ProjectsPage() {
@@ -15,7 +15,7 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         title="Projelerimiz"
-        intro="Erzurum'da teslim ettiğimiz evler, mağazalar ve ofisler. Her biri kaba yapıdan ya da eski hâlinden başlayıp tek ekiple bitti."
+        intro="Tamamladığımız asma tavan, duvar ve iç dekorasyon işlerinden bir seçki."
         action={<Button href={site.phone.href}>Projenizi konuşalım</Button>}
       />
 

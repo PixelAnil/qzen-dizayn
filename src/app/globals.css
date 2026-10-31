@@ -100,11 +100,9 @@
   }
 }
 
-/* Stacked capitals need room on phones: Turkish dots (İ) and breves (Ğ) touch the line above at tight leading */
-@media (max-width: 767px) {
-  .display {
-    line-height: 1.04 !important;
-  }
+/* Stacked capitals need room: Turkish dots (İ) and breves (Ğ) touch the line above at tight leading */
+.display {
+  line-height: 1.04 !important;
 }
 
 /* ─── Custom cursor (mouse only; see Cursor.tsx) ───────────────── */

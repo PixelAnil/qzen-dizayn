@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
+import { Cursor } from "@/components/layout/Cursor";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main className="flex-1">{children}</main>
           <Footer />
           <WhatsAppButton />
+          <Cursor />
         </SmoothScroll>
       </body>
     </html>

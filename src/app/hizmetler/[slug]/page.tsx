@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button, buttonClass } from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/ui/Icons";
 import { asset } from "@/lib/asset";
 import { readServiceContent, type Block } from "@/lib/content";
 import { projects } from "@/lib/projects";
-import { services, site } from "@/lib/site";
+import { services, site, whatsappHref } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -53,6 +54,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
 
   const [intro, ...blocks] = readServiceContent(slug);
   const others = services.filter((s) => s.slug !== slug);
+  const whatsapp = whatsappHref(`Merhaba, ${service.title} için ücretsiz keşif ve fiyat teklifi almak istiyorum.`);
 
   return (
     <article>
@@ -72,8 +74,12 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
               {intro.text}
             </p>
           )}
-          <div data-reveal className="mt-10">
+          <div data-reveal className="mt-10 flex flex-wrap gap-3">
             <Button href={site.phone.href}>Ücretsiz keşif için arayın</Button>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary")}>
+              <WhatsAppIcon className="h-5 w-5" />
+              WhatsApp&apos;tan yazın
+            </a>
           </div>
         </div>
 
@@ -100,13 +106,18 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
         <aside className="md:col-span-3 md:col-start-10">
           <div className="bg-graphite p-6 md:sticky md:top-28">
             <h2 className="text-lead font-medium text-ivory">Ücretsiz keşif</h2>
-            <p className="mt-3 text-body text-ash">Yerinde ölçü ve size özel teklif için bizi arayın.</p>
+            <p className="mt-3 text-body text-ash">Yerinde ölçü ve size özel teklif için arayın ya da yazın.</p>
             <a
               href={site.phone.href}
               className={buttonClass("primary", "mt-6 w-full")}
             >
               {site.phone.display}
             </a>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary", "mt-3 w-full")}>
+              <WhatsAppIcon className="h-5 w-5" />
+              WhatsApp&apos;tan yazın
+            </a>
+            <p className="mt-3 text-small text-ash">Mesajınız bu hizmet için hazır yazılmış olarak açılır.</p>
 
             <h2 className="mt-10 text-small text-ash">Diğer hizmetler</h2>
             <ul className="mt-3 space-y-2 text-body">

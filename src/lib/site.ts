@@ -23,6 +23,9 @@ export const site = {
   },
 } as const;
 
+/** WhatsApp link with a message already typed in for the visitor. */
+export const whatsappHref = (message: string) => `${site.whatsapp.href}?text=${encodeURIComponent(message)}`;
+
 // Map query in the form Google resolves best
 const mapsQuery = "Adil Mahallesi Hamidiye Caddesi No 96, 34935 Sultanbeyli, İstanbul, Türkiye";
 export const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;

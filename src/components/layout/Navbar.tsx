@@ -77,11 +77,6 @@ export function Navbar() {
               </Link>
             </li>
           ))}
-          <li>
-            <a href={site.phone.href} className="text-small font-medium text-gold transition-colors hover:text-gold-light">
-              {site.phone.display}
-            </a>
-          </li>
         </ul>
 
         {/* Three bars that turn into a cross */}

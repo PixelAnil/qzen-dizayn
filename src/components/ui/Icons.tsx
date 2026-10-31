@@ -19,36 +19,19 @@ export function MailIcon({ className = "" }: IconProps) {
   );
 }
 
-/** Solid logo: filled bubble with the handset cut out in the page's ground colour. */
+/** Outline logo: open bubble and handset drawn in the current colour, the inside left clear. */
 export function WhatsAppLogo({ className = "" }: IconProps) {
   return (
-    <svg aria-hidden viewBox="0 0 24 24" className={className}>
+    <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinejoin="round" strokeLinecap="round" className={className}>
+      <path strokeWidth="1.7" d="M4.55 15.9A8.6 8.6 0 1 1 8.3 19.4L3.4 20.6z" />
       <path
-        fill="currentColor"
-        d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6z"
-      />
-      <path
-        fill="#0a0a0a"
-        d="M9 7.8c.3-.6.6-.6.9-.6h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.3 0 .6.4.7 1 1.4 1.7 1.9.6.4 1 .6 1.3.7.2.1.4 0 .5-.1l.6-.8c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.2.4.4 0 .5-.2 1.2-.7 1.6-.5.4-1.2.6-2 .5-1.2-.2-2.6-.9-3.9-2.1-1.3-1.2-2.2-2.6-2.5-3.7-.2-.9 0-1.7.5-2.4z"
+        strokeWidth="3.4"
+        transform="translate(7.05 6.6) scale(0.42)"
+        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
       />
     </svg>
   );
 }
 
-export function WhatsAppIcon({ className = "" }: IconProps) {
-  return (
-    <svg aria-hidden viewBox="0 0 24 24" className={className}>
-      <path
-        d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-      <path
-        fill="currentColor"
-        d="M9 7.8c.3-.6.6-.6.9-.6h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.3 0 .6.4.7 1 1.4 1.7 1.9.6.4 1 .6 1.3.7.2.1.4 0 .5-.1l.6-.8c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.2.4.4 0 .5-.2 1.2-.7 1.6-.5.4-1.2.6-2 .5-1.2-.2-2.6-.9-3.9-2.1-1.3-1.2-2.2-2.6-2.5-3.7-.2-.9 0-1.7.5-2.4z"
-      />
-    </svg>
-  );
-}
+/** Inline-size WhatsApp mark for buttons: the same outline logo. */
+export const WhatsAppIcon = WhatsAppLogo;

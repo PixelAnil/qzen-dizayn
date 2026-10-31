@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { asset } from "@/lib/asset";
+import { buttonClass } from "@/components/ui/Button";
 import { navLinks, site } from "@/lib/site";
 
 const linkClass = "text-small text-ivory transition-colors duration-300 hover:text-gold-light";
@@ -123,7 +124,7 @@ export function Navbar() {
             ))}
           </ul>
           <div className="flex gap-2 px-4 pb-6 pt-2">
-            <a href={site.phone.href} tabIndex={open ? 0 : -1} className="flex min-h-12 flex-1 items-center justify-center bg-gold text-body font-medium text-obsidian">
+            <a href={site.phone.href} tabIndex={open ? 0 : -1} className={buttonClass("primary", "flex-1")}>
               Ara
             </a>
             <a
@@ -131,7 +132,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               tabIndex={open ? 0 : -1}
-              className="flex min-h-12 flex-1 items-center justify-center bg-graphite-soft text-body font-medium text-gold"
+              className={buttonClass("secondary", "flex-1")}
             >
               WhatsApp
             </a>

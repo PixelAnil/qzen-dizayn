@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CopyrightYear } from "@/components/layout/CopyrightYear";
+import { iconButtonClass } from "@/components/ui/Button";
 import { InstagramIcon, MailIcon } from "@/components/ui/Icons";
 import { asset } from "@/lib/asset";
 import { mapsHref, navLinks, policyLinks, site } from "@/lib/site";
 
 const linkClass = "transition-colors duration-300 hover:text-gold-light";
-const iconClass =
-  "inline-flex h-11 w-11 items-center justify-center bg-graphite-soft text-gold transition-[background-color,color,transform] duration-300 hover:bg-[rgba(197,160,89,0.1)] hover:text-gold-light active:scale-95";
 
 export function Footer() {
   return (
@@ -40,10 +39,10 @@ export function Footer() {
           </address>
 
           <div className="flex gap-2 md:justify-end">
-            <a href={site.instagram.href} target="_blank" rel="noopener noreferrer" aria-label={`Instagram: ${site.instagram.handle}`} className={iconClass}>
+            <a href={site.instagram.href} target="_blank" rel="noopener noreferrer" aria-label={`Instagram: ${site.instagram.handle}`} className={iconButtonClass}>
               <InstagramIcon className="h-5 w-5" />
             </a>
-            <a href={`mailto:${site.email}`} aria-label={`E-posta: ${site.email}`} className={iconClass}>
+            <a href={`mailto:${site.email}`} aria-label={`E-posta: ${site.email}`} className={iconButtonClass}>
               <MailIcon className="h-5 w-5" />
             </a>
           </div>

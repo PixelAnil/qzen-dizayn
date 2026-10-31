@@ -1,4 +1,5 @@
 import { mapsEmbed, mapsHref, site } from "@/lib/site";
+import { buttonClass } from "@/components/ui/Button";
 
 const rows = [
   { label: "Telefon", value: site.phone.display, href: site.phone.href },
@@ -51,10 +52,10 @@ export function ContactSection() {
             ))}
           </dl>
 
-          <div className="mt-auto grid gap-2 pt-10 sm:grid-cols-3">
+          <div className="mt-auto grid grid-cols-2 gap-2 pt-10">
             <a
               href={site.phone.href}
-              className="inline-flex min-h-13 flex-1 items-center justify-center bg-gold px-3 text-body font-medium text-obsidian transition-[background-color,transform] duration-300 hover:bg-gold-light active:scale-[0.98]"
+              className={buttonClass("primary", "col-span-2 px-3")}
             >
               Hemen arayın
             </a>
@@ -62,7 +63,7 @@ export function ContactSection() {
               href={site.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-13 flex-1 items-center justify-center bg-graphite-soft px-3 text-body font-medium text-gold transition-colors duration-300 hover:bg-[rgba(197,160,89,0.1)] hover:text-gold-light"
+              className={buttonClass("secondary", "px-3")}
             >
               WhatsApp
             </a>
@@ -70,7 +71,7 @@ export function ContactSection() {
               href={mapsHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-13 flex-1 items-center justify-center bg-graphite-soft px-3 text-body font-medium text-gold transition-colors duration-300 hover:bg-[rgba(197,160,89,0.1)] hover:text-gold-light"
+              className={buttonClass("secondary", "px-3")}
             >
               Yol tarifi al
             </a>

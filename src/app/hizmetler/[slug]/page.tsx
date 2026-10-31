@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClass } from "@/components/ui/Button";
 import { asset } from "@/lib/asset";
 import { readServiceContent, type Block } from "@/lib/content";
 import { projects } from "@/lib/projects";
@@ -103,7 +103,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
             <p className="mt-3 text-body text-ash">Yerinde ölçü ve size özel teklif için bizi arayın.</p>
             <a
               href={site.phone.href}
-              className="mt-6 flex min-h-13 items-center justify-center bg-gold text-body font-medium text-obsidian transition-colors hover:bg-gold-light"
+              className={buttonClass("primary", "mt-6 w-full")}
             >
               {site.phone.display}
             </a>

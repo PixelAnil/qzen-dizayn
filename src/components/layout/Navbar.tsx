@@ -20,25 +20,33 @@ export function Navbar() {
     const bar = barRef.current;
     if (!bar) return;
     let frame = 0;
+    let distance = 1;
 
+    // Layout is read only on resize; scrolling just divides
+    const measure = () => {
+      const hero = document.querySelector<HTMLElement>("[data-hero]");
+      distance = Math.max(1, hero ? hero.offsetHeight - window.innerHeight : window.innerHeight * 0.5);
+    };
     const update = () => {
       frame = 0;
-      const hero = document.querySelector<HTMLElement>("[data-hero]");
-      const distance = hero ? hero.offsetHeight - window.innerHeight : window.innerHeight * 0.5;
-      const progress = Math.min(1, Math.max(0, window.scrollY / Math.max(1, distance)));
-      bar.style.opacity = String(progress);
+      bar.style.opacity = String(Math.min(1, window.scrollY / distance));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
 
+    measure();
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, [pathname]);
 

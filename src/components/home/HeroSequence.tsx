@@ -67,6 +67,9 @@ export function HeroSequence() {
     if (!section || !canvas || !stageBox || !ctx) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Phones and tablets: light frames only and a lower pixel ratio. Holding 150 decoded HD
+    // frames (~1 GB) makes mobile browsers evict and re-decode them mid-scroll, which stutters.
+    const lite = window.matchMedia("(pointer: coarse)").matches;
     let set: SequenceSet = pickSet(window.innerWidth, window.innerHeight);
     // Best decoded frame per index; HD frames replace light ones as they arrive
     let images: (HTMLImageElement | null)[] = [];
@@ -139,12 +142,12 @@ export function HeroSequence() {
 
       await loadFrame(0, "light", gen, "high");
       await loadTier("light", gen, LOAD_CONCURRENCY);
-      if (gen === generation && canLoadHd()) await loadTier("hd", gen, 4);
+      if (gen === generation && !lite && canLoadHd()) await loadTier("hd", gen, 4);
     };
 
     // ── Sizing: crisp on HiDPI, recentred on every resize ──
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.5 : 2);
       canvas.width = Math.round(canvas.clientWidth * dpr);
       canvas.height = Math.round(canvas.clientHeight * dpr);
       ctx.imageSmoothingQuality = "high";
@@ -204,11 +207,12 @@ export function HeroSequence() {
       }
       gsap.fromTo(
         glyphs,
-        { yPercent: forward ? 110 : -110, opacity: 0, filter: "blur(6px)" },
+        // The blur is skipped on touch devices: filter animation is costly on phone GPUs
+        { yPercent: forward ? 110 : -110, opacity: 0, ...(!lite && { filter: "blur(6px)" }) },
         {
           yPercent: 0,
           opacity: 1,
-          filter: "blur(0px)",
+          ...(!lite && { filter: "blur(0px)" }),
           duration: 0.9,
           ease: "expo.out",
           stagger: 0.028,

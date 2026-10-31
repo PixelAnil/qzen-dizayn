@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
@@ -36,7 +37,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-10">
         <Link href="/" className="flex items-center gap-3" aria-label="QZEN DİZAYN anasayfa">
-          <Image src="/brand/qzen-mark.webp" alt="" width={200} height={162} preload className="h-9 w-auto" />
+          <Image src={asset("/brand/qzen-mark.webp")} alt="" width={200} height={162} preload className="h-9 w-auto" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-xl tracking-[0.3em] text-ivory">QZEN</span>
             <span className="mt-1 text-[0.55rem] tracking-[0.5em] text-gold">DİZAYN</span>

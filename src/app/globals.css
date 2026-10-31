@@ -90,15 +90,16 @@
 }
 
 /* ─── Hero poster: first frame painted by CSS before JS hydrates ── */
+/* URLs come in as --poster-* from HeroSequence so they carry the deploy basePath */
 .hero-poster {
   background-color: var(--color-obsidian);
-  background-image: url("/sequence/mobile/001.webp");
+  background-image: var(--poster-mobile);
   background-position: center;
   background-size: cover;
 }
 
 @media (min-aspect-ratio: 1/1) {
   .hero-poster {
-    background-image: url("/sequence/desktop/001.webp");
+    background-image: var(--poster-desktop);
   }
 }

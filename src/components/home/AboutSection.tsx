@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
@@ -42,7 +43,7 @@ export function AboutSection() {
         {/* Mobile: compact logo above the copy */}
         <div data-reveal className="md:hidden">
           <Image
-            src="/brand/qzen-logo.webp"
+            src={asset("/brand/qzen-logo.webp")}
             alt="QZEN DİZAYN"
             width={900}
             height={900}
@@ -79,7 +80,7 @@ export function AboutSection() {
         {/* Desktop: oversized translucent watermark */}
         <div data-watermark aria-hidden className="relative hidden md:flex md:justify-center">
           <Image
-            src="/brand/qzen-logo.webp"
+            src={asset("/brand/qzen-logo.webp")}
             alt=""
             width={900}
             height={900}

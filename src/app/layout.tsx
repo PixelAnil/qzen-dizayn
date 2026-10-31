@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
+import { asset } from "@/lib/asset";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     description: site.description,
     locale: "tr_TR",
     type: "website",
-    images: [{ url: "/brand/og.webp", width: 1080, height: 1080, alt: site.name }],
+    images: [{ url: asset("/brand/og.webp"), width: 1080, height: 1080, alt: site.name }],
   },
 };
 

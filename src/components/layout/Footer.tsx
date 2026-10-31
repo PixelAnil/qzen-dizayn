@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 import Link from "next/link";
 import { CopyrightYear } from "@/components/layout/CopyrightYear";
 import { mapsHref, navLinks, services, site } from "@/lib/site";
@@ -22,7 +23,7 @@ export function Footer() {
         {/* Brand */}
         <div>
           <Link href="/" aria-label="QZEN DİZAYN anasayfa" className="inline-block">
-            <Image src="/brand/qzen-logo.webp" alt="QZEN DİZAYN" width={900} height={900} sizes="144px" className="w-36" />
+            <Image src={asset("/brand/qzen-logo.webp")} alt="QZEN DİZAYN" width={900} height={900} sizes="144px" className="w-36" />
           </Link>
           <p className="mt-6 max-w-xs text-sm leading-relaxed">
             Mimari tasarım, iç dekorasyon ve anahtar teslim tadilatta özenin imzası.

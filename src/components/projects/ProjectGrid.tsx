@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 import type { Project } from "@/lib/projects";
 
 const spanClass: Record<Project["span"], string> = {
@@ -14,7 +15,7 @@ function ProjectTile({ project, eager }: { project: Project; eager: boolean }) {
       className={`group relative aspect-4/5 overflow-hidden bg-graphite-soft sm:aspect-auto ${spanClass[project.span]}`}
     >
       <Image
-        src={project.image}
+        src={asset(project.image)}
         alt={`${project.title} — ${project.category}`}
         fill
         sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw"

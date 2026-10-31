@@ -167,7 +167,14 @@ export function HeroSequence() {
       <link rel="preload" as="image" href={frameSrc("mobile", 0)} media="(max-aspect-ratio: 1/1)" fetchPriority="high" />
 
       <div className="sticky top-0 h-svh w-full overflow-hidden">
-        <div aria-hidden className="hero-poster absolute inset-0" />
+        <div
+          aria-hidden
+          className="hero-poster absolute inset-0"
+          style={{
+            "--poster-desktop": `url(${frameSrc("desktop", 0)})`,
+            "--poster-mobile": `url(${frameSrc("mobile", 0)})`,
+          } as React.CSSProperties}
+        />
         <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full" />
 
         {/* Legibility vignette */}

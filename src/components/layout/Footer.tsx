@@ -1,111 +1,103 @@
 import Image from "next/image";
-import { asset } from "@/lib/asset";
 import Link from "next/link";
 import { CopyrightYear } from "@/components/layout/CopyrightYear";
+import { asset } from "@/lib/asset";
 import { mapsHref, navLinks, services, site } from "@/lib/site";
 
-function ColumnTitle({ children }: { children: React.ReactNode }) {
+const linkClass = "transition-colors duration-300 hover:text-gold-light";
+
+function Column({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <h3 className="mb-7 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-gold">
-      {children}
-    </h3>
+    <div>
+      <h2 className="text-small text-ash">{title}</h2>
+      <div className="mt-4 text-body">{children}</div>
+    </div>
   );
 }
 
-const linkClass = "text-ash transition-colors duration-300 hover:text-gold-light";
-
+/** The close of every page: the four columns, then the phone number as the headline. */
 export function Footer() {
   return (
-    <footer className="relative bg-graphite">
-      <div aria-hidden className="gold-hairline h-px w-full" />
-
-      <div className="mx-auto grid max-w-7xl gap-14 px-6 py-20 sm:grid-cols-2 md:px-10 lg:grid-cols-4 lg:gap-10">
-        {/* Brand */}
-        <div>
-          <Link href="/" aria-label="QZEN DİZAYN anasayfa" className="inline-block">
-            <Image src={asset("/brand/qzen-logo.webp")} alt="QZEN DİZAYN" width={900} height={900} sizes="144px" className="w-36" />
-          </Link>
-          <p className="mt-6 max-w-xs text-sm leading-relaxed">
-            Mimari tasarım, iç dekorasyon ve anahtar teslim tadilatta özenin imzası.
-          </p>
+    <footer data-reveal-group className="flex min-h-[90svh] flex-col justify-between gap-24 bg-graphite px-4 pb-6 pt-10 md:px-8">
+      <div className="grid gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-12">
+        <div data-reveal className="lg:col-span-3">
+          <Image src={asset("/brand/qzen-logo.webp")} alt="QZEN DİZAYN" width={900} height={900} sizes="112px" className="-ml-3 w-28" />
+          <p className="mt-4 max-w-[28ch] text-body text-ash">Yakutiye&apos;de iç mimari ve tadilat atölyesi.</p>
         </div>
 
-        {/* 1 — Menu */}
-        <nav aria-label="Alt menü">
-          <ColumnTitle>Menü</ColumnTitle>
-          <ul className="space-y-4 text-sm">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className={linkClass}>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <nav data-reveal aria-label="Alt menü" className="lg:col-span-2">
+          <Column title="Menü">
+            <ul className="space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={linkClass}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Column>
         </nav>
 
-        {/* 2 — Contact */}
-        <div id="iletisim" className="scroll-mt-24">
-          <ColumnTitle>İletişim</ColumnTitle>
-          <address className="space-y-5 text-sm not-italic">
-            <a href={mapsHref} target="_blank" rel="noopener noreferrer" className={`block leading-relaxed ${linkClass}`}>
-              <span className="mb-1 block text-[0.65rem] uppercase tracking-[0.3em] text-slate-ash/70">Adres</span>
-              {site.address}
-            </a>
-            <a href={`mailto:${site.email}`} className={`block ${linkClass}`}>
-              <span className="mb-1 block text-[0.65rem] uppercase tracking-[0.3em] text-slate-ash/70">E-posta</span>
-              {site.email}
-            </a>
-            <a href={site.phone.href} className={`block ${linkClass}`}>
-              <span className="mb-1 block text-[0.65rem] uppercase tracking-[0.3em] text-slate-ash/70">Telefon</span>
-              {site.phone.display}
-            </a>
-          </address>
+        <div data-reveal className="lg:col-span-3">
+          <Column title="İletişim">
+            <address className="space-y-2 not-italic">
+              <a href={mapsHref} target="_blank" rel="noopener noreferrer" className={`block ${linkClass}`}>
+                {site.address}
+              </a>
+              <a href={`mailto:${site.email}`} className={`block ${linkClass}`}>
+                {site.email}
+              </a>
+              <a href={site.phone.href} className={`block ${linkClass}`}>
+                {site.phone.display}
+              </a>
+            </address>
+          </Column>
         </div>
 
-        {/* 3 — Services */}
-        <div>
-          <ColumnTitle>Hizmetlerimiz</ColumnTitle>
-          <ul className="space-y-4 text-sm leading-relaxed">
-            {services.map((service) => (
-              <li key={service.title}>
-                <Link href="/hizmetler" className={linkClass}>
-                  {service.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div data-reveal className="lg:col-span-4">
+          <Column title="Hizmetlerimiz">
+            <ul className="space-y-2">
+              {services.map((service) => (
+                <li key={service.title}>
+                  <Link href="/hizmetler" className={linkClass}>
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Column>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/5">
-        <div className="mx-auto flex max-w-7xl flex-col-reverse gap-8 px-6 py-8 text-xs md:flex-row md:items-center md:justify-between md:px-10">
-          <div className="flex flex-col gap-2 text-slate-ash sm:flex-row sm:items-center sm:gap-6">
+      <div>
+        <a
+          data-reveal
+          href={site.phone.href}
+          className="display block whitespace-nowrap text-[min(18.6vw,19rem)] leading-[0.82] text-gold transition-colors duration-500 hover:text-gold-light"
+        >
+          {site.phone.display}
+        </a>
+
+        <div className="mt-8 grid gap-4 text-small text-ash md:grid-cols-2 md:items-end">
+          <p className="flex flex-wrap gap-x-5 gap-y-1">
             <Link href="/gizlilik-politikasi" className={linkClass}>
               Gizlilik Politikası
             </Link>
-            <p>
+            <Link href="/gizlilik-politikasi#gorseller" className={linkClass}>
+              Görsel kaynakları
+            </Link>
+            <span>
               © <CopyrightYear /> QZEN DİZAYN. Tüm hakları saklıdır.
-            </p>
-          </div>
+            </span>
+          </p>
 
-          <div className="flex flex-col gap-2 md:items-end">
-            <span className="text-[0.65rem] uppercase tracking-[0.4em] text-gold">Bizi Takip Edin</span>
-            <a
-              href={site.instagram.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 text-sm ${linkClass}`}
-            >
-              <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
-              </svg>
-              Instagram: {site.instagram.handle}
+          <p className="md:text-right">
+            Bizi takip edin:{" "}
+            <a href={site.instagram.href} target="_blank" rel="noopener noreferrer" className={`text-ivory ${linkClass}`}>
+              Instagram {site.instagram.handle}
             </a>
-          </div>
+          </p>
         </div>
       </div>
     </footer>

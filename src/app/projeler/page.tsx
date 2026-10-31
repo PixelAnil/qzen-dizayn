@@ -3,33 +3,34 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { Button } from "@/components/ui/Button";
 import { projects } from "@/lib/projects";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Projelerimiz",
-  description: "QZEN DİZAYN imzalı tamamlanmış iç mimari, dekorasyon ve tadilat projeleri.",
+  description: "QZEN DİZAYN'ın Erzurum'da tamamladığı ev, mağaza ve ofis projeleri.",
 };
 
 export default function ProjectsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Projelerimiz"
-        title={
-          <>
-            Tamamlanan <span className="text-gold-gradient">işlerimiz</span>
-          </>
-        }
-        intro="Her biri kendi hikâyesiyle; ham yapıdan anahtar teslime uzanan, ışığın ve malzemenin özenle kurgulandığı mekânlar."
+        title="Projelerimiz"
+        intro="Erzurum'da teslim ettiğimiz evler, mağazalar ve ofisler. Her biri kaba yapıdan ya da eski hâlinden başlayıp tek ekiple bitti."
+        action={<Button href={site.phone.href}>Projenizi konuşalım</Button>}
       />
 
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 md:px-10">
+      <div className="px-2 md:px-8">
         <ProjectGrid projects={projects} />
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-6 px-6 py-24 md:flex-row md:items-center md:justify-between md:px-10 md:py-32">
-        <p className="font-display text-3xl text-ivory md:text-4xl">Sıradaki proje sizin olsun.</p>
-        <Button href="#iletisim">İletişime Geç</Button>
-      </div>
+      <section data-reveal-group className="flex flex-col items-start gap-8 px-4 py-32 md:flex-row md:items-end md:justify-between md:px-8 md:py-48">
+        <h2 data-reveal className="display max-w-[16ch] text-head text-ivory">
+          Sıradaki proje sizinki olsun
+        </h2>
+        <Button data-reveal href={site.phone.href}>
+          Ara: {site.phone.display}
+        </Button>
+      </section>
     </>
   );
 }

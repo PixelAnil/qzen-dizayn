@@ -1,45 +1,83 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { ServicesSheet } from "@/components/services/ServicesSheet";
 import { Button } from "@/components/ui/Button";
-import { services } from "@/lib/site";
+import { asset } from "@/lib/asset";
+import { credits } from "@/lib/credits";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Hizmetlerimiz",
-  description: "Asma tavan, alçıpan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat hizmetleri.",
+  description: "Asma tavan, alçıpan, anahtar teslim ev tadilatı, iç dekorasyon ve mağaza-ofis yenileme. Erzurum.",
 };
 
 export default function ServicesPage() {
+  const { yakutiye } = credits;
+
   return (
     <>
       <PageHeader
-        eyebrow="Hizmetlerimiz"
-        title={
-          <>
-            İlk çizgiden <span className="text-gold-gradient">son dokunuşa</span>
-          </>
-        }
-        intro="Tasarım ve uygulamayı tek çatı altında topluyor, her ölçekteki projeyi aynı özen ve aynı imzayla teslim ediyoruz."
+        title="Tasarımdan teslime"
+        intro="Tavanı, duvarı, zemini ve mobilyayı ayrı ustalara dağıtmıyoruz. Keşiften anahtar teslime kadar karşınızda tek bir muhatap olur."
+        action={<Button href={site.phone.href}>Keşif için arayın</Button>}
       />
 
-      <ol className="mx-auto max-w-7xl px-6 md:px-10">
-        {services.map((service, i) => (
-          <li
-            key={service.title}
-            className="group grid gap-4 border-t border-gold/20 py-12 transition-colors duration-500 last:border-b hover:border-gold/60 md:grid-cols-[8rem_1fr_1fr] md:gap-10"
-          >
-            <span className="font-display text-2xl text-gold/60 transition-colors group-hover:text-gold">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h2 className="text-3xl leading-tight md:text-4xl">{service.title}</h2>
-            <p className="leading-loose">{service.summary}</p>
-          </li>
-        ))}
-      </ol>
+      <figure data-reveal-group className="px-4 pb-32 md:px-8 md:pb-48">
+        <Image
+          data-reveal
+          src={asset(yakutiye.src)}
+          alt={yakutiye.alt}
+          width={yakutiye.width}
+          height={yakutiye.height}
+          sizes="100vw"
+          preload
+          className="aspect-4/3 w-full object-cover md:aspect-21/9"
+        />
+        <figcaption data-reveal className="mt-3 max-w-[60ch] text-small text-ash">
+          {yakutiye.caption}. {yakutiye.credit}
+        </figcaption>
+      </figure>
 
-      <div className="mx-auto flex max-w-7xl flex-wrap gap-4 px-6 py-24 md:px-10 md:py-32">
-        <Button href="#iletisim">İletişime Geç</Button>
-        <Button href="/projeler" variant="secondary">Projeleri İncele</Button>
+      <ServicesSheet headingLevel="h2" />
+
+      {/* Two stills from the studio's own film, at different sizes */}
+      <div data-reveal-group className="grid gap-4 px-4 pt-32 md:grid-cols-12 md:items-end md:px-8 md:pt-48">
+        <figure data-reveal className="md:col-span-7">
+          <Image
+            src={asset("/projects/ceiling-detail.webp")}
+            alt="Kenarlarında gizli ışık bandı olan kademeli asma tavan"
+            width={1080}
+            height={720}
+            sizes="(min-width: 768px) 58vw, 100vw"
+            className="aspect-3/2 w-full object-cover"
+          />
+          <figcaption className="mt-3 text-small text-ash">Asma tavan ve gizli ışık bandı</figcaption>
+        </figure>
+        <figure data-reveal className="md:col-span-4 md:col-start-9">
+          <Image
+            src={asset("/projects/marble-library.webp")}
+            alt="Siyah mermer duvar, ahşap çıtalar ve aydınlatmalı kitaplık nişleri"
+            width={1080}
+            height={1350}
+            sizes="(min-width: 768px) 33vw, 100vw"
+            className="aspect-4/5 w-full object-cover"
+          />
+          <figcaption className="mt-3 text-small text-ash">Mermer duvar ve aydınlatmalı nişler</figcaption>
+        </figure>
       </div>
+
+      <section data-reveal-group className="flex flex-wrap items-end justify-between gap-8 px-4 py-32 md:px-8 md:py-48">
+        <h2 data-reveal className="display max-w-[14ch] text-head text-ivory">
+          Keşif için bir telefon yeter
+        </h2>
+        <div data-reveal className="flex flex-wrap gap-3">
+          <Button href={site.phone.href}>Ara: {site.phone.display}</Button>
+          <Button href="/projeler" variant="secondary">
+            Projeleri incele
+          </Button>
+        </div>
+      </section>
     </>
   );
 }

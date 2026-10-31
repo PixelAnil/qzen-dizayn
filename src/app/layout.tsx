@@ -1,30 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Reveal } from "@/components/providers/Reveal";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { asset } from "@/lib/asset";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin", "latin-ext"],
+  axes: ["wdth"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: `${site.name} — Mimari Tasarım & İç Dekorasyon`,
+    default: `${site.name} — İç mimari ve tadilat, Erzurum`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -43,9 +37,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="tr" className={`${cormorant.variable} ${manrope.variable} antialiased`}>
+    <html lang="tr" className={`${archivo.variable} antialiased`}>
       <body className="flex min-h-svh flex-col">
         <SmoothScroll>
+          <Reveal />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

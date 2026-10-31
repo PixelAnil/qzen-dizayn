@@ -1,47 +1,47 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
-/* ─── Design tokens: Dark Luxury ─────────────────────────────── */
+/* ─── Tokens ──────────────────────────────────────────────────
+   Palette: the brand's black and metallic gold.
+   Type: one family (Archivo) — condensed heavy capitals for display, normal width for text.
+   Five sizes only: small, body, lead, head, display. */
 @theme {
   --color-obsidian: #0a0a0a;
   --color-graphite: #141414;
   --color-graphite-soft: #1a1a1a;
+  --color-paper: #efeeeb;
 
   --color-gold: #c5a059;
   --color-gold-light: #e6c57a;
-  --color-gold-deep: #b58a3f;
 
   --color-ivory: #fafafa;
   --color-ash: #a3a3a3;
-  --color-slate-ash: #9ca3af;
+  --color-ink-dark: #0a0a0a;
+  --color-ink-soft: #5c5850;
+
+  --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-small--line-height: 1.45;
+  --text-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --text-body--line-height: 1.55;
+  --text-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-lead--line-height: 1.35;
+  --text-head: clamp(2.75rem, 1.4rem + 6vw, 7rem);
+  --text-head--line-height: 0.88;
 
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
-  --font-display: var(--font-cormorant), "Times New Roman", serif;
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 }
 
-:root {
-  --gradient-gold: linear-gradient(135deg, #b58a3f 0%, #d4af37 50%, #f1e5ac 100%);
-}
-
-/* ─── Utilities ──────────────────────────────────────────────── */
-@utility bg-gold-gradient {
-  background-image: var(--gradient-gold);
-}
-
-@utility text-gold-gradient {
-  background-image: var(--gradient-gold);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Thin gold hairline used for dividers */
-@utility gold-hairline {
-  background-image: linear-gradient(90deg, transparent, rgb(197 160 89 / 0.6), transparent);
+/* Condensed heavy capitals: headlines, the name, the phone number */
+@utility display {
+  font-family: var(--font-sans);
+  font-stretch: 62%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
 /* ─── Base ───────────────────────────────────────────────────── */
@@ -53,44 +53,40 @@
 
   body {
     background-color: var(--color-obsidian);
-    color: var(--color-ash);
+    color: var(--color-ivory);
     font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
 
   h1,
   h2,
-  h3,
-  h4 {
-    color: var(--color-ivory);
-    font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+  h3 {
+    font-weight: inherit;
   }
 
   ::selection {
-    background-color: rgb(197 160 89 / 0.35);
-    color: var(--color-ivory);
+    background-color: var(--color-gold);
+    color: var(--color-obsidian);
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-gold);
+    outline: 2px solid var(--color-gold);
     outline-offset: 3px;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
-@keyframes scroll-hint {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(200%);
-  }
-}
-
-/* ─── Hero poster: first frame painted by CSS before JS hydrates ── */
-/* URLs come in as --poster-* from HeroSequence so they carry the deploy basePath */
+/* ─── Hero poster: first frame painted before JS hydrates ─────
+   URLs come in as --poster-* from HeroSequence so they carry the deploy basePath */
 .hero-poster {
   background-color: var(--color-obsidian);
   background-image: var(--poster-mobile);
@@ -102,4 +98,14 @@
   .hero-poster {
     background-image: var(--poster-desktop);
   }
+}
+
+/* ─── The services sheet: a printed card with scalloped top and bottom edges ── */
+/* The radial-gradients below are a mask shape (the cut edge), not a visible gradient */
+.scalloped {
+  --scallop: 14px;
+  --edge-top: radial-gradient(var(--scallop) at 50% 0, #0000 98%, #000) 50% 0 / calc(var(--scallop) * 2.4) 51% repeat-x; /* taste-skill-ignore */
+  --edge-bottom: radial-gradient(var(--scallop) at 50% 100%, #0000 98%, #000) 50% 100% / calc(var(--scallop) * 2.4) 51% repeat-x; /* taste-skill-ignore */
+  -webkit-mask: var(--edge-top), var(--edge-bottom);
+  mask: var(--edge-top), var(--edge-bottom);
 }

@@ -1,13 +1,17 @@
 import { HeroSequence } from "@/components/home/HeroSequence";
 import { AboutSection } from "@/components/home/AboutSection";
-import { ProjectsCta } from "@/components/home/ProjectsCta";
+import { ProjectsPanel } from "@/components/home/ProjectsPanel";
+import { VisitSection } from "@/components/home/VisitSection";
+import { ServicesSheet } from "@/components/services/ServicesSheet";
 
 export default function HomePage() {
   return (
     <>
       <HeroSequence />
       <AboutSection />
-      <ProjectsCta />
+      <ServicesSheet id="hizmetler" />
+      <ProjectsPanel />
+      <VisitSection />
     </>
   );
 }

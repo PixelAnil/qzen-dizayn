@@ -1,92 +1,70 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { asset } from "@/lib/asset";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { credits } from "@/lib/credits";
 
-gsap.registerPlugin(ScrollTrigger);
+const facts = [
+  { label: "Şehir", value: "Erzurum, 1.900 m" },
+  { label: "Semt", value: "Yakutiye" },
+  { label: "Atölye", value: "Lale Sokak No: 14" },
+  { label: "Çalıştığımız yerler", value: "Ev, mağaza, ofis" },
+];
 
 export function AboutSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from("[data-reveal]", {
-        autoAlpha: 0,
-        y: 40,
-        duration: 1.4,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: { trigger: sectionRef.current, start: "top 85%" },
-      });
-      gsap.from("[data-watermark]", {
-        autoAlpha: 0,
-        scale: 0.94,
-        duration: 2,
-        ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 85%" },
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  const { homann } = credits;
 
   return (
-    <section
-      ref={sectionRef}
-      id="hakkimizda"
-      className="relative overflow-hidden bg-obsidian px-6 py-28 md:px-10 md:py-40"
-    >
-      <div className="mx-auto flex max-w-7xl flex-col gap-14 md:grid md:grid-cols-2 md:items-center md:gap-20">
-        {/* Mobile: compact logo above the copy */}
-        <div data-reveal className="md:hidden">
-          <Image
-            src={asset("/brand/qzen-logo.webp")}
-            alt="QZEN DİZAYN"
-            width={900}
-            height={900}
-            sizes="160px"
-            className="-ml-4 w-40"
-          />
-        </div>
+    <section id="hakkimizda" data-reveal-group className="scroll-mt-20 bg-obsidian px-4 py-32 md:px-8 md:py-52">
+      <div className="grid gap-y-8 md:grid-cols-12 md:gap-x-4">
+        <h2 data-reveal className="display text-head text-ivory md:col-span-12">
+          Adımız özenden gelir
+        </h2>
+        <p data-reveal className="max-w-[44ch] text-lead text-ivory md:col-span-7">
+          QZEN, &ldquo;özen&rdquo; kelimesinden doğdu. Yakutiye&apos;deki atölyemizden Erzurum&apos;un evlerine,
+          dükkânlarına ve ofislerine; tasarımdan teslime kadar tek ekip olarak çalışıyoruz.
+        </p>
+      </div>
 
-        <div className="relative z-10">
-          <div data-reveal>
-            <SectionEyebrow>Biz Kimiz</SectionEyebrow>
-          </div>
-          <h2 data-reveal className="mt-8 text-4xl leading-[1.1] sm:text-5xl lg:text-6xl">
-            Mekânı bir yapı değil,
-            <br />
-            <span className="text-gold-gradient">bir his</span> olarak tasarlıyoruz.
-          </h2>
-          <div className="mt-10 max-w-xl space-y-7 text-[1.05rem] leading-[2.1] text-ash">
-            <p data-reveal>
-              QZEN DİZAYN, Erzurum&apos;dan doğan ve mimariyi bir zanaat olarak gören bir tasarım
-              stüdyosudur. Kaba yapının ham dokusunda, henüz kimsenin görmediği bir yaşamı görürüz.
-            </p>
-            <p data-reveal>
-              Asma tavandaki gizli bir ışık bandından mermerin damarına, bölme duvarın oranından
-              mobilyanın dokusuna kadar her ayrıntıyı tek bir bütünün parçası olarak ele alırız.
-              Sonuç; gösterişten değil, özenden doğan zamansız mekânlardır.
-            </p>
-            <p data-reveal className="text-gold">
-              Tasarımdan uygulamaya, anahtar teslim — tek imza, tek sorumluluk.
-            </p>
-          </div>
-        </div>
-
-        {/* Desktop: oversized translucent watermark */}
-        <div data-watermark aria-hidden className="relative hidden md:flex md:justify-center">
+      <div className="mt-18 grid gap-4 md:grid-cols-12">
+        {/* Wide photograph with a paper note over its corner */}
+        <figure data-reveal className="relative md:col-span-8">
           <Image
-            src={asset("/brand/qzen-logo.webp")}
-            alt=""
-            width={900}
-            height={900}
-            sizes="(min-width: 768px) 46vw, 0px"
-            className="w-[min(46vw,720px)] max-w-none opacity-20"
+            src={asset("/projects/salon-wide.webp")}
+            alt="Siyah mermer şömine duvarı, ahşap çıtalı nişler ve pirinç halka avizeli bitmiş salon"
+            width={1080}
+            height={1080}
+            sizes="(min-width: 768px) 66vw, 100vw"
+            className="aspect-4/3 w-full object-cover md:aspect-16/10"
           />
+          <figcaption className="bg-paper p-5 text-body text-ink-dark md:absolute md:right-0 md:top-0 md:w-80">
+            Kaba inşaattan gelen bir daireyi önce tavan ve ışıkla, sonra duvar, zemin ve mobilyayla ele alırız. Her
+            aşamada aynı ekip ve aynı muhatap.
+          </figcaption>
+        </figure>
+
+        {/* The city the studio works in, plus the facts */}
+        <div className="flex flex-col gap-6 md:col-span-4">
+          <figure data-reveal className="bg-graphite-soft">
+            <Image
+              src={asset(homann.src)}
+              alt={homann.alt}
+              width={homann.width}
+              height={homann.height}
+              sizes="(min-width: 768px) 33vw, 100vw"
+              className="aspect-3/2 w-full object-cover"
+            />
+            <figcaption className="px-4 py-3 text-small text-ash">
+              {homann.caption}. {homann.credit}
+            </figcaption>
+          </figure>
+
+          <dl data-reveal className="grid grid-cols-2 gap-x-4 gap-y-5">
+            {facts.map((fact) => (
+              <div key={fact.label}>
+                <dt className="text-small text-ash">{fact.label}</dt>
+                <dd className="mt-1 text-body text-ivory">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

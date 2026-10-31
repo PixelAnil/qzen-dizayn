@@ -1,15 +1,26 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Button } from "@/components/ui/Button";
 import { SEQUENCE, frameSrc, pickSet, type SequenceSet } from "@/lib/sequence";
+import { site } from "@/lib/site";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const { frameCount } = SEQUENCE;
 const LOAD_CONCURRENCY = 6;
+
+// What the film shows at each point: the visitor scrubs the job from shell to hand-over.
+const STAGES = [
+  { from: 0, label: "Ham yapı" },
+  { from: 25, label: "Işık ve duvar" },
+  { from: 50, label: "Asma tavan" },
+  { from: 75, label: "Mermer, ahşap, mobilya" },
+  { from: 110, label: "Teslim" },
+] as const;
+
+const stageAt = (frame: number) => STAGES.findLastIndex((s) => frame >= s.from);
 
 /** Coarse-to-fine order (every 16th frame, then every 8th, …) so fast scrubbing still finds a nearby frame. */
 function progressiveOrder(count: number) {
@@ -29,6 +40,7 @@ function progressiveOrder(count: number) {
 export function HeroSequence() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [stage, setStage] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -132,24 +144,22 @@ export function HeroSequence() {
         },
       });
 
-      // The film's own last frames fade to black; the overlay only guarantees a clean hand-off
+      // The film's own last frames fade to black, handing over to the next section
       tl.to(playhead, {
         frame: frameCount - 1,
-        duration: 0.92,
+        duration: 1,
         onUpdate: () => {
           const next = Math.round(playhead.frame);
           if (next !== current) {
             current = next;
             requestDraw();
+            setStage(stageAt(next));
           }
         },
       }, 0)
-        .to("[data-hero-intro]", { autoAlpha: 0, y: -48, duration: 0.14 }, 0.02)
-        .to("[data-hero-hint]", { autoAlpha: 0, duration: 0.05 }, 0)
+        .to("[data-hero-title]", { autoAlpha: 0, y: 40, duration: 0.1 }, 0.02)
         .fromTo("[data-hero-progress]", { scaleX: 0 }, { scaleX: 1, duration: 1 }, 0)
-        .fromTo("[data-hero-caption]", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.08 }, 0.66)
-        .to("[data-hero-caption]", { autoAlpha: 0, duration: 0.06 }, 0.82)
-        .to("[data-hero-fade]", { opacity: 1, duration: 0.06 }, 0.94);
+        .to("[data-hero-stage]", { autoAlpha: 0, duration: 0.05 }, 0.95);
     }, section);
 
     return () => {
@@ -161,7 +171,7 @@ export function HeroSequence() {
   }, []);
 
   return (
-    <section ref={sectionRef} aria-label="QZEN DİZAYN tanıtım filmi" className="relative h-[480vh] bg-obsidian">
+    <section ref={sectionRef} aria-label="Kaba yapıdan teslime: QZEN DİZAYN filmi" className="relative h-[480vh] bg-obsidian">
       {/* Let the browser fetch the poster frame before hydration */}
       <link rel="preload" as="image" href={frameSrc("desktop", 0)} media="(min-aspect-ratio: 1/1)" fetchPriority="high" />
       <link rel="preload" as="image" href={frameSrc("mobile", 0)} media="(max-aspect-ratio: 1/1)" fetchPriority="high" />
@@ -177,46 +187,38 @@ export function HeroSequence() {
         />
         <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full" />
 
-        {/* Legibility vignette */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-linear-to-b from-obsidian/75 via-obsidian/10 to-obsidian/70" />
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(10,10,10,0.65)_100%)]" />
+        {/* Neutral scrim behind the text band only */}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[55%] bg-linear-to-t from-obsidian/85 to-transparent" /> {/* taste-skill-ignore: neutral scrim over the film for legibility */}
 
-        <div data-hero-intro className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-36 md:justify-center md:px-10 md:pb-0">
-          <p className="mb-6 text-[0.7rem] font-semibold uppercase tracking-[0.45em] text-gold">
-            Mimari · İç Mimari · Dekorasyon
-          </p>
-          <h1 className="max-w-3xl text-5xl leading-[1.02] sm:text-6xl lg:text-[5.5rem]">
-            Ham mekândan <em className="text-gold-gradient not-italic">zamansız</em> yaşama.
-          </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-ash">
-            Betonun sessizliğinden ışığın ve mermerin ritmine; her projeyi ilk çizgiden son dokunuşa kadar
-            tek bir tasarım diliyle kuruyoruz.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Button href="#iletisim">İletişime Geç</Button>
-            <Button href="/projeler" variant="secondary">Projeleri İncele</Button>
+        <div className="absolute inset-x-0 bottom-0 z-10 px-4 pb-4 md:px-8 md:pb-6">
+          <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
+            <div data-hero-title className="flex flex-col items-start gap-5">
+              <p className="max-w-[34ch] text-lead text-ivory">
+                Erzurum&apos;da iç mimari, asma tavan ve anahtar teslim tadilat.
+              </p>
+              <a
+                href={site.phone.href}
+                className="inline-flex min-h-13 items-center bg-gold px-7 text-body font-medium text-obsidian transition-[background-color,transform] duration-300 hover:bg-gold-light active:scale-[0.98]"
+              >
+                Keşif için arayın
+              </a>
+            </div>
+
+            <div data-hero-stage className="w-full max-w-xs sm:w-72" aria-live="polite">
+              <p className="text-small text-ash">
+                Filmi kaydırın: <span className="font-medium text-gold">{STAGES[stage].label}</span>
+              </p>
+              <div aria-hidden className="mt-3 h-1 bg-ivory/15">
+                <div data-hero-progress className="h-full origin-left scale-x-0 bg-gold" />
+              </div>
+            </div>
           </div>
+
+          <h1 data-hero-title className="display mt-6 pt-[0.16em] text-[min(33vw,34svh)] leading-[0.82] text-ivory lg:text-[20.4vw]">
+            QZEN <br className="lg:hidden" />
+            DİZAYN
+          </h1>
         </div>
-
-        <p
-          data-hero-caption
-          className="invisible absolute inset-x-0 bottom-24 z-10 text-center font-display text-3xl text-ivory opacity-0 md:text-5xl"
-        >
-          Işık, malzeme ve <span className="text-gold-gradient">oran</span>.
-        </p>
-
-        <div data-hero-hint className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3">
-          <span className="text-[0.65rem] uppercase tracking-[0.4em] text-ash">Kaydırın</span>
-          <span aria-hidden className="relative h-12 w-px overflow-hidden bg-gold/20">
-            <span className="absolute inset-x-0 top-0 h-1/2 animate-[scroll-hint_2.2s_var(--ease-luxe)_infinite] bg-gold" />
-          </span>
-        </div>
-
-        <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 h-px bg-white/5">
-          <div data-hero-progress className="h-full origin-left scale-x-0 bg-gold-gradient" />
-        </div>
-
-        <div aria-hidden data-hero-fade className="pointer-events-none absolute inset-0 z-20 bg-obsidian opacity-0" />
       </div>
     </section>
   );

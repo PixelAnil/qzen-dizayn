@@ -3,14 +3,13 @@ import type { ComponentProps } from "react";
 
 type Variant = "primary" | "secondary";
 
+// One shape for the whole site: square corners, flat fill.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-none px-7 py-3.5 text-[0.8rem] font-semibold uppercase tracking-[0.22em] transition-all duration-500 ease-luxe";
+  "inline-flex min-h-13 items-center justify-center px-7 text-body font-medium transition-[background-color,color,transform] duration-300 ease-luxe active:scale-[0.98]";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-gold-gradient text-obsidian hover:brightness-115 hover:shadow-[0_0_32px_-4px_rgba(197,160,89,0.55)]",
-  secondary:
-    "border border-gold bg-transparent text-gold hover:bg-[rgba(197,160,89,0.1)]",
+  primary: "bg-gold text-obsidian hover:bg-gold-light",
+  secondary: "bg-graphite-soft text-gold hover:bg-[rgba(197,160,89,0.1)] hover:text-gold-light",
 };
 
 type ButtonProps = ComponentProps<typeof Link> & { variant?: Variant };

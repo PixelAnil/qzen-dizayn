@@ -12,22 +12,22 @@ const spanClass: Record<Project["span"], string> = {
 function ProjectTile({ project, eager }: { project: Project; eager: boolean }) {
   return (
     <figure
+      data-reveal
       className={`group relative aspect-4/5 overflow-hidden bg-graphite-soft sm:aspect-auto ${spanClass[project.span]}`}
     >
       <Image
         src={asset(project.image)}
-        alt={`${project.title} — ${project.category}`}
+        alt={`${project.title}, ${project.category}`}
         fill
-        sizes="(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw"
+        sizes="(min-width: 640px) 50vw, 100vw"
         loading={eager ? "eager" : "lazy"}
-        className="object-cover transition-transform duration-1200 ease-luxe group-hover:scale-105"
+        className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-105"
       />
 
-      {/* Hover veil; on touch devices the caption stays visible at the bottom */}
-      <figcaption className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-obsidian/65 p-6 text-center opacity-0 transition-opacity duration-500 ease-luxe group-hover:opacity-100 [@media(hover:none)]:justify-end [@media(hover:none)]:bg-transparent [@media(hover:none)]:bg-linear-to-t [@media(hover:none)]:from-obsidian/85 [@media(hover:none)]:via-transparent [@media(hover:none)]:to-transparent [@media(hover:none)]:opacity-100">
-        <span className="text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-ash">{project.category}</span>
-        <span className="font-display text-3xl text-gold-gradient lg:text-4xl">{project.title}</span>
-        <span aria-hidden className="h-px w-12 translate-y-2 bg-gold opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100" />
+      {/* Hover: the picture darkens and the name appears in gold. Touch screens keep the name visible at the foot. */}
+      <figcaption className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-obsidian/70 p-6 text-center opacity-0 transition-opacity duration-500 ease-luxe group-hover:opacity-100 [@media(hover:none)]:inset-auto [@media(hover:none)]:inset-x-0 [@media(hover:none)]:bottom-0 [@media(hover:none)]:items-start [@media(hover:none)]:p-4 [@media(hover:none)]:text-left [@media(hover:none)]:opacity-100">
+        <span className="display text-lead text-gold lg:text-[clamp(1.75rem,1rem+1.2vw,2.5rem)]">{project.title}</span>
+        <span className="text-small text-ivory">{project.category}</span>
       </figcaption>
     </figure>
   );
@@ -35,7 +35,7 @@ function ProjectTile({ project, eager }: { project: Project; eager: boolean }) {
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
   return (
-    <div className="grid grid-flow-dense grid-cols-1 gap-2 sm:auto-rows-[18rem] sm:grid-cols-2 lg:auto-rows-[20rem] lg:grid-cols-4">
+    <div data-reveal-group className="grid grid-flow-dense grid-cols-1 gap-2 sm:auto-rows-[18rem] sm:grid-cols-2 lg:auto-rows-[21rem] lg:grid-cols-4">
       {projects.map((project, i) => (
         <ProjectTile key={project.slug} project={project} eager={i < 3} />
       ))}

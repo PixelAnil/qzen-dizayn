@@ -149,3 +149,32 @@
   border-radius: 999px;
   background-color: var(--color-gold-light);
 }
+
+/* ─── Photo viewer (ProjectGrid) ───────────────────────────────── */
+.lightbox {
+  animation: lightbox-fade 0.35s var(--ease-luxe) both;
+}
+
+.lightbox-image {
+  animation: lightbox-rise 0.5s var(--ease-luxe) both;
+}
+
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lightbox-rise {
+  from {
+    opacity: 0;
+    scale: 0.96;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox,
+  .lightbox-image {
+    animation-duration: 0.01ms;
+  }
+}

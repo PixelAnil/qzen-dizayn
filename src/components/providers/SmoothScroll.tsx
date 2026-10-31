@@ -10,6 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 let lenis: Lenis | null = null;
 
+/** Freeze page scrolling while an overlay (the photo viewer) is open. */
+export const lockScroll = (locked: boolean) => {
+  if (locked) lenis?.stop();
+  else lenis?.start();
+  document.documentElement.style.overflow = locked ? "hidden" : "";
+};
+
 /**
  * Lenis drives the scroll position; GSAP's ticker (a single rAF loop) drives Lenis,
  * so ScrollTrigger and smooth scrolling always read the same frame.

@@ -42,11 +42,19 @@ function buildLabel(text: string) {
   line.className = "absolute inset-x-0 bottom-0 block whitespace-nowrap";
   line.setAttribute("aria-hidden", "true");
   for (const char of text) {
+    // Condensed capitals have a hairline word space; give it a real gap
+    if (char === " ") {
+      const gap = document.createElement("span");
+      gap.className = "inline-block w-[0.24em]";
+      line.append(gap);
+      continue;
+    }
+    // Room below the baseline so cedillas (Ş, Ç) are not cut by the mask
     const mask = document.createElement("span");
-    mask.className = "inline-block overflow-hidden pb-[0.08em] -mb-[0.08em] align-bottom";
+    mask.className = "inline-block overflow-hidden pb-[0.24em] -mb-[0.24em] align-bottom";
     const glyph = document.createElement("span");
     glyph.className = "inline-block will-change-transform";
-    glyph.textContent = char === " " ? " " : char;
+    glyph.textContent = char;
     mask.append(glyph);
     line.append(mask);
   }
@@ -150,7 +158,8 @@ export function HeroSequence() {
       const dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.5 : 2);
       canvas.width = Math.round(canvas.clientWidth * dpr);
       canvas.height = Math.round(canvas.clientHeight * dpr);
-      ctx.imageSmoothingQuality = "high";
+      // Phones draw the frame at about its own size, so the costly high-quality filter buys nothing there
+      ctx.imageSmoothingQuality = lite ? "low" : "high";
 
       const nextSet = pickSet(canvas.clientWidth, canvas.clientHeight);
       if (nextSet !== set) {
@@ -197,26 +206,27 @@ export function HeroSequence() {
 
       if (previous) {
         gsap.to(previous.querySelectorAll("span > span"), {
-          yPercent: forward ? -110 : 110,
+          yPercent: forward ? -130 : 130,
           opacity: 0,
-          duration: 0.45,
+          duration: 0.35,
           ease: "power3.in",
-          stagger: 0.012,
+          stagger: 0.01,
           onComplete: () => previous.remove(),
         });
       }
       gsap.fromTo(
         glyphs,
         // The blur is skipped on touch devices: filter animation is costly on phone GPUs
-        { yPercent: forward ? 110 : -110, opacity: 0, ...(!lite && { filter: "blur(6px)" }) },
+        { yPercent: forward ? 130 : -130, opacity: 0, ...(!lite && { filter: "blur(6px)" }) },
         {
           yPercent: 0,
           opacity: 1,
           ...(!lite && { filter: "blur(0px)" }),
-          duration: 0.9,
+          // Short enough that the word has settled before the next scroll gesture
+          duration: 0.65,
           ease: "expo.out",
-          stagger: 0.028,
-          delay: previous ? 0.18 : 0.3,
+          stagger: 0.02,
+          delay: previous ? 0.12 : 0.3,
           clearProps: "filter",
         },
       );
@@ -287,9 +297,10 @@ export function HeroSequence() {
 
         <div data-hero-stage className="absolute inset-x-0 bottom-0 z-10 px-4 pb-6 md:px-8 md:pb-10">
           <span ref={liveRef} className="sr-only" aria-live="polite" />
+          {/* Capped by width so the longest stage ("Mermer ve ahşap", ~7.2em) clears the WhatsApp button on small phones */}
           <div
             ref={stageRef}
-            className="display relative h-[0.95em] text-[clamp(2.75rem,1.2rem+6.5vw,8.5rem)] leading-[0.9] text-ivory"
+            className="display relative h-[0.95em] text-[min(clamp(2.75rem,1.2rem+6.5vw,8.5rem),calc((100vw-6rem)/7.2))] leading-[0.9] text-ivory"
           />
           <div aria-hidden className="mt-5 h-[2px] w-[calc(100%-4.5rem)] max-w-sm bg-ivory/12 md:w-full">
             <div data-hero-progress className="h-full origin-left scale-x-0 bg-gold-light" />

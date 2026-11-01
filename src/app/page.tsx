@@ -1,6 +1,7 @@
 import { HeroSequence } from "@/components/home/HeroSequence";
 import { AboutSection } from "@/components/home/AboutSection";
 import { ContactSection } from "@/components/home/ContactSection";
+import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { ProjectsPreview } from "@/components/home/ProjectsPreview";
 import { ServicesIndex } from "@/components/services/ServicesIndex";
 
@@ -21,6 +22,7 @@ export default function HomePage() {
       </section>
 
       <ContactSection />
+      <ReviewsSection />
     </>
   );
 }

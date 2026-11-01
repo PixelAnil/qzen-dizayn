@@ -17,6 +17,13 @@ export const site = {
     handle: "@qzen_dizayn",
     href: "https://www.instagram.com/qzen_dizayn/",
   },
+  google: {
+    // TODO: swap for the profile's own links once the Place ID is known:
+    // reviews → https://search.google.com/local/reviews?placeid=<ID>
+    // write   → https://search.google.com/local/writereview?placeid=<ID>
+    reviewsHref: "https://www.google.com/maps/search/?api=1&query=QZEN%20D%C4%B0ZAYN%20Sultanbeyli",
+    writeReviewHref: "https://www.google.com/maps/search/?api=1&query=QZEN%20D%C4%B0ZAYN%20Sultanbeyli",
+  },
   builtBy: {
     label: "flowrix.ai",
     href: "https://flowrixai.com/",

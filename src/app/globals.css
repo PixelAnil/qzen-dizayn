@@ -178,3 +178,30 @@
     animation-duration: 0.01ms;
   }
 }
+
+/* ─── Reviews row (ReviewsSection): a slow drift that holds still under the pointer or a finger ─ */
+.reviews-track {
+  animation: reviews-drift 70s linear infinite;
+}
+
+.reviews-marquee:hover .reviews-track,
+.reviews-marquee:focus-within .reviews-track,
+.reviews-marquee:active .reviews-track {
+  animation-play-state: paused;
+}
+
+@keyframes reviews-drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track {
+    animation: none;
+  }
+
+  .reviews-marquee {
+    overflow-x: auto;
+  }
+}

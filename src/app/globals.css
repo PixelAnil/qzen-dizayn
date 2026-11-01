@@ -205,3 +205,29 @@
     overflow-x: auto;
   }
 }
+
+/* ─── Scrollbar: a slim gold pill on the black ground ──────────── */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-gold) 55%, transparent) var(--color-obsidian);
+}
+
+/* Safari reads only the prefixed form (Chrome ignores it once scrollbar-color is set) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--color-obsidian);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-gold) 55%, transparent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-light);
+}

@@ -38,7 +38,7 @@ export function ReviewsSection() {
       <div className="flex flex-col gap-8 px-4 md:flex-row md:items-end md:justify-between md:px-8">
         <div>
           <h2 id="yorumlar-baslik" data-reveal className="display text-head text-ivory">
-            Müşteri yorumları
+            Değerli yorumlarınız
           </h2>
           {hasSamples && (
             <p data-reveal className="mt-4 text-small text-ash">

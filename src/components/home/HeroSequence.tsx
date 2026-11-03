@@ -10,16 +10,27 @@ gsap.registerPlugin(ScrollTrigger);
 const { frameCount } = SEQUENCE;
 const LOAD_CONCURRENCY = 6;
 
-// What the film shows at each point: scrolling plays the job from shell to hand-over.
-const STAGES = [
-  { from: 0, label: "Ham yapı" },
-  { from: 25, label: "Işık ve duvar" },
-  { from: 50, label: "Asma tavan" },
-  { from: 75, label: "Mermer ve ahşap" },
-  { from: 110, label: "Teslim" },
-] as const;
+// What each film shows at each point: scrolling plays the job from shell to hand-over.
+// The two films build the room in a different order, so each has its own stages.
+const STAGES: Record<SequenceSet, readonly { from: number; label: string }[]> = {
+  desktop: [
+    { from: 0, label: "Ham yapı" },
+    { from: 15, label: "Parke ve ahşap" },
+    { from: 34, label: "Tavan ve mermer" },
+    { from: 52, label: "Avize ve mobilya" },
+    { from: 84, label: "Şömine ve ışık" },
+    { from: 102, label: "Teslim" },
+  ],
+  mobile: [
+    { from: 0, label: "Ham yapı" },
+    { from: 25, label: "Işık ve duvar" },
+    { from: 50, label: "Asma tavan" },
+    { from: 75, label: "Mermer ve ahşap" },
+    { from: 110, label: "Teslim" },
+  ],
+};
 
-const stageAt = (frame: number) => STAGES.findLastIndex((s) => frame >= s.from);
+const stageAt = (set: SequenceSet, frame: number) => STAGES[set].findLastIndex((s) => frame >= s.from);
 
 /** Coarse-to-fine order (every 16th frame, then every 8th, …) so fast scrubbing still finds a nearby frame. */
 function progressiveOrder(count: number) {
@@ -153,27 +164,6 @@ export function HeroSequence() {
       if (gen === generation && !lite && canLoadHd()) await loadTier("hd", gen, 4);
     };
 
-    // ── Sizing: crisp on HiDPI, recentred on every resize ──
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.5 : 2);
-      canvas.width = Math.round(canvas.clientWidth * dpr);
-      canvas.height = Math.round(canvas.clientHeight * dpr);
-      // Phones draw the frame at about its own size, so the costly high-quality filter buys nothing there
-      ctx.imageSmoothingQuality = lite ? "low" : "high";
-
-      const nextSet = pickSet(canvas.clientWidth, canvas.clientHeight);
-      if (nextSet !== set) {
-        set = nextSet;
-        loadSequence();
-      }
-      requestDraw();
-    };
-
-    const resizeObserver = new ResizeObserver(resize);
-    resizeObserver.observe(canvas);
-    resize();
-    loadSequence();
-
     // ── Stage label: the outgoing word lifts away, the next one rises letter by letter ──
     let shownStage = -1;
     let shownLine: HTMLElement | null = null;
@@ -182,7 +172,7 @@ export function HeroSequence() {
       if (index === shownStage) return;
       const forward = index > shownStage;
       shownStage = index;
-      if (liveRef.current) liveRef.current.textContent = STAGES[index].label;
+      if (liveRef.current) liveRef.current.textContent = STAGES[set][index].label;
 
       const previous = shownLine;
       // Fast scrubbing: anything older than the word on screen goes at once, so words never pile up
@@ -194,7 +184,7 @@ export function HeroSequence() {
       }
       if (previous) gsap.killTweensOf(previous.querySelectorAll("span > span"));
 
-      const line = buildLabel(STAGES[index].label);
+      const line = buildLabel(STAGES[set][index].label);
       stageBox.append(line);
       shownLine = line;
       const glyphs = line.querySelectorAll<HTMLElement>("span > span");
@@ -234,6 +224,29 @@ export function HeroSequence() {
 
     showStage(0);
 
+    // ── Sizing: crisp on HiDPI, recentred on every resize ──
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.5 : 2);
+      canvas.width = Math.round(canvas.clientWidth * dpr);
+      canvas.height = Math.round(canvas.clientHeight * dpr);
+      // Phones draw the frame at about its own size, so the costly high-quality filter buys nothing there
+      ctx.imageSmoothingQuality = lite ? "low" : "high";
+
+      const nextSet = pickSet(canvas.clientWidth, canvas.clientHeight);
+      if (nextSet !== set) {
+        set = nextSet;
+        loadSequence();
+        shownStage = -1;
+        showStage(stageAt(set, current));
+      }
+      requestDraw();
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(canvas);
+    resize();
+    loadSequence();
+
     // ── Scroll choreography ──
     const gctx = gsap.context(() => {
       const playhead = { frame: 0 };
@@ -256,7 +269,7 @@ export function HeroSequence() {
           if (next !== current) {
             current = next;
             requestDraw();
-            showStage(stageAt(next));
+            showStage(stageAt(set, next));
           }
         },
       }, 0)
@@ -297,7 +310,7 @@ export function HeroSequence() {
 
         <div data-hero-stage className="absolute inset-x-0 bottom-0 z-10 px-4 pb-6 md:px-8 md:pb-10">
           <span ref={liveRef} className="sr-only" aria-live="polite" />
-          {/* Capped by width so the longest stage ("Mermer ve ahşap", ~7.2em) clears the WhatsApp button on small phones */}
+          {/* Capped by width so the longest phone stage ("Mermer ve ahşap", ~7.2em) clears the WhatsApp button on small phones */}
           <div
             ref={stageRef}
             className="display relative h-[0.95em] text-[min(clamp(2.75rem,1.2rem+6.5vw,8.5rem),calc((100vw-6rem)/7.2))] leading-[0.9] text-ivory"

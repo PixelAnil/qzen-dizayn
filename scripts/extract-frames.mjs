@@ -16,15 +16,15 @@ const PAD = "tpad=stop_mode=clone:stop_duration=0.5";
 
 const films = {
   desktop: "Qzendizayn-yatay.mp4", // 1280×720 landscape
-  mobile: "Qzendizayn.mp4", // 1080×1920 portrait
+  mobile: "Qzendizayn.mp4", // 720×1280 portrait
 };
 
 const sets = {
   desktop: { film: "desktop", filter: `${PAD},fps=${FPS}`, quality: "74" },
   // Lanczos upscale + light sharpening beats the browser's own upscaling on large screens
   "desktop-hd": { film: "desktop", filter: `${PAD},fps=${FPS},scale=1920:1080:flags=lanczos,unsharp=5:5:0.6:5:5:0`, quality: "82" },
-  mobile: { film: "mobile", filter: `fps=${FPS},scale=720:1280:flags=lanczos`, quality: "70" },
-  "mobile-hd": { film: "mobile", filter: `fps=${FPS},unsharp=5:5:0.5:5:5:0`, quality: "80" },
+  mobile: { film: "mobile", filter: `${PAD},fps=${FPS}`, quality: "72" },
+  "mobile-hd": { film: "mobile", filter: `${PAD},fps=${FPS},scale=1080:1920:flags=lanczos,unsharp=5:5:0.6:5:5:0`, quality: "80" },
 };
 
 const only = process.argv[2];

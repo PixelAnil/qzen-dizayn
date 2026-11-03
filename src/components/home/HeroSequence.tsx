@@ -23,10 +23,11 @@ const STAGES: Record<SequenceSet, readonly { from: number; label: string }[]> = 
   ],
   mobile: [
     { from: 0, label: "Ham yapı" },
-    { from: 25, label: "Işık ve duvar" },
-    { from: 50, label: "Asma tavan" },
-    { from: 75, label: "Mermer ve ahşap" },
-    { from: 110, label: "Teslim" },
+    { from: 8, label: "Parke ve ahşap" },
+    { from: 34, label: "Mermer ve avize" },
+    { from: 52, label: "Mobilya" },
+    { from: 66, label: "Şömine ve ışık" },
+    { from: 96, label: "Teslim" },
   ],
 };
 
@@ -260,7 +261,6 @@ export function HeroSequence() {
         },
       });
 
-      // The film's own last frames fade to black, handing over to the next section
       tl.to(playhead, {
         frame: frameCount - 1,
         duration: 1,
@@ -310,7 +310,7 @@ export function HeroSequence() {
 
         <div data-hero-stage className="absolute inset-x-0 bottom-0 z-10 px-4 pb-6 md:px-8 md:pb-10">
           <span ref={liveRef} className="sr-only" aria-live="polite" />
-          {/* Capped by width so the longest phone stage ("Mermer ve ahşap", ~7.2em) clears the WhatsApp button on small phones */}
+          {/* Capped by width so the longest phone stage ("Mermer ve avize", ~7.2em) clears the WhatsApp button on small phones */}
           <div
             ref={stageRef}
             className="display relative h-[0.95em] text-[min(clamp(2.75rem,1.2rem+6.5vw,8.5rem),calc((100vw-6rem)/7.2))] leading-[0.9] text-ivory"

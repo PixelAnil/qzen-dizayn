@@ -3,7 +3,7 @@ import { asset } from "@/lib/asset";
 
 // Copy supplied by the client.
 const paragraphs = [
-  "Kurulduğumuz günden bu yana, her projeyi özgün bir hikaye olarak ele alıyoruz. On yıllık tecrübemizi; en son trendler, kusursuz malzeme kalitesi ve tavizsiz bir işçilik anlayışıyla harmanlıyoruz. Asma tavan ve alçıpan çözümlerinden anahtar teslim ev tadilatlarına, sofistike iç dekorasyon tasarımlarından prestijli ticari ofis ve mağaza yenilemelerine kadar her adımda mükemmelliği hedefliyoruz.",
+  "Kurulduğumuz günden bu yana, her projeyi özgün bir hikaye olarak ele alıyoruz. On beş yıllık tecrübemizi; en son trendler, kusursuz malzeme kalitesi ve tavizsiz bir işçilik anlayışıyla harmanlıyoruz. Asma tavan ve alçıpan çözümlerinden anahtar teslim ev tadilatlarına, sofistike iç dekorasyon tasarımlarından prestijli ticari ofis ve mağaza yenilemelerine kadar her adımda mükemmelliği hedefliyoruz.",
   "Bizim için tasarım; sadece estetik görünmek değil, içinde yaşayan ya da çalışan insanın ruhuna hitap eden kusursuz bir atmosfer yaratmaktır. Derin antrasit tonlarını, sıcak bronz detayları ve zamansız lüksü mekanlarla buluştururken, her projede ilk günkü heyecanımızı profesyonel disiplinimizle birleştiriyoruz.",
 ];
 
@@ -18,7 +18,7 @@ export function AboutSection() {
       <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-12 md:gap-x-4">
         <div className="md:col-span-6 lg:col-span-6">
           <p data-reveal className="text-lead text-ivory">
-            10 yılı aşkın süredir mimarinin, estetiğin ve işlevselliğin sınırlarını yeniden tanımlıyoruz. QZEN DİZAYN
+            15 yılı aşkın süredir mimarinin, estetiğin ve işlevselliğin sınırlarını yeniden tanımlıyoruz. QZEN DİZAYN
             olarak Erzurum&apos;dan yola çıkarak; sıradan duvarları, yaşam alanlarını ve ticari mülkleri sadece birer
             mekan olmaktan çıkarıp, haute couture birer sanat eserine dönüştürüyoruz.
           </p>

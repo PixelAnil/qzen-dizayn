@@ -84,7 +84,7 @@ QZEN DİZAYN olarak ücretsiz keşif hizmeti sunuyoruz. Size özel teklif, proje
 
 ## Neden QZEN DİZAYN?
 
-- 10 yılı aşkın sektör tecrübesi
+- 15 yılı aşkın sektör tecrübesi
 
 - Profesyonel alçıpan ustaları
 

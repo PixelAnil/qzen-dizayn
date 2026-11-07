@@ -1,17 +1,17 @@
 export const site = {
   name: "QZEN DİZAYN",
   description:
-    "İstanbul Sultanbeyli'de asma tavan, alçıpan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat. 10 yılı aşkın tecrübe.",
+    "İstanbul Sultanbeyli'de asma tavan, alçıpan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat. 15 yılı aşkın tecrübe.",
   address: "Adil Mahallesi, Hamidiye Caddesi No: 96, 34935 Sultanbeyli / İstanbul",
   addressLines: ["Adil Mahallesi, Hamidiye Caddesi No: 96", "34935 Sultanbeyli / İstanbul"],
-  email: "hello@flowrixai.com",
+  email: "zendizyn@gmail.com",
   phone: {
-    display: "0505 326 52 20",
-    href: "tel:+905053265220",
+    display: "0538 982 76 70",
+    href: "tel:+905389827670",
   },
   whatsapp: {
-    display: "0505 326 52 20",
-    href: "https://wa.me/905053265220",
+    display: "0538 982 76 70",
+    href: "https://wa.me/905389827670",
   },
   instagram: {
     handle: "@qzen_dizayn",

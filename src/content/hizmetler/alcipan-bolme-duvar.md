@@ -64,7 +64,7 @@ QZEN DİZAYN olarak müşterilerimize ücretsiz keşif ve şeffaf fiyatlandırma
 
 Her alçıpan projesi, doğru planlama ve kaliteli işçilik gerektirir. QZEN DİZAYN olarak farkımız:
 
-- 10 yılı aşkın uygulama deneyimi
+- 15 yılı aşkın uygulama deneyimi
 
 - Profesyonel alçıpan ustası ekibi
 

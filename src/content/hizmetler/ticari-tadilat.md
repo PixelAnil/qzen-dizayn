@@ -84,7 +84,7 @@ QZEN DİZAYN olarak, her projeye özel ücretsiz keşif ve detaylı fiyat teklif
 
 - Profesyonel iç mimarlık ve uygulama ekibi
 
-- 10 yılı aşkın ticari tadilat deneyimi
+- 15 yılı aşkın ticari tadilat deneyimi
 
 - Zamanında teslim garantisi
 

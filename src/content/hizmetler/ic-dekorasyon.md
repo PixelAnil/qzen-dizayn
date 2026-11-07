@@ -98,7 +98,7 @@ QZEN DİZAYN olarak müşterilerimize ücretsiz keşif hizmeti ve detaylı fiyat
 
 - Profesyonel iç mimari ekip
 
-- 10 yılı aşkın dekorasyon tecrübesi
+- 15 yılı aşkın dekorasyon tecrübesi
 
 - Estetik ve fonksiyonel tasarımlar
 

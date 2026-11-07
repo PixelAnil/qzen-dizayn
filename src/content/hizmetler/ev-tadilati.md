@@ -72,7 +72,7 @@ Bu detaylara dikkat edildiğinde hem zamandan hem bütçeden tasarruf edilir, uz
 
 QZEN DİZAYN, ev tadilatında yalnızca uygulama değil, tam bir çözüm ortağıdır. Her proje, uzman mimar ve ustalar tarafından denetlenir.
 
-- 10 yılı aşkın sektör deneyimi
+- 15 yılı aşkın sektör deneyimi
 
 - Anahtar teslim çözüm garantisi
 

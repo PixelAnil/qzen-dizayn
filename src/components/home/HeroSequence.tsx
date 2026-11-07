@@ -310,17 +310,16 @@ export function HeroSequence() {
         {/* Neutral scrim behind the stage label only */}
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-[38%] bg-linear-to-t from-obsidian/80 to-transparent" /> {/* taste-skill-ignore: neutral scrim over the film for legibility */}
 
-        {/* Visitors waited for the film to play by itself: centre stage, say that scrolling plays it */}
-        <div data-hero-hint aria-hidden className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-          <div className="scroll-hint relative flex flex-col items-center gap-4 text-ivory">
-            {/* Neutral scrim so the cue reads over the brightest frames */}
-            <span className="absolute left-1/2 top-1/2 -z-10 h-64 w-80 -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(closest-side,rgb(10_10_10/0.55),transparent)]" /> {/* taste-skill-ignore: neutral scrim under text on footage */}
-            <span className="scroll-hint-mouse" />
+        {/* Visitors waited for the film to play by itself: a quiet cue at the foot of the frame.
+            On phones it sits above the stage label, which owns the bottom-left corner there. */}
+        <div
+          data-hero-hint
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-36 z-10 flex justify-center md:bottom-10"
+        >
+          <div className="scroll-hint flex flex-col items-center gap-3 text-small text-ivory/90">
+            Kaydırarak keşfedin
             <span className="scroll-hint-track" />
-            <span className="text-lead">Kaydırarak keşfedin</span>
-            <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="scroll-hint-chevron -mt-2 h-5 w-5 text-gold-light">
-              <path d="m6 9 6 6 6-6" />
-            </svg>
           </div>
         </div>
 

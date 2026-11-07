@@ -274,6 +274,8 @@ export function HeroSequence() {
         },
       }, 0)
         .fromTo("[data-hero-progress]", { scaleX: 0 }, { scaleX: 1, duration: 1 }, 0)
+        // The scroll hint leaves as soon as the visitor starts scrolling, and returns at the top
+        .to("[data-hero-hint]", { autoAlpha: 0, duration: 0.03 }, 0)
         .to("[data-hero-stage]", { autoAlpha: 0, duration: 0.04 }, 0.96);
     }, section);
 
@@ -310,6 +312,14 @@ export function HeroSequence() {
 
         <div data-hero-stage className="absolute inset-x-0 bottom-0 z-10 px-4 pb-6 md:px-8 md:pb-10">
           <span ref={liveRef} className="sr-only" aria-live="polite" />
+          {/* Visitors waited for the film to play by itself: say that scrolling plays it */}
+          <div data-hero-hint aria-hidden className="mb-5 md:mb-7">
+            <div className="scroll-hint flex items-center gap-3 text-small text-ivory/85">
+              <span className="scroll-hint-mouse" />
+              <span className="scroll-hint-track" />
+              Keşfetmek için kaydırın
+            </div>
+          </div>
           {/* Capped by width so the longest phone stage ("Mermer ve avize", ~7.2em) clears the WhatsApp button on small phones */}
           <div
             ref={stageRef}

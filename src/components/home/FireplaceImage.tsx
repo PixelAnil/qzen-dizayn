@@ -13,20 +13,18 @@ const FPS = 30;
 
 /**
  * The salon photograph with its fire alive: the photo loads as a normal image, and once it is on
- * screen a small canvas over the firebox redraws the flames with a rising, licking sway while the
- * room's glow flickers. Nothing runs while the picture is off screen, and reduced motion keeps it still.
+ * screen a small canvas over the firebox redraws the flames with a rising, licking sway.
+ * Nothing runs while the picture is off screen, and reduced motion keeps it still.
  */
 export function FireplaceImage({ alt, sizes, className = "" }: { alt: string; sizes: string; className?: string }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const box = boxRef.current;
     const canvas = canvasRef.current;
-    const glow = glowRef.current;
     const ctx = canvas?.getContext("2d");
-    if (!box || !canvas || !glow || !ctx) return;
+    if (!box || !canvas || !ctx) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     // Soft-edged mask so the redrawn flames melt into the photo underneath
@@ -80,10 +78,6 @@ export function FireplaceImage({ alt, sizes, className = "" }: { alt: string; si
       }
       ctx.globalCompositeOperation = "destination-in";
       ctx.drawImage(mask, 0, 0);
-
-      // The room's light breathes with the fire
-      const flicker = 0.55 + 0.25 * Math.sin(t * 8.9) * Math.sin(t * 2.3) + 0.2 * Math.sin(t * 17.3);
-      glow.style.opacity = flicker.toFixed(3);
     };
 
     const start = () => {
@@ -113,13 +107,6 @@ export function FireplaceImage({ alt, sizes, className = "" }: { alt: string; si
   return (
     <div ref={boxRef} className={`relative overflow-hidden ${className}`}>
       <Image src={asset(SRC)} alt={alt} width={IMAGE.width} height={IMAGE.height} sizes={sizes} className="h-full w-full object-cover" />
-      {/* Warm light the fire throws on the marble and floor */}
-      <div
-        ref={glowRef}
-        aria-hidden
-        style={{ left: pct(FIRE.x - 120, IMAGE.width), top: pct(FIRE.y - 90, IMAGE.height), width: pct(FIRE.w + 240, IMAGE.width), height: pct(FIRE.h + 200, IMAGE.height) }}
-        className="pointer-events-none absolute opacity-0 mix-blend-screen [background:radial-gradient(closest-side,rgb(255_150_60/0.32),transparent)]" // taste-skill-ignore: firelight on the photograph
-      />
       <canvas
         ref={canvasRef}
         aria-hidden

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroSequence } from "@/components/home/HeroSequence";
 import { AboutSection } from "@/components/home/AboutSection";
 import { ContactSection } from "@/components/home/ContactSection";
@@ -6,6 +7,9 @@ import { ProjectsPreview } from "@/components/home/ProjectsPreview";
 import { ServicesIndex } from "@/components/services/ServicesIndex";
 import { Button } from "@/components/ui/Button";
 import { HOME_SERVICES, services } from "@/lib/site";
+import { pageSeo, seoMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = seoMetadata(pageSeo.home, "/");
 
 export default function HomePage() {
   return (

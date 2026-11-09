@@ -8,6 +8,8 @@ import { Reveal } from "@/components/providers/Reveal";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { asset } from "@/lib/asset";
 import { site } from "@/lib/site";
+import { pageSeo } from "@/lib/seo";
+import { JsonLd, businessJsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -20,13 +22,13 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: `${site.name} — İç mimari ve tadilat, İstanbul`,
+    default: pageSeo.home.title,
     template: `%s | ${site.name}`,
   },
-  description: site.description,
+  description: pageSeo.home.description,
   openGraph: {
-    title: site.name,
-    description: site.description,
+    title: pageSeo.home.title,
+    description: pageSeo.home.description,
     locale: "tr_TR",
     type: "website",
     images: [{ url: asset("/brand/og.webp"), width: 1080, height: 1080, alt: site.name }],
@@ -49,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <WhatsAppButton />
           <Cursor />
         </SmoothScroll>
+        <JsonLd data={businessJsonLd()} />
       </body>
     </html>
   );

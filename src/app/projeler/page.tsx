@@ -4,11 +4,9 @@ import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { Button } from "@/components/ui/Button";
 import { projects } from "@/lib/projects";
 import { site } from "@/lib/site";
+import { pageSeo, seoMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Projelerimiz",
-  description: "QZEN DİZAYN'ın tamamladığı asma tavan, duvar ve iç dekorasyon projeleri.",
-};
+export const metadata: Metadata = seoMetadata(pageSeo.projects, "/projeler");
 
 export default function ProjectsPage() {
   return (

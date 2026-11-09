@@ -130,6 +130,11 @@ export const services: Service[] = [
     tagline: "Yaşam Alanlarınızı Hayallerinizdeki Gibi Baştan Yaratın",
   },
   {
+    slug: "banyo-mutfak",
+    title: "Banyo ve Mutfak Yenileme",
+    tagline: "Islak Hacimde Kusursuz Yalıtım, Seramik ve Fayans İşçiliği",
+  },
+  {
     slug: "cita-dekor",
     title: "Duvar Çıtalama ve Çıta Dekorasyonu",
     tagline: "Yaşam Alanlarınıza Klasik ve Modern Dokunuşlar",

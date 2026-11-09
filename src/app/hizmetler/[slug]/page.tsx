@@ -7,7 +7,9 @@ import { WhatsAppIcon } from "@/components/ui/Icons";
 import { asset } from "@/lib/asset";
 import { readServiceContent, type Block } from "@/lib/content";
 import { projects } from "@/lib/projects";
-import { services, site, whatsappHref } from "@/lib/site";
+import { services, site, whatsappHref, type Service } from "@/lib/site";
+import { serviceSeo, seoMetadata } from "@/lib/seo";
+import { JsonLd, serviceJsonLd } from "@/components/seo/JsonLd";
 
 export const dynamicParams = false;
 
@@ -17,9 +19,16 @@ export function generateStaticParams() {
 
 const findService = (slug: string) => services.find((s) => s.slug === slug);
 
+// Every service has hand-written search copy; the fallback only covers a service added without it
+const seoFor = (service: Service) =>
+  serviceSeo[service.slug] ?? {
+    title: `${service.title} İstanbul | QZEN DİZAYN`,
+    description: `${service.title}: ${service.tagline}. İstanbul'da usta işçilik ve ücretsiz keşif.`,
+  };
+
 export async function generateMetadata({ params }: PageProps<"/hizmetler/[slug]">): Promise<Metadata> {
   const service = findService((await params).slug);
-  return service ? { title: service.title, description: `${service.title} – ${service.tagline}. QZEN DİZAYN, İstanbul.` } : {};
+  return service ? seoMetadata(seoFor(service), `/hizmetler/${service.slug}`) : {};
 }
 
 function ContentBlock({ block }: { block: Block }) {
@@ -56,8 +65,11 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
   const others = services.filter((s) => s.slug !== slug);
   const whatsapp = whatsappHref(`Merhaba, ${service.title} için ücretsiz keşif ve fiyat teklifi almak istiyorum.`);
 
+  const seo = seoFor(service);
+
   return (
     <article>
+      <JsonLd data={serviceJsonLd(service.slug, service.title, seo.description)} />
       <header data-reveal-group className="grid gap-10 px-4 pb-20 pt-32 md:grid-cols-12 md:gap-x-4 md:px-8 md:pb-28 md:pt-44">
         <div className="md:col-span-8 md:self-end">
           <h1

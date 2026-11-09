@@ -4,12 +4,9 @@ import { ServicesIndex } from "@/components/services/ServicesIndex";
 import { Button, buttonClass } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 import { site, whatsappHref } from "@/lib/site";
+import { pageSeo, seoMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Hizmetlerimiz",
-  description:
-    "Alçıpan ve bölme duvar, asma tavan, gergi, klipin ve 60x60 tavan, ev tadilatı, dekorasyon, çıta, lambiri, TV ünitesi, PVC kapı ve pencere, ticari tadilat. İstanbul.",
-};
+export const metadata: Metadata = seoMetadata(pageSeo.services, "/hizmetler");
 
 export default function ServicesPage() {
   return (

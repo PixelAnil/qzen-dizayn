@@ -25,7 +25,7 @@ export const site = {
     writeReviewHref: "https://www.google.com/maps/search/?api=1&query=QZEN%20D%C4%B0ZAYN%20Sultanbeyli",
   },
   builtBy: {
-    label: "flowrix.ai",
+    label: "Flowrix Studio",
     href: "https://www.instagram.com/flowrixstudio/",
   },
 } as const;

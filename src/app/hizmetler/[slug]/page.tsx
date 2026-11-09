@@ -84,15 +84,22 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
         </div>
 
         <figure data-reveal className="md:col-span-4 md:col-start-9">
-          <Image
-            src={asset(service.image.src)}
-            alt={service.image.alt}
-            width={service.image.width}
-            height={service.image.height}
-            sizes="(min-width: 768px) 33vw, 100vw"
-            preload
-            className="aspect-3/4 w-full object-cover"
-          />
+          {service.image ? (
+            <Image
+              src={asset(service.image.src)}
+              alt={service.image.alt}
+              width={service.image.width}
+              height={service.image.height}
+              sizes="(min-width: 768px) 33vw, 100vw"
+              preload
+              className="aspect-3/4 w-full object-cover"
+            />
+          ) : (
+            // No photograph yet: the brand mark holds the frame until the service's film arrives
+            <div className="flex aspect-3/4 w-full items-center justify-center bg-graphite">
+              <Image src={asset("/brand/qzen-mark.webp")} alt="" width={200} height={162} className="w-1/3 opacity-70" />
+            </div>
+          )}
         </figure>
       </header>
 

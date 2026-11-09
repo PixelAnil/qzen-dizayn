@@ -26,7 +26,7 @@ export const site = {
   },
   builtBy: {
     label: "flowrix.ai",
-    href: "https://flowrixai.com/",
+    href: "https://www.instagram.com/flowrixstudio/",
   },
 } as const;
 
@@ -52,9 +52,18 @@ export const policyLinks = [
   { label: "Çerez Politikası", href: "/cerez-politikasi" },
 ] as const;
 
-// Titles, taglines, images and page texts come from the client (hizmetlerimiz/ folder).
-// Each service's full text lives in src/content/hizmetler/<slug>.md.
-export const services = [
+export type Service = {
+  slug: string;
+  title: string;
+  tagline: string;
+  /** Services without their own photograph show the brand mark until their film arrives */
+  image?: { src: string; width: number; height: number; alt: string };
+};
+
+// Titles, taglines, images and page texts come from the client (hizmetlerimiz/ and the
+// per-service folders). Each service's full text lives in src/content/hizmetler/<slug>.md.
+// The first HOME_SERVICES entries are the ones the home page lists before "Tüm hizmetler".
+export const services: Service[] = [
   {
     slug: "alcipan-bolme-duvar",
     title: "Alçıpan & Bölme Duvar Hizmetleri",
@@ -85,6 +94,51 @@ export const services = [
     tagline: "İşinize Değer Katan Profesyonel Dokunuşlar",
     image: { src: "/services/ticari-tadilat.webp", width: 750, height: 1000, alt: "Ray spotlarla aydınlatılmış, beyaz raflı mağaza iç mekânı" },
   },
-] as const;
+  {
+    slug: "dekorasyon",
+    title: "İç Mekân Dekorasyonu",
+    tagline: "Yaşam Alanlarınıza Estetik, Şıklık ve Fonksiyonellik Katın",
+  },
+  {
+    slug: "pvc",
+    title: "PVC Kapı ve Pencere Sistemleri",
+    tagline: "Yüksek Yalıtım, Dayanıklılık ve Estetik Çözümler",
+  },
+  {
+    slug: "lambiri",
+    title: "Lambiri Uygulamaları",
+    tagline: "Doğal, Şık ve Uzun Ömürlü Kaplama Çözümleri",
+  },
+  {
+    slug: "tv-unitesi",
+    title: "TV Ünitesi Tasarımı ve Uygulamaları",
+    tagline: "Estetik, Fonksiyonel ve Modern Yaşam Alanları",
+  },
+  {
+    slug: "klipin-tavan",
+    title: "Klipin Tavan Sistemleri",
+    tagline: "Hijyenik, Dayanıklı ve Modern Asma Tavan Çözümleri",
+  },
+  {
+    slug: "60x60-tavan",
+    title: "60x60 Asma Tavan Sistemleri",
+    tagline: "Fonksiyonel, Akustik ve Ekonomik Çözümler",
+  },
+  {
+    slug: "tamir-tadilat",
+    title: "Bireysel Tamir ve Tadilat",
+    tagline: "Yaşam Alanlarınızı Hayallerinizdeki Gibi Baştan Yaratın",
+  },
+  {
+    slug: "cita-dekor",
+    title: "Duvar Çıtalama ve Çıta Dekorasyonu",
+    tagline: "Yaşam Alanlarınıza Klasik ve Modern Dokunuşlar",
+  },
+  {
+    slug: "gergi-tavan",
+    title: "Gergi Tavan Sistemleri",
+    tagline: "Mekanlarınıza Işıltı, Derinlik ve Sanat Katın",
+  },
+];
 
-export type Service = (typeof services)[number];
+export const HOME_SERVICES = 5;

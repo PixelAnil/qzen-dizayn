@@ -4,6 +4,8 @@ import { ContactSection } from "@/components/home/ContactSection";
 import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { ProjectsPreview } from "@/components/home/ProjectsPreview";
 import { ServicesIndex } from "@/components/services/ServicesIndex";
+import { Button } from "@/components/ui/Button";
+import { HOME_SERVICES, services } from "@/lib/site";
 
 export default function HomePage() {
   return (
@@ -17,8 +19,11 @@ export default function HomePage() {
           Hizmetlerimiz
         </h2>
         <div className="mt-8 md:mt-12">
-          <ServicesIndex />
+          <ServicesIndex limit={HOME_SERVICES} />
         </div>
+        <Button href="/hizmetler" className="mt-10 w-full md:mt-12 md:w-auto">
+          Tüm hizmetlerimiz ({services.length})
+        </Button>
       </section>
 
       <ContactSection />

@@ -7,7 +7,8 @@ import { site, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Hizmetlerimiz",
-  description: "Alçıpan ve bölme duvar, asma tavan, anahtar teslim ev tadilatı, iç dekorasyon ve ticari tadilat. İstanbul.",
+  description:
+    "Alçıpan ve bölme duvar, asma tavan, gergi, klipin ve 60x60 tavan, ev tadilatı, dekorasyon, çıta, lambiri, TV ünitesi, PVC kapı ve pencere, ticari tadilat. İstanbul.",
 };
 
 export default function ServicesPage() {

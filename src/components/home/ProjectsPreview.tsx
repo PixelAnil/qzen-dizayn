@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { asset } from "@/lib/asset";
-import { projects } from "@/lib/projects";
+import { projectAlt, projects } from "@/lib/projects";
 
 /** A few finished jobs at different sizes, then the way into the full portfolio. */
 export function ProjectsPreview() {
@@ -34,14 +34,11 @@ export function ProjectsPreview() {
           >
             <Image
               src={asset(project.image)}
-              alt={`${project.title}, ${project.category}`}
+              alt={projectAlt}
               fill
               sizes="(min-width: 768px) 55vw, 100vw"
               className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"
             />
-            <span className="absolute inset-x-0 bottom-0 bg-obsidian/70 px-4 py-3 text-small text-ivory">
-              {project.title}
-            </span>
           </Link>
         ))}
       </div>

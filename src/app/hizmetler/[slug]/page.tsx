@@ -6,7 +6,7 @@ import { Button, buttonClass } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 import { asset } from "@/lib/asset";
 import { readServiceContent, type Block } from "@/lib/content";
-import { projects } from "@/lib/projects";
+import { projectAlt, projects } from "@/lib/projects";
 import { services, site, whatsappHref, type Service } from "@/lib/site";
 import { serviceSeo, seoMetadata } from "@/lib/seo";
 import { JsonLd, serviceJsonLd } from "@/components/seo/JsonLd";
@@ -170,7 +170,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
             <Link key={project.slug} href="/projeler" data-reveal className="group relative block aspect-4/5 overflow-hidden bg-graphite-soft">
               <Image
                 src={asset(project.image)}
-                alt={`${project.title}, ${project.category}`}
+                alt={projectAlt}
                 fill
                 sizes="(min-width: 640px) 33vw, 100vw"
                 className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"

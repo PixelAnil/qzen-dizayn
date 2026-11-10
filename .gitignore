@@ -47,3 +47,4 @@ next-env.d.ts
 # raw client material (processed into public/ and src/content/)
 /hizmetlerimiz/
 /Projelerimiz */
+/yeni-gorseller/

@@ -19,6 +19,12 @@
       button[aria-label="Create Entry or Assets"] {
         display: none !important;
       }
+      /* Settings: the AI, developer and data management tabs are of no use to the editors */
+      button[role="tab"][aria-controls="prefs-tab-ai"],
+      button[role="tab"][aria-controls="prefs-tab-developer"],
+      button[role="tab"][aria-controls="prefs-tab-data"] {
+        display: none !important;
+      }
     </style>
   </head>
   <body>

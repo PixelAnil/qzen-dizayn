@@ -1,0 +1,15 @@
+# QZEN DİZAYN panel girişi (Cloudflare Workers, ücretsiz plan). Yayınlamak: npx wrangler deploy
+# Gizli değerler (wrangler secret put): GITHUB_TOKEN, SESSION_KEY, USERS — bkz. kullanici.mjs
+name = "qzen-panel-giris"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[vars]
+ALLOWED_DOMAINS = "pixelanil.github.io"
+REPO = "PixelAnil/qzen-dizayn"
+
+# Hatalı şifre sayacı (15 dakikalık kilit)
+[[kv_namespaces]]
+binding = "LOGIN_LIMIT"
+id = "aa192e748a3642398753d6baf9adc1a0"

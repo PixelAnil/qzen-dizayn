@@ -6,10 +6,12 @@ backend:
   name: github
   repo: PixelAnil/qzen-dizayn
   branch: main
-  # "GitHub ile Giriş Yap": Cloudflare Workers'taki giriş servisi (Sveltia CMS Authenticator,
-  # anlbaday25 hesabı, ücretsiz). Erişim anahtarıyla giriş yedek olarak açık.
+  # Giriş: kullanıcı adı + şifre, Cloudflare Workers'taki kendi servisimiz (panel-giris/). Panelin
+  # GitHub istekleri de oradan geçer; sitenin GitHub anahtarı tarayıcıya hiç gelmez.
   base_url: https://qzen-panel-giris.anlbaday25.workers.dev
-  auth_methods: [oauth, token]
+  api_root: https://qzen-panel-giris.anlbaday25.workers.dev/api/v3
+  graphql_api_root: https://qzen-panel-giris.anlbaday25.workers.dev/api/graphql
+  auth_methods: [oauth]
   commit_messages:
     create: "Panel: {{collection}} eklendi ({{slug}})"
     update: "Panel: {{collection}} güncellendi ({{slug}})"

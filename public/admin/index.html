@@ -8,5 +8,17 @@
     <!-- Sveltia CMS, pinned so an upstream release can't change the panel unannounced -->
     <script src="https://unpkg.com/@sveltia/cms@0.258.1/dist/sveltia-cms.js"></script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      // The sign-in is a username and password (panel-giris worker); the CMS still labels its button
+      // after GitHub, so the label is replaced wherever it appears.
+      new MutationObserver(() => {
+        for (const el of document.querySelectorAll("button, button span")) {
+          if (el.childElementCount === 0 && /GitHub/.test(el.textContent) && /Giriş|Sign In/i.test(el.textContent)) {
+            el.textContent = "Giriş Yap";
+          }
+        }
+      }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+    </script>
+  </body>
 </html>

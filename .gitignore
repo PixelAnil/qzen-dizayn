@@ -48,3 +48,8 @@ next-env.d.ts
 /hizmetlerimiz/
 /Projelerimiz */
 /yeni-gorseller/
+
+# panel login worker: user list stays local (hashes only) and in Cloudflare
+/panel-giris/kullanicilar.json
+/panel-giris/node_modules/
+/panel-giris/.wrangler/

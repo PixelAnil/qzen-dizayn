@@ -20,6 +20,12 @@
       button[aria-label="Create Entry or Assets"] {
         display: none !important;
       }
+      /* Phone: the bottom bar keeps the "İçerikler" button beside the menu, as the way back to the list */
+      @media (max-width: 768px) {
+        button[aria-keyshortcuts="Alt+1"] {
+          display: inline-flex !important;
+        }
+      }
     </style>
   </head>
   <body>

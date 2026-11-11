@@ -7,6 +7,20 @@
     <title>QZEN DİZAYN Yönetim Paneli</title>
     <!-- Sveltia CMS, pinned so an upstream release can't change the panel unannounced -->
     <script src="https://unpkg.com/@sveltia/cms@0.258.1/dist/sveltia-cms.js"></script>
+    <style>
+      /* Only the collections are used: the media library tab (and the buttons leading to it) is hidden,
+         so nobody deletes a picture a page still uses. Pictures are added inside each service or project. */
+      button[aria-keyshortcuts="Alt+1"],
+      button[aria-keyshortcuts="Alt+2"],
+      button[aria-label="Medya Dosyaları"],
+      button[aria-label="Medya Dosyalarını Göster"],
+      button[aria-label="İçerik veya Medya Dosyası Oluştur"],
+      button[aria-label="Assets"],
+      button[aria-label="Show Assets"],
+      button[aria-label="Create Entry or Assets"] {
+        display: none !important;
+      }
+    </style>
   </head>
   <body>
     <script>
@@ -19,6 +33,13 @@
           }
         }
       }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+
+      // The media library can still be reached by address or shortcut: send it back to the collections
+      const noAssets = () => {
+        if (location.hash.startsWith("#/assets")) location.replace("#/collections");
+      };
+      addEventListener("hashchange", noAssets);
+      noAssets();
     </script>
   </body>
 </html>

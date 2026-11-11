@@ -21,10 +21,10 @@ site_url: https://pixelanil.github.io/qzen-dizayn
 logo:
   src: /qzen-dizayn/brand/qzen-mark.webp
 
-# "Fayans Döşeme" → fayans-doseme (adres ve dosya adı)
+# Dosya adı başlıktan Türkçe harfleriyle oluşur (fayans-döşeme.md); sayfa adresini site kendisi
+# Türkçe kurala göre çıkarır: fayans-doseme. (clean_accents ö'yü Almanca kuralla "oe" yapıyordu.)
 slug:
-  encoding: ascii
-  clean_accents: true
+  encoding: unicode
 
 media_folder: public/uploads
 public_folder: /uploads
@@ -32,7 +32,8 @@ media_libraries:
   default:
     config:
       max_file_size: 26214400 # 25 MB: telefon fotoğrafları rahat sığar
-      slugify_filename: true
+      # Yüklenen dosyalar kısa, Türkçe karaktersiz rastgele adlar alır
+      filename_template: "{{uuid_short}}"
       transformations:
         # Yüklenen her fotoğraf sitede hafif dursun diye küçültülür ve WebP'ye çevrilir
         raster_image:
@@ -60,7 +61,6 @@ collections:
     reorder: true
     identifier_field: title
     summary: "{{title}}"
-    preview_path: hizmetler/{{slug}}/
     media_folder: /public/services
     public_folder: /services
     fields:

@@ -53,13 +53,29 @@ function splitFrontMatter(source: string): { data: Record<string, unknown>; body
   }
 }
 
-const readService = (slug: string) => splitFrontMatter(readFileSync(path.join(SERVICES, `${slug}.md`), "utf8"));
+/** Page address from the file name, with Turkish letters spelled the Turkish way: "Fayans Döşeme" → fayans-doseme. */
+export const slugify = (name: string) =>
+  name
+    .normalize("NFC")
+    .toLocaleLowerCase("tr")
+    .replace(/[çğıöşü]/g, (c) => ({ ç: "c", ğ: "g", ı: "i", ö: "o", ş: "s", ü: "u" })[c]!)
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+// The panel names files after the title; the page address is always derived from the file name here
+const serviceFiles = new Map(
+  readdirSync(SERVICES)
+    .filter((f) => f.endsWith(".md"))
+    .map((file) => [slugify(file.slice(0, -3)), file] as const),
+);
+
+const readService = (slug: string) => splitFrontMatter(readFileSync(path.join(SERVICES, serviceFiles.get(slug)!), "utf8"));
 
 /** All services in the order set in the panel; the first HOME_SERVICES are listed on the home page. */
-export const services: Service[] = readdirSync(SERVICES)
-  .filter((f) => f.endsWith(".md"))
-  .map((file) => {
-    const slug = file.slice(0, -3);
+export const services: Service[] = [...serviceFiles]
+  .map(([slug, file]) => {
     const { data } = readService(slug);
     const title = text(data.title);
     if (!title) {

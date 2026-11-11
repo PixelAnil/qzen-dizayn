@@ -10,7 +10,6 @@
     <style>
       /* Only the collections are used: the media library tab (and the buttons leading to it) is hidden,
          so nobody deletes a picture a page still uses. Pictures are added inside each service or project. */
-      button[aria-keyshortcuts="Alt+1"],
       button[aria-keyshortcuts="Alt+2"],
       button[aria-label="Medya Dosyaları"],
       button[aria-label="Medya Dosyalarını Göster"],
@@ -19,12 +18,6 @@
       button[aria-label="Show Assets"],
       button[aria-label="Create Entry or Assets"] {
         display: none !important;
-      }
-      /* Phone: the bottom bar keeps the "İçerikler" button beside the menu, as the way back to the list */
-      @media (max-width: 768px) {
-        button[aria-keyshortcuts="Alt+1"] {
-          display: inline-flex !important;
-        }
       }
     </style>
   </head>

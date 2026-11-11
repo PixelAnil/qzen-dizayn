@@ -1,0 +1,212 @@
+# QZEN DİZAYN yönetim paneli (Sveltia CMS)
+# Her kayıt depoya bir commit atar; GitHub Actions siteyi yeniden derleyip 2-3 dakikada yayına alır.
+# Alanlar src/lib/content.ts'in okuduğu biçimle birebir eşleşir: bir alanı değiştirirseniz orayı da güncelleyin.
+
+backend:
+  name: github
+  repo: PixelAnil/qzen-dizayn
+  branch: main
+  # Şimdilik erişim anahtarıyla giriş. "GitHub ile giriş" düğmesi, Cloudflare'deki giriş servisi
+  # (Sveltia CMS Authenticator) kurulunca base_url eklenip [oauth, token] yapılarak açılacak.
+  auth_methods: [token]
+  commit_messages:
+    create: "Panel: {{collection}} eklendi ({{slug}})"
+    update: "Panel: {{collection}} güncellendi ({{slug}})"
+    delete: "Panel: {{collection}} silindi ({{slug}})"
+    uploadMedia: "Panel: görsel yüklendi ({{path}})"
+    deleteMedia: "Panel: görsel silindi ({{path}})"
+
+app_title: QZEN DİZAYN Panel
+site_url: https://pixelanil.github.io/qzen-dizayn
+logo:
+  src: /qzen-dizayn/brand/qzen-mark.webp
+
+# "Fayans Döşeme" → fayans-doseme (adres ve dosya adı)
+slug:
+  encoding: ascii
+  clean_accents: true
+
+media_folder: public/uploads
+public_folder: /uploads
+media_libraries:
+  default:
+    config:
+      max_file_size: 26214400 # 25 MB: telefon fotoğrafları rahat sığar
+      slugify_filename: true
+      transformations:
+        # Yüklenen her fotoğraf sitede hafif dursun diye küçültülür ve WebP'ye çevrilir
+        raster_image:
+          format: webp
+          quality: 80
+          width: 1600
+          height: 1600
+
+editor:
+  preview: false
+
+collections:
+  - name: hizmetler
+    label: Hizmetler
+    label_singular: Hizmet
+    icon: home_repair_service
+    description: >-
+      Sitedeki hizmetler. Sıralamayı sürükleyerek değiştirebilirsiniz; ilk 5 hizmet anasayfada görünür.
+    folder: src/content/hizmetler
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    duplicate: false
+    reorder: true
+    identifier_field: title
+    summary: "{{title}}"
+    preview_path: hizmetler/{{slug}}/
+    media_folder: /public/services
+    public_folder: /services
+    fields:
+      - name: title
+        label: Hizmet adı
+        hint: "Örnek: Fayans Döşeme. Hizmetin sayfa adresi bu addan otomatik oluşur."
+      - name: tagline
+        label: Kısa alt başlık
+        hint: "Hizmet adının altında görünen tek satır. Örnek: Estetik, Dayanıklı ve Uygun Fiyatlı Çözümler"
+      - name: image
+        label: Fotoğraf
+        widget: image
+        required: false
+        hint: Dikey (portre) fotoğraf en iyi görünür. Boş bırakırsanız QZEN logosu görünür.
+      - name: image_alt
+        label: Fotoğrafta ne var? (isteğe bağlı)
+        required: false
+        hint: Görme engelli ziyaretçiler ve Google için kısa bir tarif. Boş kalırsa hizmet adı kullanılır.
+      - name: body
+        label: Sayfa yazısı
+        widget: richtext
+        buttons: [bold, heading-two, heading-three, bulleted-list, numbered-list]
+        editor_components: []
+        modes: [rich_text]
+        use_emoji_autocomplete: false
+        hint: >-
+          İlk paragraf sayfanın üstünde büyük yazılır. Bölümler için "Başlık 2", alt bölümler için "Başlık 3" kullanın.
+          Madde başında **Kalın yazı:** kullanırsanız o kısım başlık gibi görünür.
+      - name: seo_title
+        label: Google başlığı (isteğe bağlı)
+        required: false
+        hint: Google aramasında görünen başlık, en fazla 60 karakter. Boş kalırsa otomatik oluşturulur.
+      - name: seo_description
+        label: Google açıklaması (isteğe bağlı)
+        widget: text
+        required: false
+        hint: Google aramasında başlığın altında görünen 1-2 cümle, en fazla 155 karakter. Boş kalırsa otomatik oluşturulur.
+
+  - name: projeler
+    label: Projeler
+    label_singular: Proje
+    icon: photo_library
+    description: >-
+      Projelerimiz sayfasındaki işler. En yeni tarihli proje en üstte görünür. Aynı işin fotoğraflarını tek projede
+      toplayın; ziyaretçi tıklayınca kaydırarak hepsini görür.
+    folder: src/content/projeler
+    extension: json
+    format: json
+    create: true
+    delete: true
+    duplicate: false
+    identifier_field: note
+    slug: "{{year}}{{month}}{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "{{date | date('DD.MM.YYYY')}} {{note}}"
+    sortable_fields:
+      fields: [date]
+      default:
+        field: date
+        direction: descending
+    media_folder: /public/projects
+    public_folder: /projects
+    fields:
+      - name: photos
+        label: Fotoğraflar
+        widget: image
+        multiple: true
+        min: 1
+        max: 30
+        hint: >-
+          Aynı işin fotoğraflarını birlikte seçin. İlk fotoğraf kapak olur; sırayı sürükleyerek değiştirebilirsiniz.
+      - name: date
+        label: Tarih
+        widget: datetime
+        default: "{{now}}"
+        format: YYYY-MM-DDTHH:mm
+        hint: Projeler bu tarihe göre sıralanır, en yeni en üstte. Bir projeyi öne almak için tarihini ileri alın.
+      - name: note
+        label: Kısa not (sitede görünmez)
+        required: false
+        hint: "Panelde projeyi tanımanız için. Örnek: Ataşehir salon, turkuaz duvar"
+
+  - name: ayarlar
+    label: Site ayarları
+    icon: settings
+    editor:
+      preview: false
+    files:
+      - name: iletisim
+        label: İletişim bilgileri
+        icon: call
+        file: src/content/ayarlar/iletisim.json
+        format: json
+        fields:
+          - name: phone
+            label: Telefon
+            hint: "Örnek: 0538 982 76 70. Sitedeki tüm arama butonları bu numarayı kullanır."
+            pattern: ['^[0-9 ()+-]{10,18}$', "Geçerli bir telefon numarası yazın, örnek: 0538 982 76 70"]
+          - name: whatsapp
+            label: WhatsApp numarası
+            hint: Genelde telefonla aynıdır. Sitedeki tüm WhatsApp butonları bu numaraya gider.
+            pattern: ['^[0-9 ()+-]{10,18}$', "Geçerli bir telefon numarası yazın, örnek: 0538 982 76 70"]
+          - name: email
+            label: E-posta
+            pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Geçerli bir e-posta adresi yazın"]
+          - name: address_line1
+            label: Adres (1. satır)
+            hint: "Örnek: Adil Mahallesi, Hamidiye Caddesi No: 96"
+          - name: address_line2
+            label: Adres (2. satır)
+            hint: "Posta kodu, ilçe / il. Örnek: 34935 Sultanbeyli / İstanbul"
+          - name: instagram
+            label: Instagram adresi
+            hint: "Örnek: https://www.instagram.com/qzen_dizayn/"
+            pattern: ['^https://(www\.)?instagram\.com/[^/\s]+/?$', "Instagram profil adresini tam yazın"]
+
+      - name: yorumlar
+        label: Müşteri yorumları
+        icon: reviews
+        file: src/content/ayarlar/yorumlar.json
+        format: json
+        fields:
+          - name: reviews
+            label: Yorumlar
+            label_singular: Yorum
+            widget: list
+            collapsed: true
+            summary: "{{author}} – {{service}}"
+            hint: Anasayfadaki "Değerli yorumlarınız" bölümünde kayarak gösterilir.
+            fields:
+              - name: author
+                label: Müşteri adı
+              - name: service
+                label: Hangi hizmet
+                hint: "Örnek: Asma tavan"
+              - name: rating
+                label: Yıldız (1-5)
+                widget: number
+                value_type: int
+                min: 1
+                max: 5
+                default: 5
+              - name: text
+                label: Yorum
+                widget: text
+              - name: sample
+                label: Örnek yorum (gerçek değil)
+                widget: boolean
+                default: false
+                hint: Açık olanların kartında "örnek" yazar. Gerçek yorumları eklediğinizde örnekleri silin.

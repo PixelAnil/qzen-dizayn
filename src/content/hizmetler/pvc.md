@@ -1,3 +1,11 @@
+---
+title: PVC Kapı ve Pencere Sistemleri
+tagline: Yüksek Yalıtım, Dayanıklılık ve Estetik Çözümler
+order: 7
+seo_title: PVC Kapı Pencere Sistemleri İstanbul | QZEN DİZAYN
+seo_description: "Isı yalıtımlı PVC kapı ve pencere sistemleri: sürgülü, renkli ve ahşap desenli modeller, temiz montaj. İstanbul'da ücretsiz keşif ve ölçü."
+---
+
 Evinizin veya iş yerinizin ısı ve ses yalıtımını sağlarken, estetik görünümünü de korumak istiyorsanız PVC kapı ve pencere sistemleri en ideal çözümdür. QZEN DİZAYN olarak, yüksek enerji tasarrufu sağlayan, uzun ömürlü ve dekorasyonunuza uyum sağlayan PVC sistemleri ile mekanlarınıza konfor katıyoruz. Yılların verdiği tecrübe, profesyonel ekip ve kaliteli malzeme anlayışıyla, her mekâna özel yalıtım ve doğrama çözümleri üretiyoruz.
 
 ## PVC Sistemleri Nedir ve Neden Tercih Edilmelidir?

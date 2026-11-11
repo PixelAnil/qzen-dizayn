@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { Button } from "@/components/ui/Button";
-import { projects } from "@/lib/projects";
+import { projects } from "@/lib/content";
 import { site } from "@/lib/site";
 import { pageSeo, seoMetadata } from "@/lib/seo";
 

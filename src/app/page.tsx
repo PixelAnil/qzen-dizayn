@@ -6,7 +6,7 @@ import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { ProjectsPreview } from "@/components/home/ProjectsPreview";
 import { ServicesIndex } from "@/components/services/ServicesIndex";
 import { Button } from "@/components/ui/Button";
-import { HOME_SERVICES, services } from "@/lib/site";
+import { HOME_SERVICES, services } from "@/lib/content";
 import { pageSeo, seoMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = seoMetadata(pageSeo.home, "/");

@@ -1,3 +1,11 @@
+---
+title: Lambiri Uygulamaları
+tagline: Doğal, Şık ve Uzun Ömürlü Kaplama Çözümleri
+order: 8
+seo_title: Ahşap Lambiri Kaplama Modelleri İstanbul | QZEN DİZAYN
+seo_description: Doğal ahşap, MDF, PVC ve WPC lambiri kaplama ile duvar ve tavanlara sıcak bir doku. İstanbul'da usta işçilik, ücretsiz keşif ve fiyat teklifi.
+---
+
 Evinizin veya iş yerinizin duvar ve tavanlarına sıcak, doğal ve estetik bir dokunuş katmak istiyorsanız lambiri uygulamaları en etkili dekoratif çözümlerden biridir. QZEN DİZAYN olarak; ahşap, PVC, kompozit ve MDF lambiri modelleri ile mekanlarınıza yepyeni bir kimlik kazandırıyoruz. Yılların verdiği tecrübe, profesyonel ekip ve kaliteli malzeme anlayışımızla, her mekâna özel kaplama ve tasarım çözümleri üretiyoruz.
 
 ## Lambiri Nedir ve Neden Tercih Edilmelidir?

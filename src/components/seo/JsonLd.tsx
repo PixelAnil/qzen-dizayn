@@ -1,5 +1,6 @@
 import { absoluteUrl } from "@/lib/seo";
-import { services, site } from "@/lib/site";
+import { services } from "@/lib/content";
+import { site } from "@/lib/site";
 
 /** Structured data for search engines; `<` is escaped so the JSON can't close the script tag. */
 export function JsonLd({ data }: { data: object }) {
@@ -10,6 +11,10 @@ export function JsonLd({ data }: { data: object }) {
     />
   );
 }
+
+// "34935 Sultanbeyli / İstanbul" → postal code, district, city
+const [, postalCode = "", locality = "", region = "İstanbul"] =
+  site.addressLines[1].match(/^(\d{5})?\s*([^/]+?)\s*(?:\/\s*(.+))?$/) ?? [];
 
 const BUSINESS_ID = `${absoluteUrl("/")}#isletme`;
 
@@ -28,9 +33,9 @@ export const businessJsonLd = () => ({
   address: {
     "@type": "PostalAddress",
     streetAddress: site.addressLines[0],
-    addressLocality: "Sultanbeyli",
-    addressRegion: "İstanbul",
-    postalCode: "34935",
+    addressLocality: locality,
+    addressRegion: region,
+    postalCode,
     addressCountry: "TR",
   },
   areaServed: { "@type": "City", name: "İstanbul" },

@@ -1,3 +1,11 @@
+---
+title: 60x60 Asma Tavan Sistemleri
+tagline: Fonksiyonel, Akustik ve Ekonomik Çözümler
+order: 11
+seo_title: 60x60 Asma Tavan Sistemleri İstanbul | QZEN DİZAYN
+seo_description: "Taşyünü, karolam ve metal 60x60 asma tavan: ofis ve ticari alanlar için akustik, ekonomik ve bakımı kolay çözüm. İstanbul'da ücretsiz keşif."
+---
+
 İş yerinizin, ticari alanlarınızın veya ofislerinizin tavanlarında hem tesisatları kusursuzca gizleyen hem de ferah bir görünüm sunan pratik bir çözüm arıyorsanız 60x60 asma tavan sistemleri en ideal seçenektir. QZEN DİZAYN olarak; taşyünü, karolam ve metal 60x60 modüler tavan uygulamalarıyla mekanlarınıza akustik denge, yalıtım ve profesyonel bir görünüm katıyoruz. Yılların verdiği tecrübe, vizyoner tasarım anlayışımız ve kaliteli işçiliğimizle her mekâna özel tavan çözümleri üretiyoruz.
 
 ## 60x60 Asma Tavan Nedir ve Neden Tercih Edilmelidir?

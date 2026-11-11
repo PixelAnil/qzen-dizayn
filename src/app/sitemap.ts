@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
-import { policyLinks, services } from "@/lib/site";
+import { services } from "@/lib/content";
+import { policyLinks } from "@/lib/site";
 
 export const dynamic = "force-static";
 

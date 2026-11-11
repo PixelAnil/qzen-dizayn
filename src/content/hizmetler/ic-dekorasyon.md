@@ -1,3 +1,13 @@
+---
+title: İç Dekorasyon Tasarım Hizmeti
+tagline: Mekanınıza Değer Katan Estetik Dokunuşlar
+order: 4
+image: /services/ic-dekorasyon.webp
+image_alt: Ahşap çıtalı duvar, halka avize ve yuvarlak yemek masası
+seo_title: İç Mimari Tasarım ve Lüks İç Dekorasyon | QZEN DİZAYN
+seo_description: "Lüks iç dekorasyon ve iç mimari tasarım: çizimden uygulamaya evinize ve villanıza özel profesyonel dekor. İstanbul'da ücretsiz keşif."
+---
+
 QZEN DİZAYN olarak, iç mekanlarınızı estetik, fonksiyonel ve kişisel zevkinize uygun hale getiren profesyonel iç dekorasyon hizmetleri sunuyoruz. Eviniz, ofisiniz veya mağazanız için iç mimari tasarım çözümlerimizle modern yaşam alanları oluşturuyoruz. Her detayda kalite, estetik ve özgünlüğü bir araya getiriyor; mekânlarınıza kimlik kazandırıyoruz.
 
 ## İç Dekorasyon Nedir?

@@ -1,3 +1,11 @@
+---
+title: İç Mekân Dekorasyonu
+tagline: Yaşam Alanlarınıza Estetik, Şıklık ve Fonksiyonellik Katın
+order: 6
+seo_title: Profesyonel Dekorasyon ve Dekor Uygulamaları | QZEN DİZAYN
+seo_description: "Evinize ve iş yerinize profesyonel dekor: duvar, mobilya ve aydınlatma uygulamaları usta işçilikle. İstanbul'da ücretsiz keşif ve fiyat teklifi."
+---
+
 Evinizin veya iş yerinizin enerjisini yenilemek, sıradan alanları hayalinizdeki mekanlara dönüştürmek istiyorsanız profesyonel dekorasyon uygulamaları en doğru adımdır. QZEN DİZAYN olarak; modern, klasik, avangart veya minimalist tarzda, tamamen size özel dekorasyon çözümleriyle mekanlarınıza yeni bir kimlik kazandırıyoruz. Yılların verdiği tecrübe, vizyoner tasarım anlayışımız ve kaliteli işçiliğimizle her mekânı bir sanat eserine dönüştürüyoruz.
 
 ## Dekorasyon Nedir ve Neden Profesyonel Destek Alınmalıdır?

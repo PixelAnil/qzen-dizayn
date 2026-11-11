@@ -5,10 +5,10 @@ import { notFound } from "next/navigation";
 import { Button, buttonClass } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 import { asset } from "@/lib/asset";
-import { readServiceContent, type Block } from "@/lib/content";
-import { projectAlt, projects } from "@/lib/projects";
-import { services, site, whatsappHref, type Service } from "@/lib/site";
-import { serviceSeo, seoMetadata } from "@/lib/seo";
+import { projects, readServiceContent, services, type Block, type Inline, type Service } from "@/lib/content";
+import { projectAlt } from "@/lib/projects";
+import { site, whatsappHref } from "@/lib/site";
+import { seoMetadata } from "@/lib/seo";
 import { JsonLd, serviceJsonLd } from "@/components/seo/JsonLd";
 
 export const dynamicParams = false;
@@ -19,9 +19,9 @@ export function generateStaticParams() {
 
 const findService = (slug: string) => services.find((s) => s.slug === slug);
 
-// Every service has hand-written search copy; the fallback only covers a service added without it
+// Search title and description come from the panel; a service added without them gets these
 const seoFor = (service: Service) =>
-  serviceSeo[service.slug] ?? {
+  service.seo ?? {
     title: `${service.title} İstanbul | QZEN DİZAYN`,
     description: `${service.title}: ${service.tagline}. İstanbul'da usta işçilik ve ücretsiz keşif.`,
   };
@@ -29,6 +29,10 @@ const seoFor = (service: Service) =>
 export async function generateMetadata({ params }: PageProps<"/hizmetler/[slug]">): Promise<Metadata> {
   const service = findService((await params).slug);
   return service ? seoMetadata(seoFor(service), `/hizmetler/${service.slug}`) : {};
+}
+
+function Text({ parts }: { parts: Inline }) {
+  return parts.map((part, i) => (part.bold ? <strong key={i} className="font-medium text-ivory">{part.text}</strong> : part.text));
 }
 
 function ContentBlock({ block }: { block: Block }) {
@@ -40,19 +44,23 @@ function ContentBlock({ block }: { block: Block }) {
     case "ul":
       return (
         <ul className="space-y-3">
-          {block.items.map((item) => (
-            <li key={item.label ?? item.text} className="flex gap-4">
+          {block.items.map((item, i) => (
+            <li key={i} className="flex gap-4">
               <span aria-hidden className="mt-[0.6em] h-1.5 w-1.5 shrink-0 bg-gold" />
               <span>
                 {item.label && <strong className="font-medium text-ivory">{item.label}: </strong>}
-                {item.text}
+                <Text parts={item.text} />
               </span>
             </li>
           ))}
         </ul>
       );
     default:
-      return <p>{block.text}</p>;
+      return (
+        <p>
+          <Text parts={block.text} />
+        </p>
+      );
   }
 }
 
@@ -61,7 +69,10 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
   const service = findService(slug);
   if (!service) notFound();
 
-  const [intro, ...blocks] = readServiceContent(slug);
+  // The opening paragraph sits in the header; a text that starts with a heading keeps it below
+  const content = readServiceContent(slug);
+  const intro = content[0]?.type === "p" ? content[0] : undefined;
+  const blocks = intro ? content.slice(1) : content;
   const others = services.filter((s) => s.slug !== slug);
   const whatsapp = whatsappHref(`Merhaba, ${service.title} için ücretsiz keşif ve fiyat teklifi almak istiyorum.`);
 
@@ -81,9 +92,9 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
             {service.title}
           </h1>
           <p data-reveal className="mt-6 text-lead text-gold">{service.tagline}</p>
-          {intro?.type === "p" && (
+          {intro && (
             <p data-reveal className="mt-8 max-w-[52ch] text-lead text-ivory">
-              {intro.text}
+              <Text parts={intro.text} />
             </p>
           )}
           <div data-reveal className="mt-10 flex flex-wrap gap-3">

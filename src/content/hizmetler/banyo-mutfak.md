@@ -1,3 +1,11 @@
+---
+title: Banyo ve Mutfak Yenileme
+tagline: Islak Hacimde Kusursuz Yalıtım, Seramik ve Fayans İşçiliği
+order: 13
+seo_title: Banyo ve Mutfak Tadilatı İstanbul | QZEN DİZAYN
+seo_description: "Banyo, tuvalet ve mutfak tadilatı: ıslak hacim yalıtımı, seramik ve fayans döşeme, tesisat yenileme. İstanbul'da anahtar teslim, ücretsiz keşif."
+---
+
 Banyo ve mutfak, bir evde en çok kullanılan ve en çabuk yıpranan alanlardır. QZEN DİZAYN olarak İstanbul'da banyo, tuvalet ve mutfak tadilatını; tesisattan yalıtıma, seramik ve fayans döşemeden son silikona kadar tek ekiple, anahtar teslim olarak yapıyoruz.
 
 ## Banyo ve Mutfak Tadilatı Neden Uzmanlık İster?

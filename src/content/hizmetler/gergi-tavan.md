@@ -1,3 +1,11 @@
+---
+title: Gergi Tavan Sistemleri
+tagline: Mekanlarınıza Işıltı, Derinlik ve Sanat Katın
+order: 15
+seo_title: Gergi Tavan Modelleri ve Fiyatları İstanbul | QZEN DİZAYN
+seo_description: "Işıklı, baskılı, lake ve 3D gergi tavan: eşit aydınlatma, neme dayanıklı ve bakım istemez. İstanbul'da gergi tavan uygulaması ve ücretsiz keşif."
+---
+
 Sıkıcı ve standart tavanlardan kurtulup, yaşam alanlarınıza modern, aydınlık ve göz alıcı bir atmosfer kazandırmak istiyorsanız gergi tavan sistemleri en estetik ve yenilikçi çözümlerden biridir. QZEN DİZAYN olarak; ışıklı, dijital baskılı, lake ve 3D gergi tavan uygulamalarıyla mekanlarınıza sanatsal bir kimlik ve kusursuz bir aydınlatma katıyoruz.
 
 Yılların verdiği tecrübe, vizyoner tasarım anlayışımız ve kaliteli işçiliğimizle tavanlarınızı adeta birer tabloya dönüştürüyoruz.

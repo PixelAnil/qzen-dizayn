@@ -1,3 +1,11 @@
+---
+title: Klipin Tavan Sistemleri
+tagline: Hijyenik, Dayanıklı ve Modern Asma Tavan Çözümleri
+order: 10
+seo_title: Klipin Tavan Sistemleri İstanbul | QZEN DİZAYN
+seo_description: "Hijyenik ve neme dayanıklı klipin tavan: mutfak, banyo, hastane ve mağazalar için düz, delikli ve renkli modeller. İstanbul'da ücretsiz keşif."
+---
+
 İş yerinizin, ticari alanlarınızın veya evinizin ıslak hacimlerinin tavanları için uzun ömürlü, neme dayanıklı ve temizliği kolay bir çözüm arıyorsanız klipin metal asma tavan sistemleri en doğru tercihtir. QZEN DİZAYN olarak; paslanmaz, estetik ve işlevsel klipin tavan uygulamalarıyla mekanlarınıza hem hijyen hem de profesyonel bir görünüm katıyoruz. Yılların verdiği tecrübe, profesyonel ekip ve kaliteli malzeme anlayışıyla, her mekâna özel tavan ve yalıtım çözümleri üretiyoruz.
 
 ## Klipin Tavan Nedir ve Neden Tercih Edilmelidir?

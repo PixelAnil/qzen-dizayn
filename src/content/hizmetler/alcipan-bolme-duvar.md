@@ -1,3 +1,13 @@
+---
+title: Alçıpan & Bölme Duvar Hizmetleri
+tagline: Estetik, Dayanıklı ve Uygun Fiyatlı Çözümler
+order: 1
+image: /services/alcipan-bolme-duvar.webp
+image_alt: Alçıpan bölme duvarda derz dolgusu yapan iki usta
+seo_title: Alçıpan Bölme Duvar ve Saten Alçı İstanbul | QZEN DİZAYN
+seo_description: İstanbul'da alçıpan bölme duvar, pürüzsüz saten alçı ve alçı-boya işleri. Ses yalıtımlı, temiz ve usta işçilik. Ücretsiz keşif için hemen arayın.
+---
+
 QZEN DİZAYN ev ve iş yerlerinde pratik, estetik ve uygun maliyetli çözümler sunan alçıpan ve bölme duvar uygulamaları ile yaşam alanlarınızı yeniden şekillendirir. Modern iç mekan tasarımlarında alçıpan duvar sistemleri, hem işlevsellik hem de görsel bütünlük sağlar. Ofislerde, mağazalarda veya konutlarda alanı en verimli şekilde kullanmak için profesyonel alçıpan ustası ekibimizle kaliteli çözümler üretiyoruz.
 
 ## Alçıpan Duvar Nedir?

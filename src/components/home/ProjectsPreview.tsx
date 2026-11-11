@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { asset } from "@/lib/asset";
-import { projectAlt, projects } from "@/lib/projects";
+import { projects } from "@/lib/content";
+import { projectAlt } from "@/lib/projects";
 
 /** A few finished jobs at different sizes, then the way into the full portfolio. */
 export function ProjectsPreview() {

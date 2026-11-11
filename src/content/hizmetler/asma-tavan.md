@@ -1,3 +1,13 @@
+---
+title: Asma Tavan
+tagline: Estetik, Dayanıklı ve Uygun Fiyatlı Çözümler
+order: 2
+image: /services/asma-tavan.webp
+image_alt: Gizli ışıklı kademeli asma tavan ve spotlarla aydınlatılmış antre
+seo_title: Asma Tavan ve Gizli Işıklı LED Tavan İstanbul | QZEN DİZAYN
+seo_description: Modern asma tavan, alçıpan tavan sistemleri ve gizli ışıklı LED tavan uygulamaları. İstanbul genelinde kaliteli işçilik ve ücretsiz keşif.
+---
+
 Evinizin veya iş yerinizin atmosferini değiştirmek, daha modern ve konforlu bir yaşam alanı oluşturmak istiyorsanız asma tavan uygulamaları en etkili çözümlerden biridir. QZEN DİZAYN olarak, alçıpan asma tavan, gizli ışık uygulamaları, ledli tavan dekorasyonları ve bölme duvar sistemleri ile mekanlarınıza estetik bir dokunuş katıyoruz. Yılların verdiği tecrübe, profesyonel ekip ve kaliteli malzeme anlayışıyla, her mekâna özel tasarımlar üretiyoruz.
 
 ## Asma Tavan Nedir ve Neden Tercih Edilmelidir?

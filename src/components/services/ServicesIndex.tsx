@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { asset } from "@/lib/asset";
-import { services } from "@/lib/site";
+import { services } from "@/lib/content";
 
 /**
  * The services stacked one under another. On a mouse, hovering a row shows its picture in a

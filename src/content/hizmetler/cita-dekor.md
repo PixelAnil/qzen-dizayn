@@ -1,3 +1,11 @@
+---
+title: Duvar Çıtalama ve Çıta Dekorasyonu
+tagline: Yaşam Alanlarınıza Klasik ve Modern Dokunuşlar
+order: 14
+seo_title: Duvar Çıtalama ve Çıta Dekor Modelleri | QZEN DİZAYN
+seo_description: "Klasik, neo-klasik ve modern çıta dekor: TV arkası, yatak başı ve koridor çıtalaması. Duvarlarınıza lüks bir dokunuş, İstanbul'da ücretsiz keşif."
+---
+
 Evinizin veya iş yerinizin duvarlarını sıradanlıktan kurtarmak, lüks ve zarif bir atmosfer yaratmak istiyorsanız dekoratif duvar çıtalama uygulamaları en trend çözümlerden biridir. QZEN DİZAYN olarak; poliüretan, ahşap ve polistiren çıta modelleriyle mekanlarınıza sanatsal bir derinlik ve yepyeni bir kimlik kazandırıyoruz. Yılların verdiği tecrübe, vizyoner tasarım anlayışımız ve kaliteli işçiliğimizle boş duvarlarınızı birer sanat eserine dönüştürüyoruz.
 
 ## Çıta Dekorasyonu Nedir ve Neden Tercih Edilmelidir?

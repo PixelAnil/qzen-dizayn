@@ -1,3 +1,11 @@
+---
+title: Bireysel Tamir ve Tadilat
+tagline: Yaşam Alanlarınızı Hayallerinizdeki Gibi Baştan Yaratın
+order: 12
+seo_title: Ev Tamirat Tadilat ve Dekoratif Boya İstanbul | QZEN DİZAYN
+seo_description: "Ev tamirat tadilat, dekoratif boya, kırma dökme ve tesisat yenileme: daire ve villa yenilemede usta işçilik. İstanbul'da ücretsiz keşif."
+---
+
 Evinizin eskiye yüz tutmuş, yıpranmış veya artık ailenizin ihtiyaçlarını karşılamayan bölümlerini yepyeni bir görünüme kavuşturmak istiyorsanız, profesyonel konut tadilat hizmetlerimiz en doğru çözümdür. QZEN DİZAYN olarak; daire, villa veya müstakil evlerinizdeki tüm bakım, onarım ve yenileme ihtiyaçlarınızı A'dan Z'ye karşılıyoruz. Yılların verdiği tecrübe, uzman usta kadromuz ve evinize gösterdiğimiz özenle yaşam alanlarınızı güvenle baştan yaratıyoruz.
 
 ## Bireysel Ev Tadilatı Nedir, Neden Profesyonel Destek Alınmalıdır?

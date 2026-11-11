@@ -1,3 +1,11 @@
+---
+title: TV Ünitesi Tasarımı ve Uygulamaları
+tagline: Estetik, Fonksiyonel ve Modern Yaşam Alanları
+order: 9
+seo_title: Lüks TV Ünitesi Tasarımı ve Uygulaması | QZEN DİZAYN
+seo_description: Alçıpan nişli, şömineli, mermer görünümlü ve ahşap TV ünitesi tasarımı. Salonunuza özel ölçü ve gizli ışık. İstanbul'da ücretsiz keşif.
+---
+
 Evinizin kalbi olan salon ve oturma odalarında hem estetiği hem de düzeni sağlamak, televizyon duvarınızı sıradanlıktan kurtarmak istiyorsanız özel tasarım TV ünitesi uygulamaları en etkili çözümlerden biridir. QZEN DİZAYN olarak; alçıpan, ahşap, mermer detaylı ve ışıklı TV ünitesi tasarımlarıyla mekanlarınıza şık, modern ve fonksiyonel bir dokunuş katıyoruz. Yılların verdiği tecrübe, vizyoner tasarım anlayışımız ve kaliteli işçiliğimizle her mekâna özel, odak noktası olacak yaşam alanları üretiyoruz.
 
 ## Özel Tasarım TV Ünitesi Nedir ve Neden Tercih Edilmelidir?

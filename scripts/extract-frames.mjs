@@ -13,6 +13,9 @@ const FPS = 15;
 const FRAMES = 150;
 // Holds the last frame a moment so a film a few ms short still fills the count
 const PAD = "tpad=stop_mode=clone:stop_duration=0.5";
+// The source films read hazy (grey blacks, pale colour): an S-curve deepens the shadows and lifts
+// the highlights while keeping the mid-tones, then a little more colour and crispness
+const GRADE = "curves=master='0/0 0.18/0.12 0.4/0.43 0.65/0.74 1/1',eq=saturation=1.22";
 
 const films = {
   desktop: "Qzendizayn-yatay.mp4", // 1280×720 landscape
@@ -20,11 +23,11 @@ const films = {
 };
 
 const sets = {
-  desktop: { film: "desktop", filter: `${PAD},fps=${FPS}`, quality: "74" },
+  desktop: { film: "desktop", filter: `${PAD},fps=${FPS},${GRADE}`, quality: "72" },
   // Lanczos upscale + light sharpening beats the browser's own upscaling on large screens
-  "desktop-hd": { film: "desktop", filter: `${PAD},fps=${FPS},scale=1920:1080:flags=lanczos,unsharp=5:5:0.6:5:5:0`, quality: "82" },
-  mobile: { film: "mobile", filter: `${PAD},fps=${FPS}`, quality: "72" },
-  "mobile-hd": { film: "mobile", filter: `${PAD},fps=${FPS},scale=1080:1920:flags=lanczos,unsharp=5:5:0.6:5:5:0`, quality: "80" },
+  "desktop-hd": { film: "desktop", filter: `${PAD},fps=${FPS},${GRADE},scale=1920:1080:flags=lanczos,unsharp=5:5:0.5:5:5:0`, quality: "80" },
+  mobile: { film: "mobile", filter: `${PAD},fps=${FPS},${GRADE}`, quality: "70" },
+  "mobile-hd": { film: "mobile", filter: `${PAD},fps=${FPS},${GRADE},scale=1080:1920:flags=lanczos,unsharp=5:5:0.5:5:5:0`, quality: "78" },
 };
 
 const only = process.argv[2];

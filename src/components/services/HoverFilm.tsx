@@ -2,10 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import { asset } from "@/lib/asset";
+import { filmUrl } from "@/lib/film";
 
 /**
  * A service's build-up film in the hover card of the services list. Nothing is downloaded until
- * the row is hovered; then the film plays from bare concrete and rests on the finished room.
+ * the row is hovered (scrambled film, see src/lib/film.ts); then the film plays from bare concrete and rests on the finished room.
  * Reduced-motion visitors see only the finished frame.
  */
 export function HoverFilm({ src, start, end }: { src: string; start: string; end: string }) {
@@ -20,23 +21,33 @@ export function HoverFilm({ src, start, end }: { src: string; start: string; end
       return;
     }
 
-    const enter = () => {
-      video.currentTime = 0;
-      video.play().catch(() => {});
+    let hovered = false;
+    const enter = async () => {
+      hovered = true;
+      try {
+        if (!video.currentSrc) video.src = await filmUrl(src);
+        if (!hovered) return;
+        video.currentTime = 0;
+        await video.play();
+      } catch {
+        // the finished frame stays as the poster
+      }
     };
-    const leave = () => video.pause();
+    const leave = () => {
+      hovered = false;
+      video.pause();
+    };
     row.addEventListener("mouseenter", enter);
     row.addEventListener("mouseleave", leave);
     return () => {
       row.removeEventListener("mouseenter", enter);
       row.removeEventListener("mouseleave", leave);
     };
-  }, [end]);
+  }, [src, end]);
 
   return (
     <video
       ref={ref}
-      src={asset(src)}
       poster={asset(start)}
       muted
       playsInline
@@ -45,8 +56,7 @@ export function HoverFilm({ src, start, end }: { src: string; start: string; end
       disableRemotePlayback
       controlsList="nodownload noplaybackrate noremoteplayback"
       onContextMenu={(e) => e.preventDefault()}
-      preload="none"
-      className="media-guard h-full w-full object-cover"
+      className="media-guard h-full w-full object-cover object-top"
     />
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { asset } from "@/lib/asset";
+import { filmUrl } from "@/lib/film";
 
 type Props = { src: string; start: string; end: string; title: string };
 
@@ -49,9 +50,18 @@ export function ServiceVideo({ src, start, end, title }: Props) {
     }
 
     let visible = false;
+    let alive = true;
     let hold: ReturnType<typeof setTimeout> | undefined;
-    // Autoplay refused (e.g. low-power mode): stop and offer the button instead
-    const play = () => video.play().catch(() => setChoice(false));
+    // The film is fetched the first time it is needed. Autoplay refused (e.g. low-power mode) or
+    // the film unavailable: stop and offer the button instead.
+    const play = async () => {
+      try {
+        if (!video.currentSrc) video.src = await filmUrl(src);
+        if (alive && visible) await video.play();
+      } catch {
+        if (alive) setChoice(false);
+      }
+    };
 
     const onEnded = () => {
       hold = setTimeout(() => {
@@ -71,11 +81,12 @@ export function ServiceVideo({ src, start, end, title }: Props) {
     video.addEventListener("ended", onEnded);
     observer.observe(video);
     return () => {
+      alive = false;
       observer.disconnect();
       video.removeEventListener("ended", onEnded);
       clearTimeout(hold);
     };
-  }, [running]);
+  }, [running, src]);
 
   // The gold ring around the button follows the film; drawn straight onto the SVG, no re-renders
   useEffect(() => {
@@ -107,7 +118,6 @@ export function ServiceVideo({ src, start, end, title }: Props) {
     <div className="media-guard relative aspect-3/4 w-full overflow-hidden bg-graphite" onContextMenu={(e) => e.preventDefault()}>
       <video
         ref={videoRef}
-        src={asset(src)}
         poster={asset(running ? start : end)}
         muted
         playsInline
@@ -115,9 +125,9 @@ export function ServiceVideo({ src, start, end, title }: Props) {
         disablePictureInPicture
         disableRemotePlayback
         controlsList="nodownload noplaybackrate noremoteplayback"
-        preload="metadata"
         aria-label={`${title}: kaba yapıdan bitmiş mekâna uygulama animasyonu`}
-        className="h-full w-full object-cover"
+        // The film carries a copyright band below the picture; anchoring it to the top crops the band away
+        className="h-full w-full object-cover object-top"
       />
       <button
         type="button"

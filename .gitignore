@@ -53,3 +53,4 @@ next-env.d.ts
 /panel-giris/kullanicilar.json
 /panel-giris/node_modules/
 /panel-giris/.wrangler/
+/hizmet-videolari/

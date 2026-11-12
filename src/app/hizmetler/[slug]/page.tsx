@@ -10,6 +10,7 @@ import { projectAlt } from "@/lib/projects";
 import { site, whatsappHref } from "@/lib/site";
 import { seoMetadata } from "@/lib/seo";
 import { JsonLd, serviceJsonLd } from "@/components/seo/JsonLd";
+import { ServiceVideo } from "@/components/services/ServiceVideo";
 
 export const dynamicParams = false;
 
@@ -107,7 +108,9 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
         </div>
 
         <figure data-reveal className="md:col-span-4 md:col-start-9">
-          {service.image ? (
+          {service.video ? (
+            <ServiceVideo src={service.video.src} start={service.video.start} end={service.video.end.src} title={service.title} />
+          ) : service.image ? (
             <Image
               src={asset(service.image.src)}
               alt={service.image.alt}

@@ -37,6 +37,8 @@ export type Service = {
   tagline: string;
   /** Services without their own photograph show the brand mark */
   image?: Picture & { alt: string };
+  /** The service's build-up film (public/services/video, made by scripts/service-videos.mjs) */
+  video?: { src: string; start: string; end: Picture };
   seo?: { title: string; description: string };
 };
 
@@ -83,6 +85,7 @@ export const services: Service[] = [...serviceFiles]
       return null;
     }
     const pic = picture(data.image);
+    const end = existsSync(path.join(PUBLIC, `services/video/${slug}.mp4`)) ? picture(`/services/video/${slug}-end.webp`) : null;
     const seoTitle = text(data.seo_title);
     const seoDescription = text(data.seo_description);
     return {
@@ -92,6 +95,7 @@ export const services: Service[] = [...serviceFiles]
         title,
         tagline: text(data.tagline),
         ...(pic && { image: { ...pic, alt: text(data.image_alt) || title } }),
+        ...(end && { video: { src: `/services/video/${slug}.mp4`, start: `/services/video/${slug}-start.webp`, end } }),
         ...(seoTitle && seoDescription && { seo: { title: seoTitle, description: seoDescription } }),
       } satisfies Service,
     };

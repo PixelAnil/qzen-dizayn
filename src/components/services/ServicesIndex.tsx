@@ -10,19 +10,22 @@ import { services } from "@/lib/content";
 export function ServicesIndex({ limit }: { limit?: number }) {
   return (
     <ul data-reveal-group className="relative">
-      {services.slice(0, limit).map((service) => (
+      {services.slice(0, limit).map((service) => {
+        // The service's photograph, else the finished frame of its film, else the brand mark
+        const pic = service.image ?? service.video?.end;
+        return (
         <li key={service.slug} data-reveal>
           <Link
             href={`/hizmetler/${service.slug}`}
             className="group flex items-center gap-5 py-6 transition-opacity duration-300 md:py-8 [@media(hover:hover)]:[ul:hover_&:not(:hover)]:opacity-40"
           >
             {/* Touch: picture inline (the brand mark until the service has one) */}
-            {service.image ? (
+            {pic ? (
               <Image
-                src={asset(service.image.src)}
+                src={asset(pic.src)}
                 alt=""
-                width={service.image.width}
-                height={service.image.height}
+                width={pic.width}
+                height={pic.height}
                 sizes="96px"
                 className="aspect-3/4 w-14 shrink-0 object-cover [@media(hover:hover)]:hidden"
               />
@@ -44,17 +47,18 @@ export function ServicesIndex({ limit }: { limit?: number }) {
             </span>
 
             {/* Mouse: picture in the frame beside the list */}
-            {service.image && (
+            {pic && (
               <span
                 aria-hidden
                 className="pointer-events-none absolute inset-y-0 right-14 hidden w-[28%] opacity-0 transition-opacity duration-500 ease-luxe group-hover:opacity-100 [@media(hover:hover)]:md:block"
               >
-                <Image src={asset(service.image.src)} alt="" fill sizes="28vw" className="object-cover" />
+                <Image src={asset(pic.src)} alt="" fill sizes="28vw" className="object-cover" />
               </span>
             )}
           </Link>
         </li>
-      ))}
+        );
+      })}
     </ul>
   );
 }

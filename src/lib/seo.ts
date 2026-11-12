@@ -18,12 +18,12 @@ export const pageSeo = {
   home: {
     title: "Anahtar Teslim Tadilat ve İç Mimarlık İstanbul | QZEN DİZAYN",
     description:
-      "İstanbul'da anahtar teslim tadilat, iç mimari tasarım, asma ve gergi tavan, banyo-mutfak yenileme ve PVC. 15 yıllık usta işçilik, ücretsiz keşif.",
+      "İstanbul'da anahtar teslim tadilat, iç mimari tasarım, asma ve gergi tavan, banyo-mutfak yenileme ve PVC panel kaplama. 15 yıllık tecrübe, ücretsiz keşif.",
   },
   services: {
     title: "Tadilat ve Dekorasyon Hizmetleri İstanbul | QZEN DİZAYN",
     description:
-      "Komple tadilat, alçıpan tavan sistemleri, gergi tavan, lambiri, TV ünitesi, banyo tadilatı ve PVC kapı pencere. İstanbul genelinde ücretsiz keşif.",
+      "Komple tadilat, alçıpan tavan sistemleri, gergi tavan, lambiri, TV ünitesi, banyo tadilatı ve PVC panel kaplama. İstanbul genelinde ücretsiz keşif.",
   },
   projects: {
     title: "Tamamlanan Tadilat ve Dekorasyon Projeleri | QZEN DİZAYN",

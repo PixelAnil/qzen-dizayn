@@ -1,91 +1,91 @@
 ---
-title: PVC Kapı ve Pencere Sistemleri
-tagline: Yüksek Yalıtım, Dayanıklılık ve Estetik Çözümler
+title: PVC Panel Kaplama
+tagline: Kırmadan, Dökmeden, Bir Günde Yenilenen Duvarlar
 order: 7
-seo_title: PVC Kapı Pencere Sistemleri İstanbul | QZEN DİZAYN
-seo_description: "Isı yalıtımlı PVC kapı ve pencere sistemleri: sürgülü, renkli ve ahşap desenli modeller, temiz montaj. İstanbul'da ücretsiz keşif ve ölçü."
+seo_title: PVC Duvar Paneli ve Mermer Görünümlü Kaplama | QZEN DİZAYN
+seo_description: "Mermer ve ahşap görünümlü PVC duvar paneli: eski fayansı kırmadan, suya dayanıklı kaplama. Banyo, mutfak ve salonda İstanbul geneli ücretsiz keşif."
 ---
 
-Evinizin veya iş yerinizin ısı ve ses yalıtımını sağlarken, estetik görünümünü de korumak istiyorsanız PVC kapı ve pencere sistemleri en ideal çözümdür. QZEN DİZAYN olarak, yüksek enerji tasarrufu sağlayan, uzun ömürlü ve dekorasyonunuza uyum sağlayan PVC sistemleri ile mekanlarınıza konfor katıyoruz. Yılların verdiği tecrübe, profesyonel ekip ve kaliteli malzeme anlayışıyla, her mekâna özel yalıtım ve doğrama çözümleri üretiyoruz.
+Banyonuzu, mutfağınızı ya da salonunuzu kırıp dökmeden yenilemek istiyorsanız PVC panel kaplama en hızlı ve en temiz çözümdür. QZEN DİZAYN olarak; mermer, taş ve ahşap görünümlü PVC duvar panelleriyle eski fayansların ve yıpranmış duvarların üzerine, toz ve moloz çıkarmadan yepyeni bir yüzey kazandırıyoruz. Yılların verdiği tecrübe, profesyonel ekip ve kaliteli malzeme anlayışıyla her mekâna özel kaplama çözümleri üretiyoruz.
 
-## PVC Sistemleri Nedir ve Neden Tercih Edilmelidir?
+## PVC Panel Kaplama Nedir ve Neden Tercih Edilmelidir?
 
-PVC (Polivinil Klorür), dayanıklılığı ve mükemmel yalıtım özellikleriyle günümüzde kapı ve pencere üretiminde en çok tercih edilen malzemedir. Hem bütçe dostudur hem de pratik avantajlar sunar:
+PVC panel; suya ve neme dayanıklı, hafif ve uzun ömürlü bir duvar kaplama malzemesidir. Büyük ebatlı paneller doğrudan mevcut fayansın ya da sıvanın üzerine uygulanır ve mekânı kısa sürede bambaşka bir görünüme kavuşturur:
 
-- Isı ve ses yalıtımında üstün performans göstererek yüksek enerji tasarrufu sağlar.
+- Eski fayansları kırmaya gerek kalmaz; kırım, toz ve moloz olmadan uygulanır.
 
-- Hava şartlarına, neme ve çürümeye karşı son derece dayanıklıdır.
+- Suya, neme ve buhara dayanıklıdır; banyo ve mutfak için idealdir.
 
-- Ahşap gibi sürekli bakım gerektirmez, temizliği oldukça kolaydır.
+- Büyük ebatlı paneller sayesinde derz izi neredeyse görünmez, temizliği çok kolaydır.
 
-- Farklı renk ve ahşap desen seçenekleriyle mekânın dekorasyonuna birebir uyum sağlar.
+- Mermer, taş ve ahşap görünümleriyle doğal malzemenin şıklığını çok daha uygun maliyetle sunar.
 
-- Güçlü kilit sistemleriyle evinizin veya iş yerinizin güvenliğini artırır.
+- Uygulama süresi kısadır; çoğu banyo ve mutfak bir iki gün içinde tamamlanır.
 
-## PVC Hizmetlerimiz ve Modelleri
+## PVC Panel Modellerimiz
 
-QZEN DİZAYN olarak her ihtiyaca ve bütçeye uygun, farklı özelliklerde PVC sistemleri sunuyoruz:
+QZEN DİZAYN olarak her mekâna ve bütçeye uygun panel seçenekleri sunuyoruz:
 
-### Standart PVC Pencereler
+### Mermer Görünümlü PVC Panel
 
-En yaygın kullanılan, klasik ve ekonomik modeldir. Çift cam (ısıcam) uygulamalarıyla yüksek yalıtım sağlar. Konutlardan ofislere kadar her alanda sorunsuz şekilde tercih edilir.
+Beyaz, krem, siyah ve altın damarlı mermer desenleriyle banyo ve mutfaklara lüks bir görünüm kazandırır. Parlak yüzeyi ışığı yansıtarak mekânı daha ferah gösterir.
 
-### Sürgülü (Sürme) PVC Sistemleri
+### Taş ve Beton Görünümlü PVC Panel
 
-Dar alanlarda yer tasarrufu sağlamak için idealdir. Balkon, teras veya bahçe çıkışlarında kullanılarak kapının açılma alanından tasarruf edilir ve mekânın daha ferah görünmesi sağlanır.
+Doğal taş ve brüt beton dokusunu modern ve sade bir dille yansıtır. Salon duvarlarında, TV arkalarında ve iş yerlerinde sıkça tercih edilir.
 
-### PVC Kapı Sistemleri
+### Ahşap Görünümlü PVC Panel
 
-Balkon, banyo, tuvalet veya dış mekan kapıları için neme ve suya dayanıklı, uzun ömürlü çözümlerdir. İsteğe göre camlı, yarı camlı veya tamamen dekoratif panelli olarak tasarlanabilir.
+Ahşabın sıcak dokusunu, neme dayanıklı ve bakım istemeyen bir yüzeyle sunar. Yatak başı, koridor ve balkon duvarları için uygundur.
 
-### Renkli ve Ahşap Desenli PVC Sistemleri
+### Banyo ve Duş Alanı Kaplaması
 
-Standart beyaz PVC'nin yanı sıra, mekânınızın dekorasyonuna uyum sağlayacak altın meşe, maun, antrasit gri gibi farklı renk ve doku seçenekleriyle mimari estetiği tamamlar.
+Duş alanı ve lavabo duvarları, suya dayanıklı paneller ve köşe profilleriyle tek parça görünümde kaplanır; derzlerde kirlenme ve küflenme derdi ortadan kalkar.
 
-### Isı ve Ses Yalıtımlı Özel Cam Sistemleri
+### Mutfak Tezgah Arası Kaplaması
 
-Mevcut PVC profillerine entegre edilen sinerji, konfor veya akustik cam seçenekleriyle; yazın sıcağı, kışın soğuğu ve dışarıdaki gürültüyü tamamen dışarıda bırakır.
+Tezgah arası fayansların üzerine uygulanan panellerle mutfağınız kırım yapılmadan, aynı gün içinde yenilenir.
 
 ## Uygulama Süreci Nasıl İşler?
 
-PVC sistemleri milimetrik ölçüm ve yalıtım uzmanlığı gerektirir. QZEN DİZAYN olarak süreci adım adım şu şekilde yönetiyoruz:
+PVC panel kaplama, düzgün yüzey hazırlığı ve milimetrik kesim gerektirir. QZEN DİZAYN olarak süreci adım adım şu şekilde yönetiyoruz:
 
-- **Keşif ve Tasarım Aşaması:** Mekan ölçülür, müşterinin yalıtım ve estetik beklentisi alınır, doğrama şekli planlanır.
+- **Keşif ve Ölçü:** Mekân ölçülür, mevcut duvarın ve fayansın durumu incelenir, beklentileriniz dinlenir.
 
-- **Malzeme Seçimi:** Profil kalınlığı (serisi), cam tipi, renk ve kilit mekanizmaları belirlenir.
+- **Model Seçimi:** Panel deseni, rengi, köşe ve bitiş profilleri birlikte seçilir.
 
-- **Montaj Aşaması:** Varsa eski doğramalar sökülür, yeni PVC sistemlerin montajı, yalıtım köpüğü ve silikon işlemleri titizlikle yapılır.
+- **Uygulama:** Yüzey temizlenir, paneller özel yapıştırıcıyla mevcut duvarın üzerine monte edilir; köşe, tavan ve zemin birleşimleri profillerle kapatılır.
 
-- **Teslim ve Son Kontrol:** Temiz işçilik ve zamanında teslim prensibiyle kapı ve pencere ayarları kontrol edilerek proje tamamlanır.
+- **Teslim ve Son Kontrol:** Derz ve silikon işlemleri tamamlanır, alan temizlenerek teslim edilir.
 
-## PVC Sistemleri Nerelerde Kullanılır?
+## PVC Panel Kaplama Nerelerde Uygulanır?
 
-- **Evler (Balkon, Oda, Banyo):** Isı kaybını önleyen ve ses yalıtımı sağlayan konforlu yaşam alanları.
+- **Banyo ve Tuvaletler:** Kırım yapmadan, suya dayanıklı ve kolay temizlenen duvarlar.
 
-- **Ofisler ve İş Yerleri:** Cadde gürültüsünü kesen, huzurlu ve odaklanmaya uygun çalışma ortamları.
+- **Mutfaklar:** Tezgah arası ve mutfak duvarlarında hızlı yenileme.
 
-- **Kış Bahçeleri ve Teraslar:** Dört mevsim kullanıma uygun, dış etkenlere kapalı sıcak mekanlar.
+- **Salon ve Yatak Odaları:** TV arkası ve yatak başı gibi dekoratif vurgu duvarları.
 
-- **Mağaza ve Vitrinler:** Güvenli, şık ve yalıtımlı giriş sistemleri.
+- **Kiralık ve Satılık Konutlar:** Kısa sürede, düşük maliyetle değer artıran yenileme.
 
-## PVC Fiyatları
+- **İş Yerleri:** Mağaza, kafe ve ofislerde şık ve dayanıklı duvar yüzeyleri.
 
-PVC sistemlerinin fiyatları; tercih edilen profilin markasına, kalınlığına, camın özelliğine (çift cam, sinerji vb.), renge, kullanılan mekanizmalara ve uygulanacak alanın metrekare ölçüsüne göre değişiklik gösterir. QZEN DİZAYN olarak ücretsiz keşif hizmeti sunuyoruz. Size özel teklif, proje detayları ve maliyet hesabı için sadece iletişime geçmeniz yeterli.
+## PVC Panel Kaplama Fiyatları
+
+Fiyat; kaplanacak alanın metrekaresine, seçilen panelin desenine ve kalınlığına, köşe ve bitiş profillerine ve mevcut duvarın durumuna göre değişir. QZEN DİZAYN olarak ücretsiz keşif hizmeti sunuyoruz. Size özel teklif için bize ulaşmanız yeterli.
 
 ## Neden QZEN DİZAYN?
 
 - 15 yılı aşkın sektör tecrübesi
 
-- Profesyonel montaj ustaları
+- Kırımsız, temiz ve hızlı uygulama
 
 - Zamanında teslim garantisi
 
-- Uzun ömürlü, temiz ve düzgün işçilik
+- Düzgün kesim, görünmez derz işçiliği
 
 - Uygun fiyat politikası
 
-Biz sadece doğrama yapmıyoruz; mekanınızın konforunu ve ruhunu yansıtacak çözümler oluşturuyoruz. İster klasik ister modern tarz olsun, her proje bizim için yeni bir sanat eseri.
-
 ## Hemen Keşif Talep Edin!
 
-Hayalinizdeki konforlu yaşam alanı için şimdi adım atın. Ücretsiz keşif ve fiyat teklifi almak için bize ulaşın.
+Eski fayanslarınızı kırmadan, bir iki gün içinde yepyeni bir banyo ya da mutfağa kavuşun. Ücretsiz keşif ve fiyat teklifi için bizi arayın ya da WhatsApp'tan yazın.

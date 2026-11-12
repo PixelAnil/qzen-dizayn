@@ -272,6 +272,15 @@ html {
   }
 }
 
+/* Films and the hero sequence: no save menu on long press (iOS/Android), no dragging out, no selection */
+.media-guard,
+.media-guard * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-hint,
   .scroll-hint-track::after {

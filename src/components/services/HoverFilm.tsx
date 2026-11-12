@@ -40,8 +40,13 @@ export function HoverFilm({ src, start, end }: { src: string; start: string; end
       poster={asset(start)}
       muted
       playsInline
+      draggable={false}
+      disablePictureInPicture
+      disableRemotePlayback
+      controlsList="nodownload noplaybackrate noremoteplayback"
+      onContextMenu={(e) => e.preventDefault()}
       preload="none"
-      className="h-full w-full object-cover"
+      className="media-guard h-full w-full object-cover"
     />
   );
 }

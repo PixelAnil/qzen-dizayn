@@ -299,13 +299,13 @@ export function HeroSequence() {
       <div className="sticky top-0 h-svh w-full overflow-hidden">
         <div
           aria-hidden
-          className="hero-poster absolute inset-0"
+          className="hero-poster media-guard absolute inset-0"
           style={{
             "--poster-desktop": `url(${frameSrc("desktop", 0)})`,
             "--poster-mobile": `url(${frameSrc("mobile", 0)})`,
           } as React.CSSProperties}
         />
-        <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full" />
+        <canvas ref={canvasRef} aria-hidden onContextMenu={(e) => e.preventDefault()} className="media-guard absolute inset-0 h-full w-full" />
 
         {/* Neutral scrim behind the stage label only */}
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-[38%] bg-linear-to-t from-obsidian/80 to-transparent" /> {/* taste-skill-ignore: neutral scrim over the film for legibility */}

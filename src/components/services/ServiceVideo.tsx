@@ -104,13 +104,17 @@ export function ServiceVideo({ src, start, end, title }: Props) {
   const label = running ? "Filmi durdur" : choice === false ? "Filmi oynat" : "Uygulama filmini izle";
 
   return (
-    <div className="relative aspect-3/4 w-full overflow-hidden bg-graphite">
+    <div className="media-guard relative aspect-3/4 w-full overflow-hidden bg-graphite" onContextMenu={(e) => e.preventDefault()}>
       <video
         ref={videoRef}
         src={asset(src)}
         poster={asset(running ? start : end)}
         muted
         playsInline
+        draggable={false}
+        disablePictureInPicture
+        disableRemotePlayback
+        controlsList="nodownload noplaybackrate noremoteplayback"
         preload="metadata"
         aria-label={`${title}: kaba yapıdan bitmiş mekâna uygulama animasyonu`}
         className="h-full w-full object-cover"

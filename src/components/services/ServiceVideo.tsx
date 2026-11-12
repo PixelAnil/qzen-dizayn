@@ -8,6 +8,8 @@ type Props = { src: string; start: string; end: string; title: string };
 const REDUCED = "(prefers-reduced-motion: reduce)";
 /** How long the finished room stays on screen before the film starts again */
 const HOLD_MS = 3000;
+/** Circumference of the progress ring (r = 21 in a 48 box) */
+const RING = 2 * Math.PI * 21;
 
 /** Reduced motion or data saver: show the finished frame instead of playing by itself. */
 function usePrefersStill() {
@@ -32,6 +34,7 @@ function usePrefersStill() {
  */
 export function ServiceVideo({ src, start, end, title }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const ringRef = useRef<SVGCircleElement>(null);
   // null: follow the visitor's settings; true/false: the visitor pressed the button
   const [choice, setChoice] = useState<boolean | null>(null);
   const prefersStill = usePrefersStill();
@@ -74,6 +77,32 @@ export function ServiceVideo({ src, start, end, title }: Props) {
     };
   }, [running]);
 
+  // The gold ring around the button follows the film; drawn straight onto the SVG, no re-renders
+  useEffect(() => {
+    const video = videoRef.current;
+    const ring = ringRef.current;
+    if (!video || !ring) return;
+    let frame = 0;
+    const draw = () => {
+      const done = video.duration ? video.currentTime / video.duration : 0;
+      ring.style.strokeDashoffset = String(RING * (1 - done));
+      if (!video.paused) frame = requestAnimationFrame(draw);
+    };
+    const start = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(draw);
+    };
+    video.addEventListener("play", start);
+    video.addEventListener("seeked", draw);
+    return () => {
+      cancelAnimationFrame(frame);
+      video.removeEventListener("play", start);
+      video.removeEventListener("seeked", draw);
+    };
+  }, []);
+
+  const label = running ? "Filmi durdur" : choice === false ? "Filmi oynat" : "Uygulama filmini izle";
+
   return (
     <div className="relative aspect-3/4 w-full overflow-hidden bg-graphite">
       <video
@@ -89,12 +118,35 @@ export function ServiceVideo({ src, start, end, title }: Props) {
       <button
         type="button"
         onClick={() => setChoice(!running)}
-        className="absolute bottom-4 right-4 inline-flex min-h-11 items-center gap-2 rounded-full bg-obsidian/80 px-4 text-small text-ivory transition-colors hover:bg-obsidian hover:text-gold-light focus-visible:outline-2 focus-visible:outline-gold"
+        aria-label={label}
+        title={label}
+        className="group absolute bottom-4 right-4 grid h-12 w-12 place-items-center rounded-full bg-obsidian/55 text-ivory ring-1 ring-ivory/15 transition-[background-color,transform,color] duration-300 hover:scale-105 hover:bg-obsidian/80 hover:text-gold-light active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
       >
-        <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-          {running ? <path d="M9 6v12M15 6v12" /> : <path d="M8 5.5v13l10-6.5z" />}
+        <svg aria-hidden viewBox="0 0 48 48" className="absolute inset-0 h-full w-full -rotate-90">
+          <circle
+            ref={ringRef}
+            cx="24"
+            cy="24"
+            r="21"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeDasharray={RING}
+            strokeDashoffset={RING}
+            className="text-gold"
+          />
         </svg>
-        {running ? "Durdur" : choice === false ? "Oynat" : "Uygulamayı izle"}
+        <svg aria-hidden viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
+          {running ? (
+            <>
+              <rect x="6" y="4.5" width="3.6" height="15" rx="1" />
+              <rect x="14.4" y="4.5" width="3.6" height="15" rx="1" />
+            </>
+          ) : (
+            <path d="M8 5.2c0-.8.9-1.3 1.6-.9l10 6.3c.6.4.6 1.4 0 1.8l-10 6.3c-.7.4-1.6-.1-1.6-.9z" />
+          )}
+        </svg>
       </button>
     </div>
   );

@@ -2,19 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { asset } from "@/lib/asset";
 import { services } from "@/lib/content";
+import { HoverFilm } from "./HoverFilm";
 
 /**
- * The services stacked one under another. On a mouse, hovering a row shows its picture in a
- * frame beside the list; on touch, each row carries its picture inline. `limit` shows only the first few.
+ * The services stacked one under another. On a mouse, hovering a row plays its build-up film (or
+ * shows its photograph) in a portrait card beside the row; on touch, each row carries its picture inline. `limit` shows only the first few.
  */
 export function ServicesIndex({ limit }: { limit?: number }) {
   return (
     <ul data-reveal-group className="relative">
       {services.slice(0, limit).map((service) => {
-        // The service's photograph, else the finished frame of its film, else the brand mark
-        const pic = service.image ?? service.video?.end;
+        // The finished frame of the service's film, else its photograph, else the brand mark
+        const pic = service.video?.end ?? service.image;
         return (
-        <li key={service.slug} data-reveal>
+        <li key={service.slug} data-reveal className="relative">
           <Link
             href={`/hizmetler/${service.slug}`}
             className="group flex items-center gap-5 py-6 transition-opacity duration-300 md:py-8 [@media(hover:hover)]:[ul:hover_&:not(:hover)]:opacity-40"
@@ -46,13 +47,17 @@ export function ServicesIndex({ limit }: { limit?: number }) {
               &rarr;
             </span>
 
-            {/* Mouse: picture in the frame beside the list */}
+            {/* Mouse: portrait card beside the row, playing the film */}
             {pic && (
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-y-0 right-14 hidden w-[28%] opacity-0 transition-opacity duration-500 ease-luxe group-hover:opacity-100 [@media(hover:hover)]:md:block"
+                className="pointer-events-none absolute right-16 top-1/2 z-10 hidden aspect-3/4 w-[clamp(11rem,15vw,16rem)] -translate-y-1/2 scale-95 overflow-hidden bg-graphite opacity-0 transition-[opacity,scale] duration-500 ease-luxe group-hover:scale-100 group-hover:opacity-100 [@media(hover:hover)]:md:block"
               >
-                <Image src={asset(pic.src)} alt="" fill sizes="28vw" className="object-cover" />
+                {service.video ? (
+                  <HoverFilm src={service.video.src} start={service.video.start} end={service.video.end.src} />
+                ) : (
+                  <Image src={asset(pic.src)} alt="" fill sizes="16rem" className="object-cover" />
+                )}
               </span>
             )}
           </Link>

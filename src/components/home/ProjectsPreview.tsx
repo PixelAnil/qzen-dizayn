@@ -41,8 +41,8 @@ export function ProjectsPreview() {
               className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"
             />
             {project.title && (
-              <span className="absolute inset-x-0 bottom-0 bg-linear-to-t from-obsidian/85 to-transparent px-4 pb-4 pt-12 text-body text-ivory md:px-5 md:pb-5">
-                {project.title}
+              <span className="absolute inset-0 flex items-center justify-center bg-obsidian/70 p-6 text-center opacity-0 transition-opacity duration-500 ease-luxe group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:inset-auto [@media(hover:none)]:inset-x-0 [@media(hover:none)]:bottom-0 [@media(hover:none)]:justify-start [@media(hover:none)]:bg-obsidian/75 [@media(hover:none)]:p-4 [@media(hover:none)]:text-left [@media(hover:none)]:opacity-100">
+                <span className="display text-[clamp(1.5rem,0.9rem+1.2vw,2.5rem)] text-gold [@media(hover:none)]:text-[1.5rem]">{project.title}</span>
               </span>
             )}
           </Link>

@@ -87,9 +87,12 @@ export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; co
                 </span>
               )}
 
+              {/* The job's name: over the photograph on hover (mouse), a band at the foot on touch */}
               {project.title && (
-                <span className="absolute inset-x-0 bottom-0 bg-linear-to-t from-obsidian/85 to-transparent px-4 pb-4 pt-12 text-left text-body text-ivory md:px-5 md:pb-5">
-                  {project.title}
+                <span className="absolute inset-0 flex items-center justify-center bg-obsidian/70 p-6 text-center opacity-0 transition-opacity duration-500 ease-luxe group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:inset-auto [@media(hover:none)]:inset-x-0 [@media(hover:none)]:bottom-0 [@media(hover:none)]:justify-start [@media(hover:none)]:bg-obsidian/75 [@media(hover:none)]:p-4 [@media(hover:none)]:text-left [@media(hover:none)]:opacity-100">
+                  <span className={`display text-gold ${columns === 3 ? "text-[clamp(1.5rem,0.9rem+1.2vw,2.5rem)]" : "text-[clamp(1.75rem,1rem+1.6vw,3rem)]"} [@media(hover:none)]:text-[1.5rem]`}>
+                    {project.title}
+                  </span>
                 </span>
               )}
             </button>

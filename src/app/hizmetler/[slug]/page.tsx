@@ -174,8 +174,9 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
       </div>
 
       {/* Finished work, so the page ends on real results: this service's jobs, else the latest ones */}
-      <section aria-labelledby="isler-baslik" data-reveal-group className="px-4 pb-32 md:px-8 md:pb-48">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+      <section aria-labelledby="isler-baslik" className="px-4 pb-32 md:px-8 md:pb-48">
+        {/* Its own reveal group: the cards below belong to the grid's group, so they rise only once */}
+        <div data-reveal-group className="flex flex-wrap items-end justify-between gap-6">
           <h2 id="isler-baslik" data-reveal className="display text-head text-ivory">
             {own.length ? "Bu alandaki işlerimiz" : "Tamamlanan projelerimiz"}
           </h2>

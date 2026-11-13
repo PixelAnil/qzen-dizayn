@@ -1,87 +1,83 @@
 ---
-title: Banyo ve Mutfak Yenileme
-tagline: Islak Hacimde Kusursuz Yalıtım, Seramik ve Fayans İşçiliği
+title: Banyo ve Mutfak PVC Tavan
+tagline: Suya ve Neme Dayanıklı 60x60 PVC Tavan Panelleri
 order: 13
-seo_title: Banyo ve Mutfak Tadilatı İstanbul | QZEN DİZAYN
-seo_description: "Banyo, tuvalet ve mutfak tadilatı: ıslak hacim yalıtımı, seramik ve fayans döşeme, tesisat yenileme. İstanbul'da anahtar teslim, ücretsiz keşif."
+seo_title: Banyo ve Mutfak PVC Asma Tavan 60x60 İstanbul | QZEN DİZAYN
+seo_description: "Banyo ve mutfak için 60x60 PVC asma tavan: suya ve neme dayanıklı, desenli ve düz panel seçenekleri, kolay temizlik. İstanbul'da ücretsiz keşif."
 ---
 
-Banyo ve mutfak, bir evde en çok kullanılan ve en çabuk yıpranan alanlardır. QZEN DİZAYN olarak İstanbul'da banyo, tuvalet ve mutfak tadilatını; tesisattan yalıtıma, seramik ve fayans döşemeden son silikona kadar tek ekiple, anahtar teslim olarak yapıyoruz.
+Banyo ve mutfak tavanları buhar ve nem yüzünden evin en çabuk yıpranan yüzeyleridir; boya kabarır, küf lekeleri çıkar, birkaç ayda bir yeniden boya ister. QZEN DİZAYN olarak banyo ve mutfak tavanlarını 60x60 PVC panellerle kaplıyor, mevcut duvar ve fayanslarınıza dokunmadan tavanınızı suya dayanıklı, kolay temizlenen ve şık bir yüzeye kavuşturuyoruz.
 
-## Banyo ve Mutfak Tadilatı Neden Uzmanlık İster?
+## Banyo ve Mutfakta Neden PVC Tavan?
 
-Islak hacimlerde yapılan küçük bir hata, aylar sonra alt kata sızan bir su lekesi olarak geri döner. Bu yüzden banyo ve mutfak yenilemesi sadece görünümle değil, görünmeyen katmanlarla başlar.
+PVC panel; suyu ve nemi emmeyen, hafif ve uzun ömürlü bir tavan malzemesidir. Islak hacimlerde boyalı tavanın yaşattığı sorunları ortadan kaldırır:
 
-- Su yalıtımı, duvar ve zemin birleşimlerinde kesintisiz uygulanmalıdır.
+- Suya ve neme dayanıklıdır; buhardan kabarmaz, küflenmez, çürümez.
 
-- Temiz ve pis su tesisatı, yeni yerleşime göre yeniden planlanmalıdır.
+- Silinerek temizlenir; yeniden boya gerektirmez.
 
-- Zemin eğimi, suyun gidere kendiliğinden akacağı şekilde ayarlanmalıdır.
+- Duvar ve fayanslara dokunulmadan, tavana kurulan ızgara sistemiyle uygulanır.
 
-- Seramik ve fayans, derzleri düzgün ve boşluksuz döşenmelidir.
+- Paneller tek tek sökülüp takılabildiği için tavan arasındaki tesisata kolayca ulaşılır.
 
-## Banyo ve Mutfak Hizmetlerimiz
+- Desenli ve düz seçenekleriyle banyonuza ve mutfağınıza dekoratif bir görünüm kazandırır.
 
-### Komple Banyo Tadilatı
+## PVC Tavan Modellerimiz
 
-Eski seramik ve vitrifiyeler sökülür, tesisat yenilenir, ıslak hacim yalıtımı yapılır. Ardından seramik, fayans, duşakabin veya küvet, lavabo dolabı ve aydınlatma ile banyonuz baştan kurulur.
+QZEN DİZAYN olarak mekânınıza ve zevkinize uygun panel seçenekleri sunuyoruz:
 
-### Lüks Islak Hacim Yenileme
+### Desenli PVC Tavan Panelleri
 
-Büyük ebatlı porselen seramik, mermer görünümlü yüzeyler, gömme rezervuar, yerden duş gideri ve gizli ışıklı nişlerle otel konforunda banyolar tasarlıyoruz.
+Geometrik, çiçek ve klasik motifli 60x60 paneller, sade bir banyo tavanını dekoratif bir yüzeye dönüştürür.
 
-### Tuvalet ve Misafir WC Yenileme
+### Düz ve Parlak PVC Panelleri
 
-Dar alanlarda asma klozet, gömme rezervuar ve kompakt lavabo çözümleriyle küçük tuvaletleri ferah ve kullanışlı hale getiriyoruz.
+Beyaz ve parlak yüzeyli paneller ışığı yansıtarak küçük banyo ve mutfakları daha ferah ve aydınlık gösterir.
 
-### Mutfak Yenileme
+### Spot ve Aydınlatma Uyumlu Tavanlar
 
-Tezgah arası fayans, zemin seramiği, mutfak tesisatı ve elektrik altyapısı yenilenir. Dolap yerleşimi, ankastre ölçüleri ve aydınlatma kullanım alışkanlıklarınıza göre planlanır.
-
-### Seramik ve Fayans Döşeme
-
-Banyo, mutfak, balkon ve salon zeminlerinde seramik, porselen ve fayans döşemeyi düzgün derz aralıkları ve doğru eğimle uyguluyoruz.
+Spot aydınlatma ve aspiratör çıkışları panellere düzgün açılan deliklerle tavana yerleştirilir.
 
 ## Uygulama Süreci Nasıl İşler?
 
-Banyo ve mutfak tadilatını, evinizdeki yaşamı en az etkileyecek sırayla yürütüyoruz:
+PVC tavan uygulaması temiz ve hızlı bir iştir; çoğu banyo ve mutfak aynı gün içinde tamamlanır:
 
-- **Ücretsiz Keşif:** Alan ölçülür, mevcut tesisat ve yalıtım durumu incelenir, beklentileriniz dinlenir.
+- **Keşif ve Ölçü:** Tavan ölçülür, aydınlatma ve aspiratör yerleri belirlenir, beklentileriniz dinlenir.
 
-- **Tasarım ve Malzeme Seçimi:** Seramik, fayans, vitrifiye ve armatürler bütçenize göre birlikte seçilir.
+- **Model Seçimi:** Panel deseni ve ızgara rengi birlikte seçilir.
 
-- **Kırma Dökme ve Altyapı:** Eski kaplamalar sökülür, tesisat ve elektrik hatları yenilenir, su yalıtımı yapılır.
+- **Izgara Montajı:** Duvar kenarlarına profiller, tavana askılarla taşıyıcı ızgara sistemi kurulur.
 
-- **Kaplama ve Montaj:** Seramik ve fayans döşenir, dolaplar ve vitrifiyeler monte edilir.
+- **Panel Yerleşimi:** 60x60 PVC paneller ızgaraya yerleştirilir, aydınlatma ve aspiratör açıklıkları tamamlanır.
 
-- **Teslim ve Son Kontrol:** Su ve gider testleri yapılır, alan temizlenerek teslim edilir.
+- **Teslim ve Son Kontrol:** Alan temizlenerek teslim edilir.
 
-## Banyo ve Mutfak Tadilatı Nerelerde Uygulanır?
+## PVC Tavan Nerelerde Uygulanır?
 
-- **Daireler:** Eskimiş banyo ve mutfakların modern ve kullanışlı hale getirilmesi.
+- **Banyo ve Tuvaletler:** Buhardan etkilenmeyen, küf tutmayan tavanlar.
 
-- **Villalar:** Ebeveyn banyosu, misafir WC ve geniş mutfaklarda lüks yenileme.
+- **Mutfaklar:** Yağ ve buhara karşı kolay silinen yüzeyler.
 
-- **Kiralık ve Satılık Konutlar:** Değer artıran, hızlı ve temiz yenileme.
+- **Balkon ve Çamaşır Odaları:** Nemli alanlarda uzun ömürlü kaplama.
 
-- **İş Yerleri:** Ofis mutfakları, personel ve müşteri tuvaletleri.
+- **İş Yerleri:** Kafe, restoran mutfakları ve personel tuvaletleri.
 
-## Banyo ve Mutfak Tadilatı Fiyatları
+## Banyo ve Mutfak PVC Tavan Fiyatları
 
-Fiyat; alanın metrekaresine, seçilen seramik ve fayansın kalitesine, tesisatın ne kadar yenileneceğine ve vitrifiye seçimine göre değişir. Ücretsiz keşfin ardından kalem kalem, sürpriz maliyet çıkarmayan bir teklif hazırlıyoruz.
+Fiyat; tavanın metrekaresine, seçilen panelin desenine, ızgara sistemine ve aydınlatma açıklıklarına göre değişir. QZEN DİZAYN olarak ücretsiz keşif hizmeti sunuyoruz. Size özel teklif için bize ulaşmanız yeterli.
 
 ## Neden QZEN DİZAYN?
 
 - 15 yılı aşkın sektör tecrübesi
 
-- Tesisat, yalıtım ve kaplamada tek ekip
+- Temiz ve hızlı uygulama
 
 - Zamanında teslim garantisi
 
-- Temiz ve düzgün işçilik
+- Düzgün hat ve ölçü işçiliği
 
-- Şeffaf ve uygun fiyat politikası
+- Uygun fiyat politikası
 
 ## Hemen Keşif Talep Edin!
 
-Hayalinizdeki banyo ve mutfak için ilk adımı bugün atın. İstanbul'da ücretsiz keşif için bizi arayın ya da WhatsApp'tan yazın.
+Banyo ve mutfak tavanınızı bir günde yenileyin. Ücretsiz keşif ve fiyat teklifi için bizi arayın ya da WhatsApp'tan yazın.

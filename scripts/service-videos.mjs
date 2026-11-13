@@ -22,7 +22,7 @@ const takes = {
   "ic-dekorasyon": "ic-dekorasyon",
   "ticari-tadilat": "ticari-tadilat",
   dekorasyon: "dekorasyon",
-  "banyo-mutfak": "banyo-mutfak",
+  "banyo-mutfak": "banyo-mutfak-pvc",
   "gergi-tavan": "gergi-tavan",
   "tv-unitesi": "tv-unitesi",
   "cita-dekor": "cita-dekor",

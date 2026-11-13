@@ -20,9 +20,9 @@ backend:
     deleteMedia: "Panel: görsel silindi ({{path}})"
 
 app_title: QZEN DİZAYN Panel
-site_url: https://pixelanil.github.io/qzen-dizayn
+site_url: https://qzendizayn.com
 logo:
-  src: /qzen-dizayn/brand/qzen-mark.webp
+  src: /brand/qzen-mark.webp
 
 # Dosya adı başlıktan Türkçe harfleriyle oluşur (fayans-döşeme.md); sayfa adresini site kendisi
 # Türkçe kurala göre çıkarır: fayans-doseme. (clean_accents ö'yü Almanca kuralla "oe" yapıyordu.)

@@ -117,7 +117,6 @@ export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; co
         >
           <div className="flex items-center justify-between px-4 pt-4 md:px-8 md:pt-6" style={{ paddingTop: "max(1rem, env(safe-area-inset-top, 0px))" }}>
             <p className="text-small text-ash">
-              {current.title && <span className="mr-3 text-body text-ivory">{current.title}</span>}
               {open! + 1} / {count}
             </p>
             <button ref={closeRef} type="button" onClick={close} aria-label="Kapat" className={iconButtonClass}>
@@ -139,8 +138,9 @@ export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; co
             />
           </div>
 
-          <div className="flex items-center justify-end gap-4 px-4 pb-6 md:px-8 md:pb-8">
-            <div className="flex gap-2">
+          <div className="flex items-center justify-between gap-4 px-4 pb-6 md:px-8 md:pb-8">
+            <p className="text-lead text-gold">{current.title}</p>
+            <div className="flex shrink-0 gap-2">
               <button type="button" onClick={() => step(-1)} aria-label="Önceki fotoğraf" className={iconButtonClass}>
                 <Chevron />
               </button>

@@ -1,4 +1,7 @@
-name: GitHub Pages
+name: Yayın
+
+# Every push to main (also the panel's commits) builds the site and publishes it on Cloudflare
+# (qzendizayn.com, config in yayin/wrangler.toml). The old GitHub Pages address gets redirect pages.
 
 on:
   push:
@@ -18,8 +21,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-      NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
+      NEXT_PUBLIC_SITE_URL: https://qzendizayn.com
     steps:
       - uses: actions/checkout@v5
 
@@ -33,11 +35,19 @@ jobs:
 
       - run: npm run build
 
+      - name: Cloudflare'e yayınla
+        run: npx --yes wrangler@4.158.0 deploy -c yayin/wrangler.toml
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - run: node scripts/redirect-stubs.mjs
+
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: out
+          path: redirect
 
-  deploy:
+  redirect:
     needs: build
     runs-on: ubuntu-latest
     environment:

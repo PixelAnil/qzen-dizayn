@@ -1,0 +1,18 @@
+# The public site on Cloudflare: the static export in out/ served as Worker assets on qzendizayn.com.
+# Deployed by .github/workflows/deploy.yml (or by hand: npm run build, then
+# panel-giris/node_modules/.bin/wrangler deploy -c yayin/wrangler.toml). No script runs, so serving
+# the site is free and unmetered.
+name = "qzendizayn"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+# qzendizayn.com and www.qzendizayn.com; Cloudflare creates their DNS records itself
+routes = [
+  { pattern = "qzendizayn.com", custom_domain = true },
+  { pattern = "www.qzendizayn.com", custom_domain = true },
+]
+
+[assets]
+directory = "../out"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"

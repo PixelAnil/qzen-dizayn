@@ -6,17 +6,20 @@ import { Button, buttonClass } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 import { asset } from "@/lib/asset";
 import { projects, readServiceContent, services, type Block, type Inline, type Service } from "@/lib/content";
-import { projectAlt } from "@/lib/projects";
 import { site, whatsappHref } from "@/lib/site";
 import { seoMetadata } from "@/lib/seo";
 import { JsonLd, serviceJsonLd } from "@/components/seo/JsonLd";
 import { ServiceVideo } from "@/components/services/ServiceVideo";
+import { ProjectGrid } from "@/components/projects/ProjectGrid";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
+
+/** How many finished jobs the bottom of a service page shows */
+const SHOWN_PROJECTS = 9;
 
 const findService = (slug: string) => services.find((s) => s.slug === slug);
 
@@ -75,6 +78,7 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
   const intro = content[0]?.type === "p" ? content[0] : undefined;
   const blocks = intro ? content.slice(1) : content;
   const others = services.filter((s) => s.slug !== slug);
+  const own = projects.filter((p) => p.services?.includes(slug));
   const whatsapp = whatsappHref(`Merhaba, ${service.title} için ücretsiz keşif ve fiyat teklifi almak istiyorum.`);
 
   const seo = seoFor(service);
@@ -169,28 +173,18 @@ export default async function ServiceDetailPage({ params }: PageProps<"/hizmetle
         </aside>
       </div>
 
-      {/* Finished work, so the page ends on real results */}
+      {/* Finished work, so the page ends on real results: this service's jobs, else the latest ones */}
       <section aria-labelledby="isler-baslik" data-reveal-group className="px-4 pb-32 md:px-8 md:pb-48">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <h2 id="isler-baslik" data-reveal className="display text-head text-ivory">
-            İşlerimizden
+            {own.length ? "Bu alandaki işlerimiz" : "Tamamlanan projelerimiz"}
           </h2>
           <Button data-reveal href="/projeler" variant="secondary">
             Tüm projeler
           </Button>
         </div>
-        <div className="mt-10 grid gap-2 sm:grid-cols-3">
-          {projects.slice(0, 3).map((project) => (
-            <Link key={project.slug} href="/projeler" data-reveal className="group relative block aspect-4/5 overflow-hidden bg-graphite-soft">
-              <Image
-                src={asset(project.image)}
-                alt={projectAlt}
-                fill
-                sizes="(min-width: 640px) 33vw, 100vw"
-                className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"
-              />
-            </Link>
-          ))}
+        <div className="mt-10">
+          <ProjectGrid projects={(own.length ? own : projects).slice(0, SHOWN_PROJECTS)} columns={3} />
         </div>
       </section>
     </article>

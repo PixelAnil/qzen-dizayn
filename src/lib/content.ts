@@ -185,7 +185,7 @@ export function readServiceContent(slug: string): Block[] {
 
 export type Photo = { image: string; width: number; height: number };
 /** One job: its cover picture, plus `more` when the job has several photographs. */
-export type Project = Photo & { slug: string; more?: Photo[] };
+export type Project = Photo & { slug: string; title?: string; more?: Photo[]; /** slugs of the services this job shows */ services?: string[] };
 
 const PROJECTS = path.join(CONTENT, "projeler");
 
@@ -193,7 +193,7 @@ export const projects: Project[] = (existsSync(PROJECTS) ? readdirSync(PROJECTS)
   .filter((f) => f.endsWith(".json"))
   .flatMap((file) => {
     try {
-      const data = JSON.parse(readFileSync(path.join(PROJECTS, file), "utf8")) as { date?: unknown; photos?: unknown };
+      const data = JSON.parse(readFileSync(path.join(PROJECTS, file), "utf8")) as { date?: unknown; photos?: unknown; title?: unknown; services?: unknown };
       const photos: Photo[] = (Array.isArray(data.photos) ? data.photos : [])
         .map(picture)
         .filter((p) => p !== null)
@@ -203,7 +203,14 @@ export const projects: Project[] = (existsSync(PROJECTS) ? readdirSync(PROJECTS)
         return [];
       }
       const [cover, ...more] = photos;
-      return [{ date: text(data.date), project: { slug: file.slice(0, -5), ...cover, ...(more.length && { more }) } }];
+      const title = text(data.title);
+      const services = (Array.isArray(data.services) ? data.services : []).map((s) => slugify(text(s))).filter(Boolean);
+      return [
+        {
+          date: text(data.date),
+          project: { slug: file.slice(0, -5), ...(title && { title }), ...cover, ...(more.length && { more }), ...(services.length && { services }) },
+        },
+      ];
     } catch (error) {
       console.warn(`[content] unreadable project skipped: ${file}`, error);
       return [];

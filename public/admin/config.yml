@@ -115,9 +115,9 @@ collections:
     create: true
     delete: true
     duplicate: false
-    identifier_field: note
+    identifier_field: title
     slug: "{{year}}{{month}}{{day}}-{{hour}}{{minute}}{{second}}"
-    summary: "{{date | date('DD.MM.YYYY')}} {{note}}"
+    summary: "{{date | date('DD.MM.YYYY')}} {{title}} {{note}}"
     sortable_fields:
       fields: [date]
       default:
@@ -126,6 +126,20 @@ collections:
     media_folder: /public/projects
     public_folder: /projects
     fields:
+      - name: title
+        label: Proje adı
+        required: false
+        hint: "Sitede fotoğrafın altında görünür ve Google'a işin ne olduğunu anlatır. Örnek: Ataşehir Salon Asma Tavan"
+      - name: services
+        label: Hizmetler
+        widget: relation
+        collection: hizmetler
+        value_field: "{{slug}}"
+        search_fields: [title]
+        display_fields: [title]
+        multiple: true
+        required: false
+        hint: Bu iş hangi hizmet sayfalarının altında görünsün? Birden fazla seçebilirsiniz.
       - name: photos
         label: Fotoğraflar
         widget: image

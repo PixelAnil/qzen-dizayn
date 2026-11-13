@@ -35,11 +35,16 @@ export function ProjectsPreview() {
           >
             <Image
               src={asset(project.image)}
-              alt={projectAlt}
+              alt={projectAlt(project.title)}
               fill
               sizes="(min-width: 768px) 55vw, 100vw"
               className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"
             />
+            {project.title && (
+              <span className="absolute inset-x-0 bottom-0 bg-linear-to-t from-obsidian/85 to-transparent px-4 pb-4 pt-12 text-body text-ivory md:px-5 md:pb-5">
+                {project.title}
+              </span>
+            )}
           </Link>
         ))}
       </div>

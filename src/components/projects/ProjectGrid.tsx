@@ -19,8 +19,9 @@ function Chevron({ flip = false }: { flip?: boolean }) {
  * Even grid: every job's cover in the same 4:3 frame. A click opens the viewer, which runs through
  * every photograph in order, so a job with several photos is swiped through before the next job.
  */
-export function ProjectGrid({ projects }: { projects: Project[] }) {
-  const photos = projects.flatMap((p) => [p, ...(p.more ?? [])]);
+export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; columns?: 2 | 3 }) {
+  // Every photograph in viewing order, each carrying its job's name
+  const photos = projects.flatMap((p) => [p, ...(p.more ?? [])].map((photo) => ({ ...photo, title: p.title })));
   // Where each job's first photograph sits in that run
   const starts = projects.map((_, i) => projects.slice(0, i).reduce((n, p) => n + 1 + (p.more?.length ?? 0), 0));
 
@@ -54,7 +55,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      <div data-reveal-group className="grid gap-2 sm:grid-cols-2">
+      <div data-reveal-group className={`grid gap-2 sm:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""}`}>
         {projects.map((project, i) => (
           <figure key={project.slug} data-reveal className="relative">
             <button
@@ -63,14 +64,14 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
                 opener.current = e.currentTarget;
                 setOpen(starts[i]);
               }}
-              aria-label={project.more ? `Projenin ${project.more.length + 1} fotoğrafını aç` : "Fotoğrafı büyüt"}
+              aria-label={`${project.title ?? "Proje"}: ${project.more ? `${project.more.length + 1} fotoğrafı aç` : "fotoğrafı büyüt"}`}
               className="group relative block aspect-4/3 w-full overflow-hidden bg-graphite-soft"
             >
               <Image
                 src={asset(project.image)}
-                alt={projectAlt}
+                alt={projectAlt(project.title)}
                 fill
-                sizes="(min-width: 640px) 50vw, 100vw"
+                sizes={columns === 3 ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 640px) 50vw, 100vw"}
                 loading={i < 2 ? "eager" : "lazy"}
                 className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"
               />
@@ -83,6 +84,12 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
                     <path d="M4 16V5.5A1.5 1.5 0 0 1 5.5 4H16" strokeLinecap="round" />
                   </svg>
                   {project.more.length + 1} fotoğraf
+                </span>
+              )}
+
+              {project.title && (
+                <span className="absolute inset-x-0 bottom-0 bg-linear-to-t from-obsidian/85 to-transparent px-4 pb-4 pt-12 text-left text-body text-ivory md:px-5 md:pb-5">
+                  {project.title}
                 </span>
               )}
             </button>
@@ -107,6 +114,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
         >
           <div className="flex items-center justify-between px-4 pt-4 md:px-8 md:pt-6" style={{ paddingTop: "max(1rem, env(safe-area-inset-top, 0px))" }}>
             <p className="text-small text-ash">
+              {current.title && <span className="mr-3 text-body text-ivory">{current.title}</span>}
               {open! + 1} / {count}
             </p>
             <button ref={closeRef} type="button" onClick={close} aria-label="Kapat" className={iconButtonClass}>
@@ -120,7 +128,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
             <Image
               key={current.image}
               src={asset(current.image)}
-              alt={projectAlt}
+              alt={projectAlt(current.title)}
               width={current.width}
               height={current.height}
               sizes="100vw"

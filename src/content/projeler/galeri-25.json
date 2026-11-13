@@ -1,4 +1,9 @@
 {
+  "title": "Asma Tavan LED Kanal ve TV Ünitesi",
+  "services": [
+    "asma-tavan",
+    "tv-unitesi"
+  ],
   "date": "2026-11-11T11:35",
   "photos": [
     "/projects/galeri-25.webp"

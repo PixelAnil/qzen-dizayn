@@ -1,39 +1,39 @@
 {
   "reviews": [
     {
-      "author": "Örnek müşteri",
+      "author": "Murat Ş.",
       "service": "Asma tavan",
       "rating": 5,
-      "text": "Burada müşterinin Google'a yazdığı yorum yer alacak. Kısa ya da uzun her yorum bu kartta düzgün görünür.",
-      "sample": true
+      "text": "Asma tavan uygulaması için tercih ettik. İşçilikleri gayet başarılı, detaylara önem veriyorlar. Zamanında teslim etmeleri de ayrıca memnun etti.",
+      "sample": false
     },
     {
-      "author": "Örnek müşteri",
+      "author": "Burak Ç.",
       "service": "Ev tadilatı",
       "rating": 5,
-      "text": "Gerçek yorumlar Google işletme profilinden alınacak ve isimleriyle birlikte burada kayarak gösterilecek.",
-      "sample": true
+      "text": "Evimizin tadilat sürecinde QZEN Dizayn ile çalıştık. Baştan sona oldukça ilgili ve profesyonel davrandılar. İstediğimiz değişiklikleri tam olarak uyguladılar. Sonuçtan gerçekten memnun kaldık.",
+      "sample": false
     },
     {
-      "author": "Örnek müşteri",
+      "author": "Ahmet D.",
       "service": "İç dekorasyon",
       "rating": 5,
-      "text": "Bu bir yer tutucu metindir. Yorumun uzunluğuna göre kart kendini ayarlar; üç dört satırlık bir yorum burada rahat okunur.",
-      "sample": true
+      "text": "Salonumuz için modern bir dekorasyon istiyorduk. Tasarım aşamasından uygulamaya kadar çok güzel ilgilendiler. Ortaya çıkan görüntü tam hayal ettiğimiz gibi oldu.",
+      "sample": false
     },
     {
-      "author": "Örnek müşteri",
+      "author": "Emre K.",
       "service": "Alçıpan bölme duvar",
       "rating": 5,
-      "text": "Örnek yorum. Yayına almadan önce gerçek müşteri yorumlarıyla değiştirilecek.",
-      "sample": true
+      "text": "İş yerimizde bölme duvar uygulaması yaptırdık. Hem temiz hem de düzgün bir işçilik çıkardılar. İletişimleri de oldukça iyiydi. Tavsiye ederim.",
+      "sample": false
     },
     {
-      "author": "Örnek müşteri",
+      "author": "Mehmet Y.",
       "service": "Ticari tadilat",
       "rating": 5,
-      "text": "Yorumların üzerine gelince akış durur, telefonda parmakla tutunca da durur; böylece her yorum rahatça okunabilir.",
-      "sample": true
+      "text": "Mağazamızın yenilenmesi için tercih ettik. Hem estetik hem de işlevsel çözümler sundular. Çalışma sürecindeki ilgileri ve işçilikleri için teşekkür ederiz.",
+      "sample": false
     }
   ]
 }

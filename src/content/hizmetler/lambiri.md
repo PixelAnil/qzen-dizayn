@@ -1,6 +1,8 @@
 ---
 title: Lambiri Uygulamaları
 tagline: Doğal, Şık ve Uzun Ömürlü Kaplama Çözümleri
+image: /services/lambiri.webp
+image_alt: Arkadan LED aydınlatmalı ahşap çıta lambiri duvar, yuvarlak ayna ve mermer tablalı konsol
 order: 8
 seo_title: Ahşap Lambiri Kaplama Modelleri İstanbul | QZEN DİZAYN
 seo_description: Doğal ahşap, MDF, PVC ve WPC lambiri kaplama ile duvar ve tavanlara sıcak bir doku. İstanbul'da usta işçilik, ücretsiz keşif ve fiyat teklifi.

@@ -26,6 +26,7 @@ const takes = {
   "gergi-tavan": "gergi-tavan-baski",
   "tv-unitesi": "tv-unitesi",
   "cita-dekor": "cita-dekor",
+  lambiri: "lambiri",
   pvc: "pvc",
   "tamir-tadilat": "tamir-tadilat",
   "klipin-tavan": "klipin-tavan",

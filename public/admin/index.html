@@ -39,6 +39,15 @@
         }
       }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 
+      // The sign-in page credits the studio that built the site instead of the CMS
+      new MutationObserver(() => {
+        for (const el of document.querySelectorAll("div, p, span, a")) {
+          if (el.childElementCount === 0 && /Sveltia CMS/.test(el.textContent) && /güçlendirilmiştir|Powered by/i.test(el.textContent)) {
+            el.textContent = "Flowrix Studio tarafından geliştirildi";
+          }
+        }
+      }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+
       // The media library can still be reached by address or shortcut: send it back to the collections
       const noAssets = () => {
         if (location.hash.startsWith("#/assets")) location.replace("#/collections");

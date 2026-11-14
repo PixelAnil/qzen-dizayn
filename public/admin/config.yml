@@ -107,22 +107,19 @@ collections:
     label_singular: Proje
     icon: photo_library
     description: >-
-      Projelerimiz sayfasındaki işler. En yeni tarihli proje en üstte görünür. Aynı işin fotoğraflarını tek projede
-      toplayın; ziyaretçi tıklayınca kaydırarak hepsini görür.
+      Projelerimiz sayfasındaki işler. Sıralamayı sürükleyerek değiştirebilirsiniz; en üstteki proje sitede de ilk
+      görünür. Yeni eklenen proje en başa gelir. Aynı işin fotoğraflarını tek projede toplayın; ziyaretçi
+      tıklayınca kaydırarak hepsini görür.
     folder: src/content/projeler
     extension: json
     format: json
     create: true
     delete: true
     duplicate: false
+    reorder: true
     identifier_field: title
     slug: "{{year}}{{month}}{{day}}-{{hour}}{{minute}}{{second}}"
     summary: "{{date | date('DD.MM.YYYY')}} {{title}} {{note}}"
-    sortable_fields:
-      fields: [date]
-      default:
-        field: date
-        direction: descending
     media_folder: /public/projects
     public_folder: /projects
     fields:
@@ -153,7 +150,7 @@ collections:
         widget: datetime
         default: "{{now}}"
         format: YYYY-MM-DDTHH:mm
-        hint: Projeler bu tarihe göre sıralanır, en yeni en üstte. Bir projeyi öne almak için tarihini ileri alın.
+        hint: Projenin eklendiği tarih. Sitedeki sırayı değiştirmek için projeler listesinde sürükleyin.
       - name: note
         label: Kısa not (sitede görünmez)
         required: false

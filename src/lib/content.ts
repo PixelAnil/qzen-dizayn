@@ -181,7 +181,8 @@ export function readServiceContent(slug: string): Block[] {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Projects: src/content/projeler/<slug>.json, newest first
+// Projects: src/content/projeler/<slug>.json, in the order dragged in the panel ("order"); a job not
+// placed yet (just added) comes first, newest first among those
 
 export type Photo = { image: string; width: number; height: number };
 /** One job: its cover picture, plus `more` when the job has several photographs. */
@@ -193,7 +194,7 @@ export const projects: Project[] = (existsSync(PROJECTS) ? readdirSync(PROJECTS)
   .filter((f) => f.endsWith(".json"))
   .flatMap((file) => {
     try {
-      const data = JSON.parse(readFileSync(path.join(PROJECTS, file), "utf8")) as { date?: unknown; photos?: unknown; title?: unknown; services?: unknown };
+      const data = JSON.parse(readFileSync(path.join(PROJECTS, file), "utf8")) as { date?: unknown; photos?: unknown; title?: unknown; services?: unknown; order?: unknown };
       const photos: Photo[] = (Array.isArray(data.photos) ? data.photos : [])
         .map(picture)
         .filter((p) => p !== null)
@@ -208,6 +209,7 @@ export const projects: Project[] = (existsSync(PROJECTS) ? readdirSync(PROJECTS)
       return [
         {
           date: text(data.date),
+          order: typeof data.order === "number" ? data.order : -Infinity,
           project: { slug: file.slice(0, -5), ...(title && { title }), ...cover, ...(more.length && { more }), ...(services.length && { services }) },
         },
       ];
@@ -216,5 +218,5 @@ export const projects: Project[] = (existsSync(PROJECTS) ? readdirSync(PROJECTS)
       return [];
     }
   })
-  .sort((a, b) => b.date.localeCompare(a.date) || a.project.slug.localeCompare(b.project.slug))
+  .sort((a, b) => a.order - b.order || b.date.localeCompare(a.date) || a.project.slug.localeCompare(b.project.slug))
   .map((p) => p.project);

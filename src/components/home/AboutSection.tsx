@@ -1,4 +1,5 @@
-import { FireplaceImage } from "@/components/home/FireplaceImage";
+import Image from "next/image";
+import { asset } from "@/lib/asset";
 
 // Copy supplied by the client.
 const paragraphs = [
@@ -34,10 +35,13 @@ export function AboutSection() {
         </div>
 
         <figure data-reveal className="md:col-span-5 md:col-start-8 md:self-start md:sticky md:top-28">
-          <FireplaceImage
-            alt="Siyah mermer şömine duvarı, ahşap çıtalı nişler ve pirinç halka avizeli salon"
+          <Image
+            src={asset("/brand/salon-tv-duvari.webp")}
+            alt="Kabartma ağaçlı mermer TV duvarı, aydınlatmalı niş, ahşap lambiri ve katmanlı LED tavanlı salon"
+            width={1080}
+            height={1350}
             sizes="(min-width: 768px) 40vw, 100vw"
-            className="aspect-4/5 w-full"
+            className="aspect-4/5 w-full object-cover"
           />
         </figure>
       </div>

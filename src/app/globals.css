@@ -291,3 +291,43 @@ html {
     transform: translateY(60%);
   }
 }
+
+/* Home "Tamamlanan projeler": lambiri slats. Every slat is a narrow upright panel; the hovered or focused
+   one opens out (the first stays open while the pointer is elsewhere). Wide screens only. */
+@media (min-width: 48rem) {
+  .slats .slat {
+    flex: 1 1 0;
+    min-width: 0;
+    transition: flex-grow 0.8s var(--ease-luxe);
+  }
+  .slats:not(:has(.slat:hover, .slat:focus-visible)) .slat:first-child,
+  .slats .slat:hover,
+  .slats .slat:focus-visible {
+    flex-grow: 7;
+  }
+  .slats .slat-shade,
+  .slats .slat-spine {
+    transition: opacity 0.6s var(--ease-luxe);
+  }
+  .slats .slat-title {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.5s var(--ease-luxe), transform 0.6s var(--ease-luxe);
+  }
+  .slats:not(:has(.slat:hover, .slat:focus-visible)) .slat:first-child :is(.slat-shade, .slat-spine),
+  .slats .slat:is(:hover, :focus-visible) :is(.slat-shade, .slat-spine) {
+    opacity: 0;
+  }
+  .slats:not(:has(.slat:hover, .slat:focus-visible)) .slat:first-child .slat-title,
+  .slats .slat:is(:hover, :focus-visible) .slat-title {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.25s;
+  }
+}
+@media (min-width: 48rem) and (prefers-reduced-motion: reduce) {
+  .slats .slat,
+  .slats .slat-title {
+    transition: none;
+  }
+}

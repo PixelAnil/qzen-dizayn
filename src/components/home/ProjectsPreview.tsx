@@ -5,9 +5,16 @@ import { asset } from "@/lib/asset";
 import { projects } from "@/lib/content";
 import { projectAlt } from "@/lib/projects";
 
-/** A few finished jobs at different sizes, then the way into the full portfolio. */
+/** How many jobs stand side by side on a wide screen; a phone shows the first three */
+const SLATS = 7;
+
+/**
+ * Finished jobs, then the way into the full portfolio. On a wide screen they stand like the slats of a
+ * lambiri wall: narrow upright panels side by side, and the one under the pointer opens out to show the
+ * whole picture (the first one stays open until the pointer arrives). See .slats in globals.css.
+ */
 export function ProjectsPreview() {
-  const [wide, tall, third] = projects;
+  const shown = projects.slice(0, SLATS);
 
   return (
     <section aria-labelledby="projeler-baslik" data-reveal-group className="bg-obsidian px-4 pb-32 md:px-8 md:pb-52">
@@ -20,30 +27,33 @@ export function ProjectsPreview() {
         </Button>
       </div>
 
-      {/* One row, three widths, one height */}
-      <div className="mt-12 grid gap-2 md:mt-16 md:h-[min(40rem,70svh)] md:grid-cols-12">
-        {[
-          { project: wide, className: "aspect-4/3 md:col-span-6 md:aspect-auto" },
-          { project: tall, className: "aspect-4/5 md:col-span-3 md:aspect-auto" },
-          { project: third, className: "aspect-4/5 md:col-span-3 md:aspect-auto" },
-        ].map(({ project, className }) => (
+      <div data-reveal className="slats mt-12 grid gap-2 md:mt-16 md:flex md:h-[min(40rem,70svh)]">
+        {shown.map((project, i) => (
           <Link
             key={project.slug}
             href="/projeler"
-            data-reveal
-            className={`group relative block overflow-hidden bg-graphite-soft ${className}`}
+            className={`slat group relative block overflow-hidden bg-graphite-soft ${i === 0 ? "aspect-4/3" : "aspect-4/5"} md:aspect-auto ${i >= 3 ? "hidden md:block" : ""}`}
           >
             <Image
               src={asset(project.image)}
               alt={projectAlt(project.title)}
               fill
-              sizes="(min-width: 768px) 55vw, 100vw"
+              sizes="(min-width: 768px) 60vw, 100vw"
               className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"
             />
+            {/* A dark wash keeps the narrow slats quiet so the open one leads */}
+            <span aria-hidden className="slat-shade absolute inset-0 hidden bg-obsidian/45 md:block" />
             {project.title && (
-              <span className="absolute inset-0 flex items-center justify-center bg-obsidian/70 p-6 text-center opacity-0 transition-opacity duration-500 ease-luxe group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:inset-auto [@media(hover:none)]:inset-x-0 [@media(hover:none)]:bottom-0 [@media(hover:none)]:justify-start [@media(hover:none)]:bg-obsidian/75 [@media(hover:none)]:p-4 [@media(hover:none)]:text-left [@media(hover:none)]:opacity-100">
-                <span className="display text-[clamp(1.5rem,0.9rem+1.2vw,2.5rem)] text-gold [@media(hover:none)]:text-[1.5rem]">{project.title}</span>
-              </span>
+              <>
+                {/* Closed slat: the name runs up the panel */}
+                <span aria-hidden className="slat-spine absolute bottom-6 left-1/2 hidden -translate-x-1/2 rotate-180 whitespace-nowrap text-small tracking-wide text-ivory/80 [writing-mode:vertical-rl] md:block">
+                  {project.title}
+                </span>
+                {/* Open slat (and every card on a phone): the name across the foot */}
+                <span className="slat-title absolute inset-x-0 bottom-0 bg-linear-to-t from-obsidian/85 to-transparent p-4 md:p-8">
+                  <span className="display block text-[1.5rem] text-gold md:text-[clamp(1.5rem,0.9rem+1.2vw,2.5rem)]">{project.title}</span>
+                </span>
+              </>
             )}
           </Link>
         ))}

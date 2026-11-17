@@ -20,15 +20,17 @@ const FRAMES = 150;
 const PAD = "tpad=stop_mode=clone:stop_duration=0.5";
 const GRADE = "curves=master='0/0 0.18/0.12 0.4/0.43 0.65/0.74 1/1',eq=saturation=1.22";
 const films = {
-  desktop: { file: "Qzendizayn-yatay.mp4", speed: "setpts=PTS", light: "1280:720", hd: "1920:1080" },
-  mobile: { file: "Qzendizayn.mp4", speed: "setpts=PTS*1.25", light: "720:1280", hd: "1080:1920" },
+  // src: size the frames go into the upscaler at (the video tool's native 720p; 4× from there is plenty)
+  desktop: { file: "Qzendizayn-yatay.mp4", speed: "setpts=PTS", src: "1280:720", light: "1280:720", hd: "1920:1080", grade: GRADE },
+  // The portrait TV-wall film already has clean colour: no grade
+  mobile: { file: "Qzendizayn.mp4", speed: "setpts=PTS*1.25", src: "720:1280", light: "720:1280", hd: "1080:1920", grade: null },
 };
-const quality = { desktop: "72", "desktop-hd": "80", mobile: "70", "mobile-hd": "78" };
+const quality = { desktop: "72", "desktop-hd": "80", mobile: "72", "mobile-hd": "85" };
 
 const run = (bin, args) => execFileSync(bin, args, { stdio: "inherit" });
 const work = path.join(tmpdir(), "qzen-hero-upscale");
 
-for (const [film, { file, speed, light, hd }] of Object.entries(films)) {
+for (const [film, { file, speed, src, light, hd, grade }] of Object.entries(films)) {
   if (only && film !== only) continue;
   const raw = path.join(work, film, "raw");
   const up = path.join(work, film, "up");
@@ -38,16 +40,16 @@ for (const [film, { file, speed, light, hd }] of Object.entries(films)) {
   }
 
   // 1. The film's frames, ungraded and lossless
-  run(ffmpeg, ["-v", "error", "-i", file, "-vf", `${speed},${PAD},fps=${FPS}`, "-frames:v", String(FRAMES), `${raw}/%03d.png`]);
+  run(ffmpeg, ["-v", "error", "-i", file, "-vf", `${speed},${PAD},fps=${FPS},scale=${src}:flags=lanczos`, "-frames:v", String(FRAMES), `${raw}/%03d.png`]);
   // 2. 4× AI upscale of the whole folder in one run
   run(esrgan, ["-i", raw, "-o", up, "-n", "realesrgan-x4plus", "-m", path.join(path.dirname(esrgan), "models"), "-f", "png"]);
 
-  // 3. Down to the two delivery sizes, graded like extract-frames.mjs (no extra sharpening needed)
+  // 3. Down to the two delivery sizes, graded like extract-frames.mjs where the film needs it (no extra sharpening)
   for (const [set, size] of [[film, light], [`${film}-hd`, hd]]) {
     const dir = `public/sequence/${set}`;
     rmSync(dir, { recursive: true, force: true });
     mkdirSync(dir, { recursive: true });
-    run(ffmpeg, ["-v", "error", "-framerate", String(FPS), "-i", `${up}/%03d.png`, "-vf", `scale=${size}:flags=lanczos,${GRADE}`,
+    run(ffmpeg, ["-v", "error", "-framerate", String(FPS), "-i", `${up}/%03d.png`, "-vf", `scale=${size}:flags=lanczos${grade ? `,${grade}` : ""}`,
                  "-c:v", "libwebp", "-quality", quality[set], "-compression_level", "6", `${dir}/%03d.webp`]);
     console.log(`${set}: ${readdirSync(dir).length} frames → ${dir}`);
   }

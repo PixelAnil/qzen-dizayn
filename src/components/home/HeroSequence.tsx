@@ -21,13 +21,15 @@ const STAGES: Record<SequenceSet, readonly { from: number; label: string }[]> = 
     { from: 74, label: "Mobilya" },
     { from: 102, label: "Işık ve teslim" },
   ],
+  // Portrait TV-wall film (time-remapped in scripts/extract-frames.mjs): empty room, each piece of the
+  // wall slides in, then dusk lights it up
   mobile: [
-    { from: 0, label: "Ham yapı" },
-    { from: 28, label: "Tavan ve sıva" },
-    { from: 58, label: "Mermer duvar" },
-    { from: 70, label: "Lambiri ve niş" },
-    { from: 92, label: "Mobilya" },
-    { from: 124, label: "Işık ve teslim" },
+    { from: 0, label: "Boş oda" },
+    { from: 8, label: "Parke zemin" },
+    { from: 20, label: "PVC ve Lambiri" },
+    { from: 50, label: "TV ünitesi" },
+    { from: 62, label: "Aydınlatma" },
+    { from: 110, label: "Akşam ışığı" },
   ],
 };
 

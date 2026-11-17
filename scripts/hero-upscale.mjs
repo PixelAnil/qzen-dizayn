@@ -14,23 +14,28 @@ import ffmpeg from "ffmpeg-static";
 const [esrgan, only] = process.argv.slice(2);
 if (!esrgan) throw new Error("Pass the path to realesrgan-ncnn-vulkan");
 
-// Keep in step with scripts/extract-frames.mjs
-const FPS = 15;
+// Keep in step with scripts/extract-frames.mjs: same frame count and the same time remap, so the
+// stage labels in HeroSequence.tsx line up with either script's output
 const FRAMES = 150;
 const PAD = "tpad=stop_mode=clone:stop_duration=0.5";
-const GRADE = "curves=master='0/0 0.18/0.12 0.4/0.43 0.65/0.74 1/1',eq=saturation=1.22";
+const REMAP =
+  "[0:v]split=3[a][b][c];" +
+  "[a]trim=0:0.4,setpts=PTS-STARTPTS,fps=15[a1];" +
+  "[b]trim=0.4:3.6,setpts=PTS-STARTPTS,fps=24[b1];" +
+  "[c]trim=3.6,setpts=PTS-STARTPTS,fps=68/4.33[c1];" +
+  `[a1][b1][c1]concat=n=3:v=1:a=0,${PAD}`;
 const films = {
-  // src: size the frames go into the upscaler at (the video tool's native 720p; 4× from there is plenty)
-  desktop: { file: "Qzendizayn-yatay.mp4", speed: "setpts=PTS", src: "1280:720", light: "1280:720", hd: "1920:1080", grade: GRADE },
-  // The portrait TV-wall film already has clean colour: no grade
-  mobile: { file: "Qzendizayn.mp4", speed: "setpts=PTS*1.25", src: "720:1280", light: "720:1280", hd: "1080:1920", grade: null },
+  // src: size the frames go into the upscaler at (the video tool's native 720p; 4× from there is plenty).
+  // The landscape HD set is 2560 wide so Retina laptops draw it without enlarging it.
+  desktop: { file: "Qzendizayn-yatay.mp4", src: "1280:720", light: "1280:720", hd: "2560:1440" },
+  mobile: { file: "Qzendizayn.mp4", src: "720:1280", light: "720:1280", hd: "1080:1920" },
 };
-const quality = { desktop: "72", "desktop-hd": "80", mobile: "72", "mobile-hd": "85" };
+const quality = { desktop: "72", "desktop-hd": "82", mobile: "72", "mobile-hd": "85" };
 
 const run = (bin, args) => execFileSync(bin, args, { stdio: "inherit" });
 const work = path.join(tmpdir(), "qzen-hero-upscale");
 
-for (const [film, { file, speed, src, light, hd, grade }] of Object.entries(films)) {
+for (const [film, { file, src, light, hd }] of Object.entries(films)) {
   if (only && film !== only) continue;
   const raw = path.join(work, film, "raw");
   const up = path.join(work, film, "up");
@@ -39,17 +44,18 @@ for (const [film, { file, speed, src, light, hd, grade }] of Object.entries(film
     mkdirSync(dir, { recursive: true });
   }
 
-  // 1. The film's frames, ungraded and lossless
-  run(ffmpeg, ["-v", "error", "-i", file, "-vf", `${speed},${PAD},fps=${FPS},scale=${src}:flags=lanczos`, "-frames:v", String(FRAMES), `${raw}/%03d.png`]);
+  // 1. The film's frames, time-remapped and lossless
+  run(ffmpeg, ["-v", "error", "-i", file, "-filter_complex", `${REMAP},scale=${src}:flags=lanczos`, "-fps_mode", "passthrough",
+               "-frames:v", String(FRAMES), `${raw}/%03d.png`]);
   // 2. 4× AI upscale of the whole folder in one run
   run(esrgan, ["-i", raw, "-o", up, "-n", "realesrgan-x4plus", "-m", path.join(path.dirname(esrgan), "models"), "-f", "png"]);
 
-  // 3. Down to the two delivery sizes, graded like extract-frames.mjs where the film needs it (no extra sharpening)
+  // 3. Down to the two delivery sizes (the TV-wall films need no grade and no extra sharpening)
   for (const [set, size] of [[film, light], [`${film}-hd`, hd]]) {
     const dir = `public/sequence/${set}`;
     rmSync(dir, { recursive: true, force: true });
     mkdirSync(dir, { recursive: true });
-    run(ffmpeg, ["-v", "error", "-framerate", String(FPS), "-i", `${up}/%03d.png`, "-vf", `scale=${size}:flags=lanczos${grade ? `,${grade}` : ""}`,
+    run(ffmpeg, ["-v", "error", "-i", `${up}/%03d.png`, "-vf", `scale=${size}:flags=lanczos`,
                  "-c:v", "libwebp", "-quality", quality[set], "-compression_level", "6", `${dir}/%03d.webp`]);
     console.log(`${set}: ${readdirSync(dir).length} frames → ${dir}`);
   }

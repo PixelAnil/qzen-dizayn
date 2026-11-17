@@ -1,3 +1,4 @@
+import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -6,7 +7,7 @@ import { projects } from "@/lib/content";
 import { projectAlt } from "@/lib/projects";
 
 /** How many jobs stand side by side on a wide screen; a phone shows the first three */
-const SLATS = 7;
+const SLATS = 5;
 
 /**
  * Finished jobs, then the way into the full portfolio. On a wide screen they stand like the slats of a
@@ -27,11 +28,12 @@ export function ProjectsPreview() {
         </Button>
       </div>
 
-      <div data-reveal className="slats mt-12 grid gap-2 md:mt-16 md:flex md:h-[min(40rem,70svh)]">
+      <div data-reveal className="slats mt-12 grid gap-2 md:mt-16 md:flex md:h-(--slats-h)">
         {shown.map((project, i) => (
           <Link
             key={project.slug}
             href="/projeler"
+            style={{ "--ar": project.width / project.height } as React.CSSProperties}
             className={`slat group relative block overflow-hidden bg-graphite-soft ${i === 0 ? "aspect-4/3" : "aspect-4/5"} md:aspect-auto ${i >= 3 ? "hidden md:block" : ""}`}
           >
             <Image
@@ -39,14 +41,14 @@ export function ProjectsPreview() {
               alt={projectAlt(project.title)}
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
-              className="object-cover transition-transform duration-[1200ms] ease-luxe group-hover:scale-[1.04]"
+              className="object-cover"
             />
             {/* A dark wash keeps the narrow slats quiet so the open one leads */}
             <span aria-hidden className="slat-shade absolute inset-0 hidden bg-obsidian/45 md:block" />
             {project.title && (
               <>
                 {/* Closed slat: the name runs up the panel */}
-                <span aria-hidden className="slat-spine absolute bottom-6 left-1/2 hidden -translate-x-1/2 rotate-180 whitespace-nowrap text-small tracking-wide text-ivory/80 [writing-mode:vertical-rl] md:block">
+                <span aria-hidden className="slat-spine absolute bottom-6 left-1/2 hidden -translate-x-1/2 rotate-180 whitespace-nowrap display text-[1.25rem] text-gold [writing-mode:vertical-rl] md:block">
                   {project.title}
                 </span>
                 {/* Open slat (and every card on a phone): the name across the foot */}

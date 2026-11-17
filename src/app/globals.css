@@ -295,15 +295,20 @@ html {
 /* Home "Tamamlanan projeler": lambiri slats. Every slat is a narrow upright panel; the hovered or focused
    one opens out (the first stays open while the pointer is elsewhere). Wide screens only. */
 @media (min-width: 48rem) {
+  .slats {
+    --slats-h: min(40rem, 70svh);
+  }
+  /* Closed slats share what the open one leaves */
   .slats .slat {
     flex: 1 1 0;
     min-width: 0;
-    transition: flex-grow 0.8s var(--ease-luxe);
+    transition: flex 0.8s var(--ease-luxe);
   }
+  /* The open slat takes its photograph's own shape (height × its ratio), so the picture sits whole, never stretched */
   .slats:not(:has(.slat:hover, .slat:focus-visible)) .slat:first-child,
   .slats .slat:hover,
   .slats .slat:focus-visible {
-    flex-grow: 7;
+    flex: 0 0 min(52%, calc(var(--slats-h) * var(--ar, 0.8)));
   }
   .slats .slat-shade,
   .slats .slat-spine {

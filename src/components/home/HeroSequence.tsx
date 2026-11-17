@@ -11,15 +11,15 @@ const { frameCount } = SEQUENCE;
 const LOAD_CONCURRENCY = 6;
 
 // What each film shows at each point: scrolling plays the job from shell to hand-over.
-// The two films build the room in a different order, so each has its own stages.
+// Both TV-wall films build the room in the same order; each set keeps its own stages in case a film is re-cut.
 const STAGES: Record<SequenceSet, readonly { from: number; label: string }[]> = {
+  // Landscape TV-wall film, time-remapped like the portrait one (scripts/extract-frames.mjs)
   desktop: [
-    { from: 0, label: "Ham yapı" },
-    { from: 24, label: "Tavan ve sıva" },
-    { from: 46, label: "Mermer duvar" },
-    { from: 54, label: "Lambiri ve niş" },
-    { from: 74, label: "Mobilya" },
-    { from: 102, label: "Işık ve teslim" },
+    { from: 8, label: "Parke zemin" },
+    { from: 20, label: "PVC ve Lambiri" },
+    { from: 50, label: "TV ünitesi" },
+    { from: 62, label: "Aydınlatma" },
+    { from: 110, label: "Teslim" },
   ],
   // Portrait TV-wall film (time-remapped in scripts/extract-frames.mjs): empty room, each piece of the
   // wall slides in, then dusk lights it up
@@ -92,7 +92,7 @@ export function HeroSequence() {
     // Phones and tablets: light frames only and a lower pixel ratio. Holding 150 decoded HD
     // frames (~1 GB) makes mobile browsers evict and re-decode them mid-scroll, which stutters.
     const lite = window.matchMedia("(pointer: coarse)").matches;
-    let set: SequenceSet = pickSet();
+    let set: SequenceSet = pickSet(window.innerWidth, window.innerHeight);
     // Best decoded frame per index; HD frames replace light ones as they arrive
     let images: (HTMLImageElement | null)[] = [];
     let tiers: (SequenceTier | null)[] = [];
@@ -100,12 +100,7 @@ export function HeroSequence() {
     let current = 0;
     let rafId = 0;
 
-    // ── Drawing: cover on phones; on screens wider than the film, the film whole in the middle over a
-    //    blurred, darkened copy of the same frame, so the sides follow the room from day to dusk ──
-    const backdrop = document.createElement("canvas");
-    backdrop.width = 18;
-    backdrop.height = 32;
-    const backdropCtx = backdrop.getContext("2d");
+    // ── Drawing: object-fit: cover + object-position: center ──
     const nearestLoaded = (target: number) => {
       for (let d = 0; d < frameCount; d++) {
         if (images[target - d]) return images[target - d];
@@ -119,24 +114,10 @@ export function HeroSequence() {
       const img = nearestLoaded(current);
       if (!img) return;
       const { width: cw, height: ch } = canvas;
-      const filmAspect = img.naturalWidth / img.naturalHeight;
-      // Up to a little wider than the film, cropping the edges still looks best
-      if (cw / ch <= filmAspect * 1.25 || !backdropCtx) {
-        const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-        const w = img.naturalWidth * scale;
-        const h = img.naturalHeight * scale;
-        ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-        return;
-      }
-      // A tiny copy stretched over the whole canvas is a cheap, smooth blur
-      backdropCtx.drawImage(img, 0, 0, backdrop.width, backdrop.height);
-      ctx.imageSmoothingQuality = "high";
-      const cover = Math.max(cw / backdrop.width, ch / backdrop.height);
-      ctx.drawImage(backdrop, (cw - backdrop.width * cover) / 2, (ch - backdrop.height * cover) / 2, backdrop.width * cover, backdrop.height * cover);
-      ctx.fillStyle = "rgba(12, 12, 12, 0.62)";
-      ctx.fillRect(0, 0, cw, ch);
-      const w = ch * filmAspect;
-      ctx.drawImage(img, (cw - w) / 2, 0, w, ch);
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+      const w = img.naturalWidth * scale;
+      const h = img.naturalHeight * scale;
+      ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
     };
 
     const requestDraw = () => {
@@ -293,7 +274,7 @@ export function HeroSequence() {
       // Phones draw the frame at about its own size, so the costly high-quality filter buys nothing there
       ctx.imageSmoothingQuality = lite ? "low" : "high";
 
-      const nextSet = pickSet();
+      const nextSet = pickSet(canvas.clientWidth, canvas.clientHeight);
       if (nextSet !== set) {
         set = nextSet;
         loadSequence();
@@ -354,13 +335,15 @@ export function HeroSequence() {
       <h1 className="sr-only">QZEN DİZAYN</h1>
 
       {/* Let the browser fetch the poster frame before hydration */}
-      <link rel="preload" as="image" href={frameSrc("mobile", 0)} fetchPriority="high" />
+      <link rel="preload" as="image" href={frameSrc("desktop", 0)} media="(min-aspect-ratio: 1/1)" fetchPriority="high" />
+      <link rel="preload" as="image" href={frameSrc("mobile", 0)} media="(max-aspect-ratio: 1/1)" fetchPriority="high" />
 
       <div className="sticky top-0 h-svh w-full overflow-hidden">
         <div
           aria-hidden
           className="hero-poster media-guard absolute inset-0"
           style={{
+            "--poster-desktop": `url(${frameSrc("desktop", 0)})`,
             "--poster-mobile": `url(${frameSrc("mobile", 0)})`,
           } as React.CSSProperties}
         />
@@ -384,11 +367,10 @@ export function HeroSequence() {
 
         <div data-hero-stage className="absolute inset-x-0 bottom-0 z-10 px-4 pb-6 md:px-8 md:pb-10">
           <span ref={liveRef} className="sr-only" aria-live="polite" />
-          {/* Capped by width so the longest stage ("PVC ve Lambiri", ~7em) clears the WhatsApp button on small phones */}
+          {/* Capped by width so the longest phone stage ("Lambiri ve niş", ~7em) clears the WhatsApp button on small phones */}
           <div
             ref={stageRef}
-            // On wide screens the film stands in the middle: the word stays in the left margin beside it
-            className="display relative h-[0.95em] text-[min(clamp(2.75rem,1.2rem+6.5vw,8.5rem),calc((100vw-6rem)/7.2))] leading-[0.9] text-ivory [@media(min-aspect-ratio:5/4)]:text-[min(8.5rem,calc((50vw-28.125svh-4rem)/7.2))]"
+            className="display relative h-[0.95em] text-[min(clamp(2.75rem,1.2rem+6.5vw,8.5rem),calc((100vw-6rem)/7.2))] leading-[0.9] text-ivory"
           />
           <div aria-hidden className="mt-5 h-[2px] w-[calc(100%-4.5rem)] max-w-sm bg-ivory/12 md:w-full">
             <div data-hero-progress className="h-full origin-left scale-x-0 bg-gold-light" />

@@ -13,21 +13,15 @@ const FPS = 15;
 const FRAMES = 150;
 // Holds the last frame a moment so a film a few ms short still fills the count
 const PAD = "tpad=stop_mode=clone:stop_duration=0.5";
-// The source films read hazy (grey blacks, pale colour): an S-curve deepens the shadows and lifts
-// the highlights while keeping the mid-tones, then a little more colour and crispness
-const GRADE = "curves=master='0/0 0.18/0.12 0.4/0.43 0.65/0.74 1/1',eq=saturation=1.22";
 
 const films = {
-  desktop: "Qzendizayn-yatay.mp4", // 1280×720 landscape, 10 s
+  desktop: "Qzendizayn-yatay.mp4", // 1920×1080 landscape TV-wall film, 8 s (same build as the portrait one)
   mobile: "Qzendizayn.mp4", // 1080×1920 portrait, 8 s (TV wall film, already clean: no grade)
 };
 
-// The landscape film is evenly sampled over its 10 s
-const SPEED = { desktop: "setpts=PTS" };
-
-// The portrait film packs its build into a few seconds; sampled evenly, each scroll step jumped a long way
+// Both TV-wall films (landscape and portrait) pack their build into a few seconds; sampled evenly, each scroll step jumped a long way
 // through it and the scrub looked jerky. So the build gets every source frame (24 fps) and more than half
-// of the scroll, and the still hold and the dusk share the rest. Frame numbers here drive STAGES.mobile in
+// of the scroll, and the still hold and the dusk share the rest. Frame numbers here drive STAGES in
 // src/components/home/HeroSequence.tsx: frames 0–5 empty room, 6–82 the build (t = 0.4 + (i − 6) / 24 s),
 // 83–149 the hold and dusk (t = 3.6 + (i − 83) × 4.33 / 68 s).
 const REMAP =
@@ -38,11 +32,10 @@ const REMAP =
   `[a1][b1][c1]concat=n=3:v=1:a=0,${PAD}`;
 
 const sets = {
-  desktop: { film: "desktop", filter: `${SPEED.desktop},${PAD},fps=${FPS},${GRADE}`, quality: "72" },
-  // Lanczos upscale + light sharpening beats the browser's own upscaling on large screens
-  "desktop-hd": { film: "desktop", filter: `${SPEED.desktop},${PAD},fps=${FPS},${GRADE},scale=1920:1080:flags=lanczos,unsharp=5:5:0.5:5:5:0`, quality: "80" },
-  // The portrait TV-wall film comes out of the video tool at 1080p with clean colour: no grade, no sharpening.
-  // Its whole build happens in 0.4–3.6 s, so frames are spread by time (REMAP), not evenly
+  // Both films come out of the video tool at 1080p with clean colour: no grade, no sharpening.
+  // Their whole build happens in 0.4–3.6 s, so frames are spread by time (REMAP), not evenly
+  desktop: { film: "desktop", remap: true, filter: "scale=1280:720:flags=lanczos", quality: "72" },
+  "desktop-hd": { film: "desktop", remap: true, filter: "scale=1920:1080:flags=lanczos", quality: "82" },
   mobile: { film: "mobile", remap: true, filter: "scale=720:1280:flags=lanczos", quality: "70" },
   "mobile-hd": { film: "mobile", remap: true, filter: "scale=1080:1920:flags=lanczos", quality: "78" },
 };

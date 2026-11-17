@@ -17,12 +17,9 @@ export type SequenceTier = "light" | "hd";
 export const frameSrc = (set: SequenceSet, index: number, tier: SequenceTier = "light") =>
   asset(`${SEQUENCE.sets[set][tier]}/${String(index + 1).padStart(3, "0")}.webp`);
 
-/**
- * Every screen plays the portrait TV-wall film: wide screens show it whole in the middle, over a blurred,
- * darkened copy of itself (see draw() in HeroSequence). The landscape set stays in SEQUENCE for when a
- * landscape cut of the film exists; to bring it back, return "desktop" for width / height >= 1 again.
- */
-export const pickSet = (): SequenceSet => "mobile";
+/** Landscape (or square) viewports play the landscape film, portrait ones the portrait film. */
+export const pickSet = (width: number, height: number): SequenceSet =>
+  width / height >= 1 ? "desktop" : "mobile";
 
 /** Skip the HD tier on slow or metered connections. */
 export const canLoadHd = () => {

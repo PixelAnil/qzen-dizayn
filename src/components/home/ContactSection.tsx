@@ -1,5 +1,6 @@
 import { mapsEmbed, mapsHref, site } from "@/lib/site";
 import { buttonClass } from "@/components/ui/Button";
+import { MapEmbed } from "@/components/home/MapEmbed";
 
 const rows = [
   { label: "Telefon", value: site.phone.display, href: site.phone.href },
@@ -18,13 +19,7 @@ export function ContactSection() {
 
       <div className="mt-12 grid gap-4 md:mt-16 md:grid-cols-12">
         <div data-reveal className="relative aspect-4/3 overflow-hidden bg-graphite md:col-span-7 md:aspect-auto md:min-h-[30rem]">
-          <iframe
-            src={mapsEmbed}
-            title={`QZEN DİZAYN konumu: ${site.address}`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0 h-full w-full border-0 [filter:grayscale(1)_invert(0.92)_contrast(0.9)]"
-          />
+          <MapEmbed src={mapsEmbed} title={`QZEN DİZAYN konumu: ${site.address}`} address={site.address} />
         </div>
 
         <div data-reveal className="flex flex-col bg-graphite p-6 md:col-span-5 md:p-10">

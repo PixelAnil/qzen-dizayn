@@ -24,12 +24,12 @@ const STAGES: Record<SequenceSet, readonly { from: number; label: string }[]> = 
   // Portrait TV-wall film (time-remapped in scripts/extract-frames.mjs): empty room, each piece of the
   // wall slides in, then dusk lights it up
   mobile: [
-    { from: 0, label: "Boş oda" },
+    // The empty room opens without a word; the first label comes with the floor
     { from: 8, label: "Parke zemin" },
     { from: 20, label: "PVC ve Lambiri" },
     { from: 50, label: "TV ünitesi" },
     { from: 62, label: "Aydınlatma" },
-    { from: 110, label: "Akşam ışığı" },
+    { from: 110, label: "Teslim" },
   ],
 };
 
@@ -143,6 +143,33 @@ export function HeroSequence() {
           .finally(resolve);
       });
 
+    // Once the visitor has scrolled past the film, its remaining frames wait, so the photos and the rest
+    // of the page below get the connection; they carry on when the film is back in view
+    let heroInView = true;
+    let wake: (() => void) | null = null;
+    const whenInView = () =>
+      heroInView
+        ? Promise.resolve()
+        : new Promise<void>((resolve) => {
+            const previous = wake;
+            wake = () => {
+              previous?.();
+              resolve();
+            };
+          });
+    const viewObserver = new IntersectionObserver(
+      ([entry]) => {
+        heroInView = entry.isIntersecting;
+        if (heroInView && wake) {
+          const resume = wake;
+          wake = null;
+          resume();
+        }
+      },
+      { rootMargin: "50% 0px" },
+    );
+    viewObserver.observe(section);
+
     const loadTier = async (tier: SequenceTier, gen: number, concurrency: number) => {
       // Light tier: coarse-to-fine. HD tier: outward from where the visitor is, so the visible frame sharpens first
       const queue =
@@ -151,6 +178,8 @@ export function HeroSequence() {
           : Array.from({ length: frameCount }, (_, i) => i).sort((a, b) => Math.abs(a - current) - Math.abs(b - current));
       const worker = async () => {
         while (queue.length && gen === generation) {
+          await whenInView();
+          if (gen !== generation) return;
           await loadFrame(queue.shift()!, tier, gen, "low");
         }
       };
@@ -175,6 +204,16 @@ export function HeroSequence() {
       if (index === shownStage) return;
       const forward = index > shownStage;
       shownStage = index;
+      // Before the first stage (the portrait film's empty room) no word is shown
+      if (index < 0) {
+        if (liveRef.current) liveRef.current.textContent = "";
+        for (const line of Array.from(stageBox.children)) {
+          gsap.killTweensOf(line.querySelectorAll("span > span"));
+          line.remove();
+        }
+        shownLine = null;
+        return;
+      }
       if (liveRef.current) liveRef.current.textContent = STAGES[set][index].label;
 
       const previous = shownLine;
@@ -225,7 +264,7 @@ export function HeroSequence() {
       );
     };
 
-    showStage(0);
+    showStage(stageAt(set, 0));
 
     // ── Sizing: crisp on HiDPI, recentred on every resize ──
     const resize = () => {
@@ -239,7 +278,7 @@ export function HeroSequence() {
       if (nextSet !== set) {
         set = nextSet;
         loadSequence();
-        shownStage = -1;
+        shownStage = -2; // forces a redraw, even to "no word"
         showStage(stageAt(set, current));
       }
       requestDraw();
@@ -285,6 +324,7 @@ export function HeroSequence() {
       generation++;
       cancelAnimationFrame(rafId);
       resizeObserver.disconnect();
+      viewObserver.disconnect();
       gctx.revert();
       stageBox.replaceChildren();
     };

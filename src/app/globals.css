@@ -336,3 +336,14 @@ html {
     transition: none;
   }
 }
+
+/* Projeler grid: justified rows. A tile grows in proportion to its photo's ratio from a common row
+   height, so a row fills the width while every photo keeps its shape. */
+@media (min-width: 40rem) {
+  .project-rows > figure {
+    flex: var(--ar) 1 calc(var(--row-h) * var(--ar));
+  }
+  .project-rows > .project-rows-end {
+    flex: 10 1 0;
+  }
+}

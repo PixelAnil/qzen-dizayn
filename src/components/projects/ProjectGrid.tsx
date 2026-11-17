@@ -1,5 +1,6 @@
 "use client";
 
+import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { iconButtonClass } from "@/components/ui/Button";
@@ -16,7 +17,8 @@ function Chevron({ flip = false }: { flip?: boolean }) {
 }
 
 /**
- * Even grid: every job's cover in the same 4:3 frame. A click opens the viewer, which runs through
+ * Justified rows: every cover keeps its own shape (nothing cropped), and the tiles in a row share one
+ * height, each as wide as its ratio asks (see .project-rows in globals.css). A click opens the viewer, which runs through
  * every photograph in order, so a job with several photos is swiped through before the next job.
  */
 export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; columns?: 2 | 3 }) {
@@ -55,9 +57,9 @@ export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; co
 
   return (
     <>
-      <div data-reveal-group className={`grid gap-2 sm:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""}`}>
+      <div data-reveal-group className={`project-rows flex flex-col gap-2 sm:flex-row sm:flex-wrap ${columns === 3 ? "[--row-h:16rem]" : "[--row-h:22rem]"}`}>
         {projects.map((project, i) => (
-          <figure key={project.slug} data-reveal className="relative">
+          <figure key={project.slug} data-reveal className="relative sm:aspect-(--ar)" style={{ "--ar": project.width / project.height } as React.CSSProperties}>
             <button
               type="button"
               onClick={(e) => {
@@ -65,7 +67,7 @@ export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; co
                 setOpen(starts[i]);
               }}
               aria-label={`${project.title ?? "Proje"}: ${project.more ? `${project.more.length + 1} fotoğrafı aç` : "fotoğrafı büyüt"}`}
-              className="group relative block aspect-4/3 w-full overflow-hidden bg-graphite-soft"
+              className="group relative block aspect-(--ar) w-full overflow-hidden bg-graphite-soft sm:aspect-auto sm:h-full"
             >
               <Image
                 src={asset(project.image)}
@@ -98,6 +100,8 @@ export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; co
             </button>
           </figure>
         ))}
+        {/* Soaks up the last row so its few tiles keep the common height instead of blowing up */}
+        <span aria-hidden className="project-rows-end hidden sm:block" />
       </div>
 
       {current && (

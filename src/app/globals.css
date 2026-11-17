@@ -94,9 +94,11 @@
   background-size: cover;
 }
 
+/* Wide screens show the portrait film whole, as the canvas does once it takes over */
 @media (min-aspect-ratio: 1/1) {
   .hero-poster {
-    background-image: var(--poster-desktop);
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 

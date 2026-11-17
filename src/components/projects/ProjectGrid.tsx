@@ -57,7 +57,7 @@ export function ProjectGrid({ projects, columns = 2 }: { projects: Project[]; co
 
   return (
     <>
-      <div data-reveal-group className={`project-rows flex flex-col gap-2 sm:flex-row sm:flex-wrap ${columns === 3 ? "[--row-h:16rem]" : "[--row-h:22rem]"}`}>
+      <div data-reveal-group className={`project-rows flex flex-col gap-2 sm:flex-row sm:flex-wrap ${columns === 3 ? "[--row-h:16rem]" : "[--row-h:34rem]"}`}>
         {projects.map((project, i) => (
           <figure key={project.slug} data-reveal className="relative sm:aspect-(--ar)" style={{ "--ar": project.width / project.height } as React.CSSProperties}>
             <button

@@ -30,11 +30,10 @@ export const site = {
     href: contact.instagram,
   },
   google: {
-    // TODO: swap for the profile's own links once the Place ID is known:
-    // reviews → https://search.google.com/local/reviews?placeid=<ID>
-    // write   → https://search.google.com/local/writereview?placeid=<ID>
-    reviewsHref: "https://www.google.com/maps/search/?api=1&query=QZEN%20D%C4%B0ZAYN%20Sultanbeyli",
-    writeReviewHref: "https://www.google.com/maps/search/?api=1&query=QZEN%20D%C4%B0ZAYN%20Sultanbeyli",
+    // The Business Profile, by its Google ids (feature id 0xad50bb9b9f1761cb:0x6443ba4c61b57d60, CID
+    // 7224823064451972448). "#lrd=…,3" opens the profile's write-a-review box straight away.
+    reviewsHref: "https://www.google.com/maps?cid=7224823064451972448",
+    writeReviewHref: "https://www.google.com/search?q=Qzen+Dizayn#lrd=0xad50bb9b9f1761cb:0x6443ba4c61b57d60,3,,,",
   },
   builtBy: {
     label: "Flowrix Studio",

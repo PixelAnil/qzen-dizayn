@@ -36,8 +36,8 @@ export function AboutSection() {
 
         <figure data-reveal className="md:col-span-5 md:col-start-8 md:self-start md:sticky md:top-28">
           <Image
-            src={asset("/brand/salon-tv-unitesi.webp")}
-            alt="Altın damarlı mermer TV duvarı, iki yanında ahşap çıta kolonlar, amber sarkıt lambalar ve LED aydınlatmalı tavan"
+            src={asset("/brand/salon-somine.webp")}
+            alt="Siyah mermer şömineli salon: iki yanında aydınlatmalı ceviz kitaplıklar, çerçeveli duvar paneli, altın halkalı avize, LED aydınlatmalı kademeli asma tavan ve balıksırtı parke"
             width={1080}
             height={1350}
             sizes="(min-width: 768px) 40vw, 100vw"

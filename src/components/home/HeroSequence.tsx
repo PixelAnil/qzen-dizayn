@@ -13,23 +13,23 @@ const LOAD_CONCURRENCY = 6;
 // What each film shows at each point: scrolling plays the job from shell to hand-over.
 // Both TV-wall films build the room in the same order; each set keeps its own stages in case a film is re-cut.
 const STAGES: Record<SequenceSet, readonly { from: number; label: string }[]> = {
-  // Landscape TV-wall film, time-remapped like the portrait one (scripts/extract-frames.mjs)
+  // Luxury salon film (10 s, sampled evenly at 15 fps, so frame = seconds × 15): the empty concrete
+  // shell opens without a word; the first label comes with the floor
   desktop: [
-    { from: 8, label: "Parke zemin" },
-    { from: 20, label: "PVC ve Lambiri" },
-    { from: 50, label: "TV ünitesi" },
-    { from: 62, label: "Aydınlatma" },
-    { from: 110, label: "Teslim" },
+    { from: 22, label: "Parke zemin" },
+    { from: 30, label: "Lambiri" },
+    { from: 40, label: "Duvar paneli" },
+    { from: 52, label: "Asma tavan" },
+    { from: 82, label: "Mobilya" },
+    { from: 118, label: "Teslim" },
   ],
-  // Portrait TV-wall film (time-remapped in scripts/extract-frames.mjs): empty room, each piece of the
-  // wall slides in, then dusk lights it up
   mobile: [
-    // The empty room opens without a word; the first label comes with the floor
-    { from: 8, label: "Parke zemin" },
-    { from: 20, label: "PVC ve Lambiri" },
-    { from: 50, label: "TV ünitesi" },
-    { from: 62, label: "Aydınlatma" },
-    { from: 110, label: "Teslim" },
+    { from: 22, label: "Parke zemin" },
+    { from: 30, label: "Lambiri" },
+    { from: 38, label: "Duvar paneli" },
+    { from: 52, label: "Asma tavan" },
+    { from: 88, label: "Mobilya" },
+    { from: 115, label: "Teslim" },
   ],
 };
 
@@ -367,7 +367,7 @@ export function HeroSequence() {
 
         <div data-hero-stage className="absolute inset-x-0 bottom-0 z-10 px-4 pb-6 md:px-8 md:pb-10">
           <span ref={liveRef} className="sr-only" aria-live="polite" />
-          {/* Capped by width so the longest phone stage ("Lambiri ve niş", ~7em) clears the WhatsApp button on small phones */}
+          {/* Capped by width so the longest phone stage ("Duvar paneli", ~6em) clears the WhatsApp button on small phones */}
           <div
             ref={stageRef}
             className="display relative h-[0.95em] text-[min(clamp(2.75rem,1.2rem+6.5vw,8.5rem),calc((100vw-6rem)/7.2))] leading-[0.9] text-ivory"

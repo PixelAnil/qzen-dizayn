@@ -14,16 +14,11 @@ import ffmpeg from "ffmpeg-static";
 const [esrgan, only] = process.argv.slice(2);
 if (!esrgan) throw new Error("Pass the path to realesrgan-ncnn-vulkan");
 
-// Keep in step with scripts/extract-frames.mjs: same frame count and the same time remap, so the
+// Keep in step with scripts/extract-frames.mjs: same frame count and the same sampling, so the
 // stage labels in HeroSequence.tsx line up with either script's output
 const FRAMES = 150;
 const PAD = "tpad=stop_mode=clone:stop_duration=0.5";
-const REMAP =
-  "[0:v]split=3[a][b][c];" +
-  "[a]trim=0:0.4,setpts=PTS-STARTPTS,fps=15[a1];" +
-  "[b]trim=0.4:3.6,setpts=PTS-STARTPTS,fps=24[b1];" +
-  "[c]trim=3.6,setpts=PTS-STARTPTS,fps=68/4.33[c1];" +
-  `[a1][b1][c1]concat=n=3:v=1:a=0,${PAD}`;
+const REMAP = `[0:v]fps=15,${PAD}`;
 const films = {
   // src: size the frames go into the upscaler at (the video tool's native 720p; 4× from there is plenty).
   // The landscape HD set is 2560 wide so Retina laptops draw it without enlarging it.

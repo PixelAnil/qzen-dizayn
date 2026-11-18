@@ -31,9 +31,9 @@ export const site = {
   },
   google: {
     // The Business Profile, by its Google ids (feature id 0xad50bb9b9f1761cb:0x6443ba4c61b57d60, CID
-    // 7224823064451972448). "#lrd=…,3" opens the profile's write-a-review box straight away.
+    // 7224823064451972448). The write link is the profile's own "ask for reviews" link: it opens the review box.
     reviewsHref: "https://www.google.com/maps?cid=7224823064451972448",
-    writeReviewHref: "https://www.google.com/search?q=Qzen+Dizayn#lrd=0xad50bb9b9f1761cb:0x6443ba4c61b57d60,3,,,",
+    writeReviewHref: "https://g.page/r/CWB9tWFMukNkEBI/review",
   },
   builtBy: {
     label: "Flowrix Studio",

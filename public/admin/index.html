@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>QZEN DİZAYN Yönetim Paneli</title>
+    <!-- "Ana ekrana ekle": the panel gets its own icon and name on phones. It opens in the browser
+         (display: browser) because the sign-in window relies on it; a standalone app window can lose it. -->
+    <link rel="manifest" href="/admin/manifest.webmanifest" />
+    <link rel="icon" href="/admin/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/admin/icons/icon-180.png" />
+    <meta name="apple-mobile-web-app-title" content="QZEN Panel" />
+    <meta name="theme-color" content="#0a0a0a" />
     <!-- Sveltia CMS, pinned so an upstream release can't change the panel unannounced -->
     <script src="https://unpkg.com/@sveltia/cms@0.258.1/dist/sveltia-cms.js"></script>
     <style>

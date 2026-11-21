@@ -5,6 +5,10 @@ main = "src/index.js"
 compatibility_date = "2026-10-01"
 workers_dev = true
 
+# The panel's own address on the site's domain (Cloudflare creates the DNS record itself); the old
+# workers.dev address keeps working so open panels don't break
+routes = [{ pattern = "panel.qzendizayn.com", custom_domain = true }]
+
 [vars]
 ALLOWED_DOMAINS = "pixelanil.github.io, qzendizayn.com, www.qzendizayn.com"
 REPO = "PixelAnil/qzen-dizayn"

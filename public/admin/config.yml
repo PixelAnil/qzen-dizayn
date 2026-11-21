@@ -8,9 +8,9 @@ backend:
   branch: main
   # Giriş: kullanıcı adı + şifre, Cloudflare Workers'taki kendi servisimiz (panel-giris/). Panelin
   # GitHub istekleri de oradan geçer; sitenin GitHub anahtarı tarayıcıya hiç gelmez.
-  base_url: https://qzen-panel-giris.anlbaday25.workers.dev
-  api_root: https://qzen-panel-giris.anlbaday25.workers.dev/api/v3
-  graphql_api_root: https://qzen-panel-giris.anlbaday25.workers.dev/api/graphql
+  base_url: https://panel.qzendizayn.com
+  api_root: https://panel.qzendizayn.com/api/v3
+  graphql_api_root: https://panel.qzendizayn.com/api/graphql
   auth_methods: [oauth]
   commit_messages:
     create: "Panel: {{collection}} eklendi ({{slug}})"

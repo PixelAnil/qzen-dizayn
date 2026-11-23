@@ -1,0 +1,1 @@
+Panelden yüklenen ham hizmet videoları. Site yayınlanırken scripts/panel-videos.mjs bunları korumalı filme çevirir.

@@ -77,7 +77,20 @@ collections:
         label: Fotoğraf
         widget: image
         required: false
-        hint: Dikey (portre) fotoğraf en iyi görünür. Boş bırakırsanız QZEN logosu görünür.
+        hint: Dikey (portre) fotoğraf en iyi görünür. Boş bırakırsanız QZEN logosu görünür. Video yüklerseniz sitede fotoğraf yerine video oynar.
+      - name: video
+        label: Video (isteğe bağlı)
+        widget: file
+        required: false
+        accept: video/mp4,video/quicktime,video/webm
+        # Raw uploads stay out of public/: the build server encodes them into the protected film
+        # (scripts/panel-videos.mjs), so the original file is never served
+        media_folder: /videolar/hizmetler
+        public_folder: /videolar/hizmetler
+        hint: >-
+          Dikey (9:16) video en iyi görünür, en fazla 25 MB. Yüklerseniz sitede fotoğrafın yerine bu video oynar:
+          hizmet listesinde üzerine gelince ve hizmet sayfasında. Video, site yayınlanırken otomatik olarak
+          kırpılır, korumalı hale getirilir ve sesi kaldırılır; yayın birkaç dakika sürebilir.
       - name: image_alt
         label: Fotoğrafta ne var? (isteğe bağlı)
         required: false

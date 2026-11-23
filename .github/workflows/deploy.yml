@@ -33,6 +33,9 @@ jobs:
       # npm ci rejects lockfiles generated on macOS (missing Linux-only optional deps)
       - run: npm install --no-audit --no-fund
 
+      # Service films uploaded in the panel (videolar/hizmetler) → protected films in public/services/video
+      - run: node scripts/panel-videos.mjs
+
       - run: npm run build
 
       - name: Cloudflare'e yayınla
